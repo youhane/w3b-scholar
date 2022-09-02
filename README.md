@@ -8,16 +8,11 @@
    <h3>
     <a href='https://www.figma.com/file/kzTIuaLLZu541N3desYhxL/BNCC-Nice-Try?node-id=30%3A6'>Mockup</a>
     <span> | </span>
-   <a href='https://nextjs.org/docs/getting-started'>NextJS</a>
+   <a href='https://docs.google.com/document/d/1tiende4r6AeD3_DWjetUXv1tiDgkNBWhsR7G5Xd-PIQ/edit#heading=h.ooka42wl8xdr'>Proposal</a>
     <span> | </span>
-    <a href='https://firebase.google.com/docs'>Firebase</a>
+    <a href='https://console.firebase.google.com/u/0/project/nice-try-team/overview'>Firebase Console</a>
   </h3>
 </div>
-
-<br/>
-
-## Our Firebase Console
-<https://console.firebase.google.com/u/0/project/nice-try-team/overview>
 
 <br/>
 
@@ -25,23 +20,22 @@
 
 ## Install
 
-- git clone the repo
-- ```npm install```
+- ```git clone``` the repo
+- then run ```npm install```
   - if it doesnt work try ```npm install --f```
 
 ## Running
 
     npm run dev
 
-<br/>
 
-# Styling and Stuff
+# Packages
 
 - <a href='https://styled-components.com/'>styled-component</a> (Main Styling)
 - <a href='https://react-icons.github.io/react-icons/'>react-icons</a> (Icons)
 - <a href='https://www.framer.com/docs/introduction/'>framer-motion</a> (Animations)
+- <a href='https://draftjs.org/'>Draftjs</a> (Rich Text Editor) <-- If anyone finds something better tell me
 
-<br/>
 <br/>
 
 # Branching and Committing
@@ -70,9 +64,6 @@ Example
 eg. feat-navbar or fix-article
 ```
 
-<br/>
-<br/>
-
 # Folder and File Structure
 
 ## Styling and Components
@@ -94,17 +85,11 @@ Or just be consistent with what you code, it helps
   - common, commonly used components like buttons, inputs and stuff
   - pages, special or unique components in pages like maybe card articles and stuff
 
-    <br/>
-
 - constants
   - styles, to store commonly used style values (typically colors)
 
-    <br/>
-
 - firebase
   - firebase, it is what it is
-
-    <br/>
 
 - pages
   - articles
@@ -114,12 +99,8 @@ Or just be consistent with what you code, it helps
   - _documents, where you do configs and stuff here
   - index, the App.js in Next
 
-    <br/>
-
 - public
   - static, where all the static files stay (images, and stuff)
-
-    <br/>
 
 - styles
   - GlobalStyles, the GlobalStyles for the app like the fonts and colors used and more
