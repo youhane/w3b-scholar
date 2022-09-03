@@ -34,7 +34,7 @@
 - <a href='https://styled-components.com/'>styled-component</a> (Main Styling)
 - <a href='https://react-icons.github.io/react-icons/'>react-icons</a> (Icons)
 - <a href='https://www.framer.com/docs/introduction/'>framer-motion</a> (Animations)
-- <a href='https://draftjs.org/'>Draftjs</a> (Rich Text Editor) <-- If anyone finds something better tell me
+- <a href='https://quilljs.com/'>Quilljs</a> (Rich Text Editor)
 
 <br/>
 

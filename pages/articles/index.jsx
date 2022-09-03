@@ -1,4 +1,4 @@
-import { getDocs } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { getDownloadURL, listAll, ref } from 'firebase/storage';
 import React, { useEffect, useState } from 'react'
 import { db, storage } from '../../firebase/firebase';
