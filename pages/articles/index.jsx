@@ -30,7 +30,15 @@ function Articles() {
     }, [articlesReference]);
 
     return (
-        <div>Articles</div>
+        <div>
+            <h1>Articles</h1>
+            {articles.map(article => (
+                <a key={article.id} href={`/articles/${article.id}`}>
+                    <h2>{article.title}</h2>
+                    <div dangerouslySetInnerHTML={{ __html: article.content }}></div>
+                </a>
+            ))}
+        </div>
     )
 }
 
