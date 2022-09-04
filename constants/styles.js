@@ -1,6 +1,7 @@
 export const COLORS = {
-    black: '#222222',
-    white: '#FAFAFA',
-    whiteTransparent: '#FAFAFA50',
-    blackTransparent: '#22222250',
+    lightGrey: '#E6F4F1',
+    blue: '#C7E5EC',
+    white: '#FFFFFF',
+    pink: '#DA75AF',
+    darkblue: '#002E5B',
 }
