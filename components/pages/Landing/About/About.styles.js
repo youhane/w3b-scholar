@@ -5,7 +5,7 @@ export const Wrapper = styled.section`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    background: white;
+    background: ${COLORS.white};
     padding: 5rem;
     margin-bottom: 10rem;
     box-shadow: 0px 8px 15px rgba(57, 73, 85, 0.05);
@@ -24,5 +24,28 @@ export const Wrapper = styled.section`
     h1{
         font-size: 2.5rem;
         margin-bottom: 2rem;
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        padding: 2rem;
+
+        div{
+            width: 100%;
+            text-align: center;
+        }
+
+        div p{
+            font-size: .75rem;
+        }
+
+        h1{
+            font-size: 1.75rem;
+            margin: .75rem 0;
+        }
+
+        img{
+            width: 25%;
+        }
     }
 `

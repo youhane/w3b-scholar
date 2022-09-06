@@ -10,6 +10,19 @@ export const Wrapper = styled.div`
     justify-content: center;
     gap: 1rem;
     padding: 1rem 3rem;
+
+    img{
+        width: 20%;
+    }
+
+    @media (max-width: 768px) {
+        padding: .5rem 1rem;
+        gap: .5rem;
+
+        img{
+            width: 25%;
+        }
+    }
 `
 
 export const Info = styled.div`
@@ -20,5 +33,16 @@ export const Info = styled.div`
     h3{
         font-size: 1rem;
         font-weight: 400;
+    }
+
+    @media (max-width: 768px) {
+        width: 6.5rem;
+        h2{
+            font-size: .75rem;
+        }
+
+        h3{
+            font-size: .5rem;
+        }
     }
 `

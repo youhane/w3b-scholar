@@ -11,6 +11,7 @@ export const GlobalStyles = createGlobalStyle`
 
     body{
         background: ${COLORS.lightGrey};
+        overflow-x: hidden;
     }
 
     h1{

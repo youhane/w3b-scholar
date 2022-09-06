@@ -13,7 +13,6 @@ export const Wrapper = styled.button`
     color: ${COLORS.white};
     font-size: 1rem;
     font-weight: 500;
-    margin: 1rem 0;
     cursor: pointer;
 
     :hover{
@@ -23,5 +22,14 @@ export const Wrapper = styled.button`
     span{
         font-size: 1.2rem;
         display: flex;
+    }
+
+    @media (max-width: 768px) {
+        font-size: .75rem;
+        padding: .75rem 1.25rem;
+        
+        span{
+            font-size: 1rem;
+        }
     }
 `
