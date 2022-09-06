@@ -1,5 +1,5 @@
 import React from 'react'
-import PinkButton from '../../../common/Button/PinkButton'
+import Button from '../../../common/Button/Button'
 import { Left, Right, Wrapper } from './Hero.styles'
 
 function Hero() {
@@ -8,7 +8,7 @@ function Hero() {
             <Left>
                 <div>
                     <h1>Platform <br /> <span>Belajar Web 3.0</span> <br /> untuk <span>Indonesia</span> 🇮🇩</h1>
-                    <PinkButton text={'Pelajari Lebih Lanjut'} onClick={() => console.log('clicked')} />
+                    <Button text={'Pelajari Lebih Lanjut'} onClick={() => console.log('clicked')} />
                 </div>
             </Left>
             <Right>

@@ -24,7 +24,6 @@ export const Left = styled.div`
     }
     
     h1{
-        font-family: 'Syne', sans-serif;
         font-size: 3.5rem;
     }
 

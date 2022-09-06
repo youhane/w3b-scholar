@@ -1,5 +1,9 @@
 import Head from 'next/head'
 import Footer from '../components/common/Footer/Footer'
+import About from '../components/pages/Landing/About/About'
+import Articles from '../components/pages/Landing/Articles/Articles'
+import Authors from '../components/pages/Landing/Authors/Authors'
+import Community from '../components/pages/Landing/Community/Community'
 import Hero from '../components/pages/Landing/Hero/Hero'
 
 export default function Home() {
@@ -12,6 +16,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Hero />
+      <About />
+      <Articles />
+      <Authors />
+      <Community/>
       <Footer />
     </div>
   )
