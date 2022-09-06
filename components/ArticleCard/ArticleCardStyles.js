@@ -49,3 +49,18 @@ export const CardDate = styled.p`
   font-size: 16px;
   line-height: 24px;
 `;
+
+export const LinkButton = styled.div`
+  background-color: #da75af;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 8px;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  z-index: 1;
+`;

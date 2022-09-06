@@ -10,48 +10,66 @@ const articleListDummy = [
     id: 1,
     title: "8 Jenis DAO Paling Penting yang Perlu Anda Ketahui",
     cardImg:
-      "https://images.unsplash.com/photo-1464802686167-b939a6910659?ixlib=rb-1.2.1&w=1080&fit=max&q=80&fm=jpg&crop=entropy&cs=tinysrgb",
-    articleDate: "April 06, 2002",
+      "https://d33wubrfki0l68.cloudfront.net/4b98f4a3c3259ea04adb9027358692a5a955f267/05acd/static/28214bb68eb5445dcb063a72535bc90c/f51a3/hero.png",
+    date: "April 06, 2002",
     author: {
       name: "Stephen Tries",
-      imgUrl:
-        "https://static.wikia.nocookie.net/theultimatesidemen/images/0/09/StephenTries.jpg/revision/latest?cb=20200830100933",
+      imgUrl: "https://cdn.personalitylist.com/avatars/184324.png",
     },
   },
   {
     id: 2,
     title: "8 Jenis DAO Paling Penting yang Perlu Anda Ketahui",
     cardImg:
-      "https://images.unsplash.com/photo-1464802686167-b939a6910659?ixlib=rb-1.2.1&w=1080&fit=max&q=80&fm=jpg&crop=entropy&cs=tinysrgb",
-    articleDate: "April 06, 2002",
+      "https://d33wubrfki0l68.cloudfront.net/4b98f4a3c3259ea04adb9027358692a5a955f267/05acd/static/28214bb68eb5445dcb063a72535bc90c/f51a3/hero.png",
+    date: "April 06, 2002",
     author: {
       name: "Stephen Tries",
-      imgUrl:
-        "https://static.wikia.nocookie.net/theultimatesidemen/images/0/09/StephenTries.jpg/revision/latest?cb=20200830100933",
+      imgUrl: "https://cdn.personalitylist.com/avatars/184324.png",
     },
   },
   {
     id: 3,
     title: "8 Jenis DAO Paling Penting yang Perlu Anda Ketahui",
     cardImg:
-      "https://images.unsplash.com/photo-1464802686167-b939a6910659?ixlib=rb-1.2.1&w=1080&fit=max&q=80&fm=jpg&crop=entropy&cs=tinysrgb",
-    articleDate: "April 06, 2002",
+      "https://d33wubrfki0l68.cloudfront.net/4b98f4a3c3259ea04adb9027358692a5a955f267/05acd/static/28214bb68eb5445dcb063a72535bc90c/f51a3/hero.png",
+    date: "April 06, 2002",
     author: {
       name: "Stephen Tries",
-      imgUrl:
-        "https://static.wikia.nocookie.net/theultimatesidemen/images/0/09/StephenTries.jpg/revision/latest?cb=20200830100933",
+      imgUrl: "https://cdn.personalitylist.com/avatars/184324.png",
     },
   },
   {
     id: 4,
     title: "8 Jenis DAO Paling Penting yang Perlu Anda Ketahui",
     cardImg:
-      "https://images.unsplash.com/photo-1464802686167-b939a6910659?ixlib=rb-1.2.1&w=1080&fit=max&q=80&fm=jpg&crop=entropy&cs=tinysrgb",
-    articleDate: "April 06, 2002",
+      "https://d33wubrfki0l68.cloudfront.net/4b98f4a3c3259ea04adb9027358692a5a955f267/05acd/static/28214bb68eb5445dcb063a72535bc90c/f51a3/hero.png",
+    date: "April 06, 2002",
     author: {
       name: "Stephen Tries",
-      imgUrl:
-        "https://static.wikia.nocookie.net/theultimatesidemen/images/0/09/StephenTries.jpg/revision/latest?cb=20200830100933",
+      imgUrl: "https://cdn.personalitylist.com/avatars/184324.png",
+    },
+  },
+  {
+    id: 5,
+    title: "8 Jenis DAO Paling Penting yang Perlu Anda Ketahui",
+    cardImg:
+      "https://d33wubrfki0l68.cloudfront.net/4b98f4a3c3259ea04adb9027358692a5a955f267/05acd/static/28214bb68eb5445dcb063a72535bc90c/f51a3/hero.png",
+    date: "April 06, 2002",
+    author: {
+      name: "Stephen Tries",
+      imgUrl: "https://cdn.personalitylist.com/avatars/184324.png",
+    },
+  },
+  {
+    id: 6,
+    title: "8 Jenis DAO Paling Penting yang Perlu Anda Ketahui",
+    cardImg:
+      "https://d33wubrfki0l68.cloudfront.net/4b98f4a3c3259ea04adb9027358692a5a955f267/05acd/static/28214bb68eb5445dcb063a72535bc90c/f51a3/hero.png",
+    date: "April 06, 2002",
+    author: {
+      name: "Stephen Tries",
+      imgUrl: "https://cdn.personalitylist.com/avatars/184324.png",
     },
   },
 ];
@@ -69,9 +87,9 @@ function Articles() {
         </p>
       </Top>
       <img src="/static/assets/articleSectionImage.png" alt="Article Image" />
-
+      {/* TODO: img Authornya ngga mo muncul di ArticleCardnya tapi pas kutes disini bisa :_)
+      https://codesandbox.io/s/w3b-card-3wrst7?file=/src/components/UI/Author.jsx */}
       <ArticleCardContainer articles={articleListDummy} />
-
       <Bottom>
         <Button
           text={"Lihat Lainnya"}

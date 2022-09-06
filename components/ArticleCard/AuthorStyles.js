@@ -13,6 +13,7 @@ export const AuthorImage = styled.img`
   border-radius: 139px;
   background-image: url(${({ src }) => src});
   background-size: cover;
+  background-color: black;
 `;
 
 export const AuthorName = styled.h3`

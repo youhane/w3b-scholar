@@ -13,7 +13,7 @@ const ArticleCardContainer = (props) => {
             key={article.id}
             title={article.title}
             cardImg={article.cardImg}
-            articleDate={article.articleDate}
+            articleDate={article.date}
             author={{
               name: article.author.name,
               imgUrl: article.author.imgUrl,
