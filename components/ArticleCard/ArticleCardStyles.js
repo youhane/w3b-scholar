@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const CardWrapper = styled.div`
-  display: grid;
   width: 450px;
+  display: grid;
   grid-template-rows: 160px 80px 80px;
   grid-template-areas: "image" "title" "other";
   box-shadow: 0px 8px 15px rgba(57, 73, 85, 0.05);
