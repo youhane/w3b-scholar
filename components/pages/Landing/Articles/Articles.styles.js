@@ -25,12 +25,22 @@ export const Top = styled.div`
     p{
         width: 25%;
     }
+
+    @media (max-width: 768px) {
+        p{
+            width: 80%;
+            font-size: .75rem;
+        }
+    }
 `
 
 export const Grid = styled.div`
     display: grid;
     grid-template-columns: auto auto auto;
-    grid-template-rows: auto auto;
+
+    @media (max-width: 768px) {
+        grid-template-columns: auto auto;
+    }
 `
 
 export const Bottom = styled.div`

@@ -18,4 +18,12 @@ export const Wrapper = styled.footer`
     p{
         color: white;
     }
+
+    @media (max-width: 768px) {
+        gap: 1rem;
+        
+        img{
+            width: 10%;
+        }
+    }
 `

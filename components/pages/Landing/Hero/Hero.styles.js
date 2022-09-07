@@ -4,6 +4,11 @@ import { COLORS } from "../../../../constants/styles";
 export const Wrapper = styled.section`
     display: flex;
     justify-content: space-between;
+    margin: 3rem auto;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
 `
 
 export const Left = styled.div`
@@ -32,6 +37,23 @@ export const Left = styled.div`
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        font-family: 'Syne', sans-serif;
+    }
+
+    @media (max-width: 768px) {
+        align-items: center;
+
+        h1{
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        div{
+            border-radius: 10rem;
+            padding: 1rem .5rem;
+            align-items: center;
+            gap: 1rem;
+        }
     }
 `
 
@@ -41,6 +63,21 @@ export const Right = styled.div`
     align-items: center;
     
     img{
-        height: 85%;
+        height: 100%;
+        transform: translateX(20%);
+    }
+    
+    @media (max-width: 768px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: fit-content;
+        margin-top: 2rem;
+
+        img{
+            height: 15rem;
+            transform: translateX(0);
+        }
     }
 `

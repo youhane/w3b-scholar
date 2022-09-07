@@ -8,23 +8,62 @@ export const Wrapper = styled.section`
     padding-top: 10rem;
     box-shadow: 0px 8px 15px rgba(57, 73, 85, 0.05);
 
-    p{
-        margin-top: 3rem;
-    }
-
-    .filler{
-        width: 30%;
+    .center{
+        position: absolute;
+        top: 55%;
+        left: 35%;
     }
 
     .more{
         position: absolute;
         left: 50%;
-        bottom: 1rem;
+        bottom: 4%;
+    }
+
+    .bottom{
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        padding: 0 1rem;
+        padding-top: 3rem;
+
+        .center{
+            position: static;
+            font-size: .75rem;
+        }
+
+        .more{
+            position: static;
+            font-size: .75rem;
+        }
+
+        .bottom{
+            display: block;
+            width: 70%;
+            margin: 0 auto;
+        }
     }
 `
 
-export const Row = styled.div`
-    display: flex;
+export const Grid = styled.div`
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 1rem;
     align-items: center;
     justify-content: space-evenly;
+
+    .filler{
+        height: 80%;
+        transform: translateY(15%);
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: auto auto;
+        margin: 1rem 0;
+
+        .filler{
+            display: none;
+        }
+    }
 `
