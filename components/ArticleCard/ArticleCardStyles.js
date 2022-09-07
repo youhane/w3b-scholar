@@ -57,10 +57,13 @@ export const LinkButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: #ffff;
   border-radius: 8px;
   position: absolute;
   right: 16px;
   top: 16px;
   z-index: 1;
+  &: hover {
+    background-color: #c75a8f;
+  }
 `;

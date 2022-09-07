@@ -42,6 +42,7 @@ const Card = (props) => {
           />
         </svg>
       </LinkButton>
+
       <CardWrapper onClick={handleCardClick}>
         <CardImage background={props.cardImg} />
         <CardTitleWrapper>

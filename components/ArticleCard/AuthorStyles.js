@@ -4,16 +4,15 @@ export const AuthorWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-  width: auto;
+  max-width: 200px;
 `;
 
-export const AuthorImage = styled.img`
+export const AuthorImage = styled.div`
   height: 47px;
   width: 49px;
-  border-radius: 139px;
   background-image: url(${({ src }) => src});
   background-size: cover;
-  background-color: black;
+  border-radius: 120px;
 `;
 
 export const AuthorName = styled.h3`
