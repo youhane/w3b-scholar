@@ -7,6 +7,7 @@ export const GlobalStyles = createGlobalStyle`
         font-family: 'Rubik', sans-serif;
         margin: 0;
         padding: 0;
+        transition: all .3s ease-in-out;
     }
 
     body{
