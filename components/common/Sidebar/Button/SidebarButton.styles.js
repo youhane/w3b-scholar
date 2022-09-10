@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { COLORS } from "../../../../constants/styles";
 
 export const Wrapper = styled.button`
     display: flex;
@@ -10,6 +11,10 @@ export const Wrapper = styled.button`
     font-size: 1.25rem;
     font-weight: 300;
     cursor: pointer;
-    color: ${props => props.color && COLORS.pink};
+    color: ${props => props.isActive && COLORS.pink};
     width: max-content;
+
+    :hover{
+        color: ${props => props.hoverColor ? props.hoverColor : COLORS.borderBlue};
+    }
 `

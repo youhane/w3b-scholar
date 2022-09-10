@@ -1,35 +1,57 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Bottom, Top, Wrapper } from './Sidebar.styles'
 import { FiLogOut, FiUpload } from 'react-icons/fi'
 import { CgFileDocument } from 'react-icons/cg'
 import { BiUserCircle } from 'react-icons/bi'
 import { IoIosCloseCircleOutline } from 'react-icons/io'
-import { useRouter } from 'next/router'
 import SidebarButton from './Button/SidebarButton'
+import Link from 'next/link'
 
 function Sidebar({ article, profile }) {
-  const router = useRouter()
+  const navigateTo = (path) => {
 
-  const [currentPath, setCurrentPath] = useState("");
-
-  useEffect(() => {
-    setCurrentPath(router.route)
-  }, [router.route]);
-
+  }
   return (
     <Wrapper>
       <Top>
         {article && (
           <>
-            <SidebarButton icon={<CgFileDocument />} text={'Artikel'} />
-            <SidebarButton icon={<FiUpload />} text={"Upload Artikel"} />
+            <Link href={'/articles'}>
+              <SidebarButton
+                icon={<CgFileDocument />}
+                text={'Artikel'}
+                path={'/articles'}
+              />
+            </Link>
+            <Link href={'/articles/editor'}>
+              <SidebarButton
+                icon={<FiUpload />}
+                text={"Upload Artikel"}
+                path={'/articles/editor'}
+              />
+            </Link>
           </>
         )}
-        {profile && <button><BiUserCircle /> Profil</button>}
+        {profile && <Link href={'/profile'}>
+          <SidebarButton
+            icon={<BiUserCircle />}
+            text={'Profil'}
+            path={'/profile'}
+          />
+        </Link>
+        }
       </Top>
       <Bottom>
-        {profile && <SidebarButton icon={<IoIosCloseCircleOutline />} text={'Delete Account'} />}
-        <SidebarButton icon={<FiLogOut />} text={'Logout'} />
+        {profile && <SidebarButton
+          icon={<IoIosCloseCircleOutline />}
+          text={'Delete Account'}
+        />
+        }
+        <SidebarButton
+          icon={<FiLogOut />}
+          text={'Logout'}
+          hoverColor={'red'}
+        />
       </Bottom>
     </Wrapper>
   )
