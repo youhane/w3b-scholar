@@ -1,10 +1,17 @@
-import { GlobalStyles } from "../styles/GlobalStyles"
+import { GlobalStyles } from "../styles/GlobalStyles";
+import { AuthContextProvider } from "../context/AuthContext";
+import { useState } from "react";
 
 function MyApp({ Component, pageProps }) {
-  return <>
-    <Component {...pageProps} />
-    <GlobalStyles />
-  </>
+  const user = useState(null);
+  return (
+    <>
+      <AuthContextProvider>
+        <Component {...pageProps} />
+        <GlobalStyles />
+      </AuthContextProvider>
+    </>
+  );
 }
 
-export default MyApp
+export default MyApp;

@@ -39,7 +39,8 @@ function Register() {
     return (
         <div>
             <h1>Register</h1>
-            <input type="file" value={profilePic} onChange={(e) => setProfilePic(e.target.files[0])} />
+            <input type="file" onChange={(e) => setProfilePic(e.target.files[0])} />
+            {/* ijin apus value di atas, biar ga error */}
             <input type="text" value={displayName} onChange={(e) => setDisplayName(e.target.value)} />
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' required />
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' required />
