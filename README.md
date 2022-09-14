@@ -4,6 +4,15 @@
    This website is mainly built with NextJS and Firebase
 </div>
 
+<h2>Team Members</h2>
+<ul>
+  <li>Jason Sebastian Sulistyawan</li>
+  <li>Jonathan Jansen Subroto</li>
+  <li>Kevin Bryan</li>
+  <li>Ray Hans Sebastian Mantiri</li>
+  <li>Richard William</li>
+</ul>
+
 <div align="center">
    <h3>
     <a href='https://www.figma.com/file/kzTIuaLLZu541N3desYhxL/BNCC-Nice-Try?node-id=30%3A6'>Mockup</a>
@@ -27,7 +36,6 @@
 ## Running
 
     npm run dev
-
 
 # Packages
 
