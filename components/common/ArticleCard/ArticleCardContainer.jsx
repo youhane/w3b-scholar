@@ -11,6 +11,7 @@ const ArticleCardContainer = (props) => {
         return (
           <ArticleCard
             key={article.id}
+            id={article.id}
             title={article.title}
             cardImg={article.cardImg}
             articleDate={article.date}

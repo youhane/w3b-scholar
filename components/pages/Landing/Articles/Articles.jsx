@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import Button from "../../../common/Button/Button";
 import Title from "../../../common/Title/Title";
-import ArticleCardContainer from "../../../ArticleCard/ArticleCardContainer";
+import ArticleCardContainer from "../../../common/ArticleCard/ArticleCardContainer";
 import { Bottom, Grid, Top, Wrapper } from "./Articles.styles";
 
 const articleListDummy = [
@@ -13,8 +13,9 @@ const articleListDummy = [
       "https://d33wubrfki0l68.cloudfront.net/4b98f4a3c3259ea04adb9027358692a5a955f267/05acd/static/28214bb68eb5445dcb063a72535bc90c/f51a3/hero.png",
     date: "April 06, 2002",
     author: {
-      name: "Stephen Tries",
-      imgUrl: "https://cdn.personalitylist.com/avatars/184324.png",
+      name: "Gianlucazino Zambrotta",
+      imgUrl:
+        "https://pbs.twimg.com/profile_images/977547763092217857/mWJXTPj__400x400.jpg",
     },
   },
   {
@@ -25,7 +26,8 @@ const articleListDummy = [
     date: "April 06, 2002",
     author: {
       name: "Stephen Tries",
-      imgUrl: "https://cdn.personalitylist.com/avatars/184324.png",
+      imgUrl:
+        "https://www.chelseafcbrasil.com/wp-content/uploads/2021/08/1-Kepa-Arrizabalaga.png",
     },
   },
   {
@@ -36,7 +38,8 @@ const articleListDummy = [
     date: "April 06, 2002",
     author: {
       name: "Stephen Tries",
-      imgUrl: "https://cdn.personalitylist.com/avatars/184324.png",
+      imgUrl:
+        "https://www.chelseafcbrasil.com/wp-content/uploads/2021/08/1-Kepa-Arrizabalaga.png",
     },
   },
   {
@@ -47,7 +50,8 @@ const articleListDummy = [
     date: "April 06, 2002",
     author: {
       name: "Stephen Tries",
-      imgUrl: "https://cdn.personalitylist.com/avatars/184324.png",
+      imgUrl:
+        "https://www.chelseafcbrasil.com/wp-content/uploads/2021/08/1-Kepa-Arrizabalaga.png",
     },
   },
   {
@@ -58,7 +62,8 @@ const articleListDummy = [
     date: "April 06, 2002",
     author: {
       name: "Stephen Tries",
-      imgUrl: "https://cdn.personalitylist.com/avatars/184324.png",
+      imgUrl:
+        "https://www.chelseafcbrasil.com/wp-content/uploads/2021/08/1-Kepa-Arrizabalaga.png",
     },
   },
   {
@@ -69,7 +74,8 @@ const articleListDummy = [
     date: "April 06, 2002",
     author: {
       name: "Stephen Tries",
-      imgUrl: "https://cdn.personalitylist.com/avatars/184324.png",
+      imgUrl:
+        "https://www.chelseafcbrasil.com/wp-content/uploads/2021/08/1-Kepa-Arrizabalaga.png",
     },
   },
 ];

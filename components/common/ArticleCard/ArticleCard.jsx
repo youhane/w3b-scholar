@@ -1,7 +1,8 @@
+import { useRouter } from "next/router";
 import React from "react";
-import Author from "./Author";
 import Tilt from "react-parallax-tilt";
-
+import Author from "./Author";
+import Alert from "../Alert/Alert";
 import {
   CardWrapper,
   CardImage,
@@ -10,24 +11,39 @@ import {
   CardTitle,
   CardDate,
   LinkButton,
+  ArticleAlert,
 } from "./ArticleCardStyles";
 
-const handleLinkButtonClick = () => {
-  console.log("CLICKING BUTTON");
-};
-
-const handleCardClick = () => {
-  console.log("CLICKING CARD");
-};
-
 const Card = (props) => {
+  const router = useRouter();
+  const [showAlert, setShowAlert] = React.useState(false);
+  const articleURL = `..../articles/${props.id}`;
+
+  const handleLinkButtonClick = () => {
+    navigator.clipboard.writeText(articleURL);
+    setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 1000);
+
+    console.log("CLICKING BUTTON");
+  };
+
+  const handleCardClick = () => {
+    console.log("CLICKING CARD");
+  };
+
   return (
     <Tilt>
+      {showAlert && (
+        <ArticleAlert>
+          <Alert message={"URL Copied!"} out={!showAlert} />
+        </ArticleAlert>
+      )}
+
       <LinkButton onClick={handleLinkButtonClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
           fill="currentColor"
           className="bi bi-box-arrow-up-right"
           viewBox="0 0 16 16"
@@ -43,7 +59,7 @@ const Card = (props) => {
         </svg>
       </LinkButton>
 
-      <CardWrapper onClick={handleCardClick}>
+      <CardWrapper onClick={() => router.push(`/articles/${props.id}`)}>
         <CardImage background={props.cardImg} />
         <CardTitleWrapper>
           <CardTitle>{props.title}</CardTitle>
