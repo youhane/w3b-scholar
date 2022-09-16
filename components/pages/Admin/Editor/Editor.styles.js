@@ -74,8 +74,14 @@ export const InputComponent = styled.div`
 
     .quill{
         height: 50vh;
+        max-width: 150vh;
         border: 3px solid ${COLORS.borderBlue};
         border-radius: .75rem;
+
+        .ql-editor{
+            height: min-content;
+            max-height: 44vh;
+        }
     }
 
     .quill *{
@@ -89,4 +95,10 @@ export const Top = styled.div`
     align-items: flex-end;
     justify-content: space-between;
     margin-bottom: 1rem;
+
+    @media (max-width: 768px){
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
 `
