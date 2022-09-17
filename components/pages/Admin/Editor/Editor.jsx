@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { InputComponent, InputPicture, InputPictureButton, SubmitArticle, Top, Wrapper } from './Editor.styles'
 import { BiUpload } from 'react-icons/bi'
 import { IoClose } from 'react-icons/io5'
-import { db } from '../../../../firebase/firebase';
+import { db, storage } from '../../../../firebase/firebase';
 import dynamic from 'next/dynamic'
 import { formats, modules } from '../../../../constants/quill.config';
 import 'react-quill/dist/quill.snow.css';
 import { addDoc, collection } from 'firebase/firestore';
+import { getDownloadURL, listAll, ref, uploadBytes } from 'firebase/storage';
+import { AuthContext } from '../../../../context/AuthContext';
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -16,17 +18,35 @@ function Editor() {
     const [articleThumbnail, setArticleThumbnail] = useState(null);
 
     const articleColumn = collection(db, 'articles')
+    const user = useContext(AuthContext);
 
     const submitArticle = () => {
+        if (articleThumbnail === null) {
+            return alert("Please choose an image");
+        }
+
         if (articleContent === "" || articleTitle === "") {
             return alert("Please fill in all the fields");
         }
-        addDoc(articleColumn, {
-            title: articleTitle,
-            content: articleContent
+
+        const imageRef = ref(storage, `articles/${articleThumbnail.name}${articleTitle}`);
+
+        uploadBytes(imageRef, articleThumbnail).then((snapshot) => {
+            getDownloadURL(snapshot.ref).then((url) => {
+                addDoc(articleColumn, {
+                    title: articleTitle,
+                    content: articleContent,
+                    imageURL: url,
+                    userId: user.uid,
+                    createdAt: new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }),
+                })
+            })
+            alert("ARTICLE uploaded successfully")
         })
+
         setArticleTitle("")
         setArticleContent("")
+        setArticleThumbnail(null)
     }
 
     const updateText = (value) => {
@@ -67,7 +87,6 @@ function Editor() {
                                 </>
                             )
                     }
-
                 </InputPictureButton>
             </Top>
             <InputComponent>

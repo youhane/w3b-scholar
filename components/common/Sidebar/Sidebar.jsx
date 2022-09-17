@@ -8,9 +8,11 @@ import SidebarButton from './Button/SidebarButton'
 import Link from 'next/link'
 
 function Sidebar({ article, profile }) {
+  
   const navigateTo = (path) => {
 
   }
+
   return (
     <Wrapper>
       <Top>
