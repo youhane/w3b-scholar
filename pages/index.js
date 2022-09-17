@@ -11,7 +11,7 @@ export default function Home() {
     <div>
       <Head>
         <title>W3B Scholar</title>
-        <meta name="description" content="W3B Scholar" />
+        <meta name="description" content="W3B Scholar - Belajar Web3" />
         <meta property='og:image' content='../public/logo.png' />
         <link rel="icon" href="/favicon.ico" />
       </Head>

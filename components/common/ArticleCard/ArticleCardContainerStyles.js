@@ -9,9 +9,13 @@ export const CardContainer = styled.div`
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
     grid-template-columns: auto auto;
     grid-template-rows: auto auto auto;
     gap: 2rem;
+  }
+
+  @media (max-width: 320px) {
+    grid-template-columns: auto;
   }
 `;
