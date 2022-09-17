@@ -5,10 +5,9 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import { auth, storage } from "../../firebase/firebase";
+import { auth, storage, db } from "../../firebase/firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import Link from "next/link";
-import Image from "next/image";
 import {
   ContentWrapper,
   FormWrapper,
@@ -20,20 +19,25 @@ import {
   FileLabelWrapper,
   SignUpWrapper,
   ImgWrapper,
+  SmallLabel,
 } from "./index.styles";
+import { doc, setDoc } from "firebase/firestore";
 
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [reenterpassword, setreenterpassword] = useState("");
-  const [profilePic, setProfilePic] = useState("");
+  const [profilePic, setProfilePic] = useState(null);
   const [displayName, setDisplayName] = useState("");
   const [photoURL, setPhotoURL] = useState("");
-  const [user, setUser] = useState();
   const provider = new GoogleAuthProvider();
 
   const register = async () => {
     try {
+      if (password !== reenterpassword) {
+        alert("Passwords do not match");
+        return;
+      }
       await createUserWithEmailAndPassword(
         auth,
         email,
@@ -44,6 +48,11 @@ function Register() {
         (err) => alert(err.message)
       );
       setProfilePicture();
+      console.log(auth.currentUser);
+      const uidRef = doc(db, "users", auth.currentUser.uid);
+      await setDoc(uidRef, {
+        uid: auth.currentUser.uid,
+      });
       alert("SUCCESSFULLY REGISTERED");
     } catch (err) {
       alert(err.message);
@@ -66,7 +75,7 @@ function Register() {
         setPhotoURL(url);
       });
     });
-    alert("Profile Picture Uploaded");
+    if (profilePic != null) alert("Profile Picture Uploaded");
   };
 
   return (
@@ -129,10 +138,17 @@ function Register() {
               Upload your Profile Picture
             </FileLabelWrapper>
           ) : (
-            <FileLabelWrapper htmlFor="profile-picture">
-              <img src="/static/assets/uploadIcon.png" />
-              Upload {profilePic.name}
-            </FileLabelWrapper>
+            <>
+              <FileLabelWrapper onClick={setProfilePicture}>
+                <img src="/static/assets/uploadIcon.png" />
+                <div>Click to upload {profilePic.name}</div>
+              </FileLabelWrapper>
+
+              <SmallLabel htmlFor="profile-picture">
+                {" "}
+                or choose another image
+              </SmallLabel>
+            </>
           )}
 
           <input

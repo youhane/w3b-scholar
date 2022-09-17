@@ -269,3 +269,10 @@ export const SignUpWrapper = styled.div`
     }
   }
 `;
+
+export const SmallLabel = styled.label`
+  font-size: 0.75rem !important;
+  color: ${COLORS.pink}!important;
+  text-decoration: underline;
+  text-decoration-color: ${COLORS.pink};
+`;
