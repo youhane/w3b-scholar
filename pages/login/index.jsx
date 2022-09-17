@@ -24,18 +24,26 @@ function Login() {
     <div>
       <h2>Welcome:</h2>
 
-      {user == null ? (
+      {user === null ? (
         <h3>Not logged in</h3>
       ) : (
-        <>
-          <Image
-            src={user.photoURL}
-            width={100}
-            height={100}
-            alt="image-alt-text"
-          />
-          <h3>Logged in as {user.displayName}</h3>
-        </>
+        <h3>Logged in as {user.displayName}</h3>
+      )}
+      {user != null ? (
+        user.photoURL != null ? (
+          <>
+            <Image
+              src={user.photoURL}
+              width={100}
+              height={100}
+              alt="image-alt-text"
+            />
+          </>
+        ) : (
+          <>no img</>
+        )
+      ) : (
+        <></>
       )}
       <h1>Login</h1>
       <input
