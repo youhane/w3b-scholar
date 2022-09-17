@@ -79,8 +79,11 @@ export const InputComponent = styled.div`
         border-radius: .75rem;
 
         .ql-editor{
-            height: min-content;
-            max-height: 44vh;
+            height: 35vh;
+            
+            @media (min-width: 768px){
+                height: 44vh;
+            }
         }
     }
 
