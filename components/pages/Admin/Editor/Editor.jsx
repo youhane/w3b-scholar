@@ -16,41 +16,37 @@ function Editor() {
     const [articleContent, setArticleContent] = useState("");
     const [articleTitle, setArticleTitle] = useState("");
     const [articleThumbnail, setArticleThumbnail] = useState(null);
-    const [articleURL, setArticleURL] = useState("");
 
     const articleColumn = collection(db, 'articles')
     const user = useContext(AuthContext);
 
     const submitArticle = () => {
-        if(articleThumbnail === null) {
+        if (articleThumbnail === null) {
             return alert("Please choose an image");
         }
-
-        const imageRef = ref(storage, `articles/${articleThumbnail.name}${articleTitle}`);
-
-        uploadBytes(imageRef, articleThumbnail).then((snapshot) => {
-            alert("Image uploaded successfully")
-            getDownloadURL(snapshot.ref).then((url) => {
-                setArticleURL(url)
-            })
-        })
 
         if (articleContent === "" || articleTitle === "") {
             return alert("Please fill in all the fields");
         }
 
-        addDoc(articleColumn, {
-            title: articleTitle,
-            content: articleContent,
-            imageURL: articleURL,
-            userId: user.uid,
-            createdAt: new Date().getTime(),
+        const imageRef = ref(storage, `articles/${articleThumbnail.name}${articleTitle}`);
+
+        uploadBytes(imageRef, articleThumbnail).then((snapshot) => {
+            getDownloadURL(snapshot.ref).then((url) => {
+                addDoc(articleColumn, {
+                    title: articleTitle,
+                    content: articleContent,
+                    imageURL: url,
+                    userId: user.uid,
+                    createdAt: new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }),
+                })
+            })
+            alert("ARTICLE uploaded successfully")
         })
 
         setArticleTitle("")
         setArticleContent("")
         setArticleThumbnail(null)
-        setArticleURL("")
     }
 
     const updateText = (value) => {
@@ -91,7 +87,6 @@ function Editor() {
                                 </>
                             )
                     }
-
                 </InputPictureButton>
             </Top>
             <InputComponent>
