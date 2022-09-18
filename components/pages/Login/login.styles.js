@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
-import { COLORS } from "../../constants/styles";
+import { COLORS } from "../../../constants/styles";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -60,10 +60,11 @@ export const ImgWrapper = styled.div`
 
 export const LeftFormWrapper = styled.div`
   display: flex;
+  /* flex-direction: column-reverse; */
   flex-direction: row-reverse;
   align-items: flex-end;
-  width: 15rem;
-  padding-bottom: 5rem;
+  width: 20rem;
+  height: 25rem;
 
   align-content: flex-start;
 
@@ -100,7 +101,7 @@ export const LeftFormWrapper = styled.div`
   }
 `;
 
-export const FormWrapper = styled.div`
+export const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   width: 28rem;
@@ -110,7 +111,8 @@ export const FormWrapper = styled.div`
   border-radius: 0px 24px 24px 0px;
 
   input {
-    height: 1.5rem;
+    padding: 0 0.5rem;
+    height: 2rem;
     opacity: 0.6;
     border: 2px solid #3c9fd7;
     border-radius: 6px;
@@ -176,15 +178,6 @@ export const StyledButton = styled.button`
     font-size: 1.2rem;
     display: flex;
   }
-
-  @media (max-width: 768px) {
-    font-size: 0.75rem;
-    padding: 0.75rem 1.25rem;
-
-    span {
-      font-size: 1rem;
-    }
-  }
 `;
 
 export const FileLabelWrapper = styled.label`
@@ -213,15 +206,6 @@ export const FileLabelWrapper = styled.label`
     font-size: 1.2rem;
     display: flex;
   }
-
-  @media (max-width: 768px) {
-    font-size: 0.75rem;
-    padding: 0.75rem 1.25rem;
-
-    span {
-      font-size: 1rem;
-    }
-  }
   img {
     height: 1.1rem;
   }
@@ -229,11 +213,15 @@ export const FileLabelWrapper = styled.label`
     padding: 0 1rem;
     font-family: "Rubik";
     font-weight: 400;
-    font-size: 0.5rem !important;
+    font-size: 0.9rem !important;
     line-height: 1.5rem;
     img {
       height: 0.75rem;
     }
+  }
+
+  @media only screen and (max-width: 414px) {
+    font-size: 0.75rem !important;
   }
 `;
 
@@ -258,21 +246,14 @@ export const SignUpWrapper = styled.div`
   }
   @media only screen and (max-width: 1024px) {
     label {
-      padding: 0.33rem 1rem;
+      padding: 0.5rem 1rem;
       font-family: "Rubik";
       font-weight: 400;
-      font-size: 0.75rem !important;
+      font-size: 1rem !important;
       line-height: 1.5rem;
       img {
         height: 0.75rem;
       }
     }
   }
-`;
-
-export const SmallLabel = styled.label`
-  font-size: 0.75rem !important;
-  color: ${COLORS.pink}!important;
-  text-decoration: underline;
-  text-decoration-color: ${COLORS.pink};
 `;
