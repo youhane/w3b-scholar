@@ -100,7 +100,7 @@ export const LeftFormWrapper = styled.div`
   }
 `;
 
-export const FormWrapper = styled.div`
+export const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   width: 28rem;

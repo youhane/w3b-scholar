@@ -33,6 +33,7 @@ const Register = () => {
   const [displayName, setDisplayName] = useState("");
   const [photoURL, setPhotoURL] = useState("");
   const [uploadButton, setUploadButton] = useState("Click to upload");
+  const [errorMsg, setErrorMsg] = useState(null);
   const provider = new GoogleAuthProvider();
 
   useEffect(() => {
@@ -47,24 +48,34 @@ const Register = () => {
         alert("Passwords do not match");
         return;
       }
-      await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password,
-        displayName
-      ).catch((err) => alert(err.message));
+      await createUserWithEmailAndPassword(auth, email, password, displayName)
+        .then((res) => {
+          if (res) {
+            Router.push("/");
+          }
+        })
+        .catch((err) => {
+          if (err.message == "Firebase: Error (auth/user-not-found).") {
+            setErrorMsg("Akun tidak ditemukan, coba lagi");
+          } else if (err.message == "Firebase: Error (auth/invalid-email).") {
+            setErrorMsg("Email salah, coba lagi");
+          } else if (err.message == null) {
+            alert("SUCCESSFULLY REGISTERED");
+            resetinput();
+          }
+
+          alert(err.message);
+        });
       await updateProfile(auth.currentUser, { displayName, photoURL }).catch(
         (err) => alert(err.message)
       );
       setProfilePicture();
-      console.log(auth.currentUser);
       const uidRef = doc(db, "users", auth.currentUser.uid);
       await setDoc(uidRef, {
         uid: auth.currentUser.uid,
       });
-      alert("SUCCESSFULLY REGISTERED");
+
       resetinput();
-      Router.push("/");
     } catch (err) {
       alert(err.message);
     }

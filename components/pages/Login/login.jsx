@@ -18,21 +18,36 @@ import {
   FileLabelWrapper,
   SignUpWrapper,
   ImgWrapper,
+  ErrorMsg,
 } from "./login.styles";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState(null);
   const provider = new GoogleAuthProvider();
 
   const login = async () => {
+    setErrorMsg(null);
     try {
-      await signInWithEmailAndPassword(auth, email, password).catch((err) =>
-        alert(err.message)
-      );
-      //   alert(`SUCCESFULLY LOGGED IN - ${email}`);
-      //   resetinput();
-      //   Router.push("/");
+      await signInWithEmailAndPassword(auth, email, password)
+        .then((res) => {
+          if (res) {
+            Router.push("/");
+          }
+        })
+        .catch((err) => {
+          if (err.message == "Firebase: Error (auth/user-not-found).") {
+            setErrorMsg("Akun tidak ditemukan, coba lagi");
+          } else if (err.message == "Firebase: Error (auth/invalid-email).") {
+            setErrorMsg("Email salah, coba lagi");
+          } else if (err.message == null) {
+            alert(`SUCCESFULLY LOGGED IN - ${email}`);
+            resetinput();
+          }
+
+          alert(err.message);
+        });
     } catch (error) {
       alert(error.message);
     }
@@ -68,7 +83,13 @@ const Login = () => {
             <img src="/static/assets/loginImage.svg" alt="Login" />
           </ImgWrapper>
         </LeftFormWrapper>
-        <FormWrapper id="FormWrapper">
+        <FormWrapper
+          id="FormWrapper"
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+          errorMsg={errorMsg}
+        >
           <label htmlFor="email">Email</label>
           <input
             id="email"
@@ -85,10 +106,13 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            autoComplete="on"
           />
 
+          <ErrorMsg>{errorMsg}</ErrorMsg>
+
+          <StyledButton onClick={login}>Login</StyledButton>
           <SignUpWrapper>
-            <StyledButton onClick={login}>Login</StyledButton>
             <div>atau</div>
             <FileLabelWrapper onClick={registerWithGoogle}>
               <img src="/static/assets/googleIcon.png" alt="Google" />

@@ -9,6 +9,9 @@ export const Wrapper = styled.div`
   justify-content: space-between;
 
   margin: 7.5rem 0;
+  @media only screen and (max-width: 1024px) {
+    margin: 5rem 0 6rem;
+  }
 `;
 
 export const Title = styled.h1`
@@ -77,10 +80,12 @@ export const LeftFormWrapper = styled.div`
   @media only screen and (max-width: 1024px) {
     border-radius: 24px 24px 0px 0px;
     padding: 2.5rem 2.5rem 0rem;
+    flex-direction: row;
+    justify-content: center;
     width: 22rem;
     height: 11.25rem;
     img {
-      width: 20rem;
+      width: 14rem;
       padding: 0;
     }
 
@@ -94,7 +99,7 @@ export const LeftFormWrapper = styled.div`
       width: 16rem;
       height: 5.5rem;
       img {
-        width: 12rem;
+        width: 10rem;
         padding: 0;
       }
     }
@@ -137,7 +142,7 @@ export const FormWrapper = styled.form`
   @media only screen and (max-width: 414px) {
     width: 16rem;
     input {
-      height: 1.25rem;
+      height: 2rem;
       opacity: 0.6;
       border: 2px solid #3c9fd7;
       border-radius: 4px;
@@ -255,5 +260,14 @@ export const SignUpWrapper = styled.div`
         height: 0.75rem;
       }
     }
+  }
+`;
+
+export const ErrorMsg = styled.div`
+  color: #c80303;
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+  @media only screen and (max-width: 141px) {
+    font-size: 0.25rem;
   }
 `;
