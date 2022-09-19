@@ -1,88 +1,14 @@
 import { collection, getDocs } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { getDownloadURL, listAll, ref } from "firebase/storage";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { db, storage } from "../../firebase/firebase";
+import { auth, db, storage } from "../../firebase/firebase";
 
 import ArticleCardContainer from "../../components/common/ArticleCard/ArticleCardContainer";
 import Layout from "../../components/layout/Layout";
 import Searchbar from "../../components/common/Searchbar/Searchbar";
 import { COLORS } from "../../constants/styles";
-
-const ARTICLES_DUMMY = [
-  {
-    id: 1,
-    title: "8 Jenis DAO Paling Penting yang Perlu Anda Ketahui",
-    cardImg:
-      "https://d33wubrfki0l68.cloudfront.net/4b98f4a3c3259ea04adb9027358692a5a955f267/05acd/static/28214bb68eb5445dcb063a72535bc90c/f51a3/hero.png",
-    date: "April 06, 2002",
-    author: {
-      name: "Gianlucazino Zambrotta",
-      imgUrl:
-        "https://pbs.twimg.com/profile_images/977547763092217857/mWJXTPj__400x400.jpg",
-    },
-  },
-  {
-    id: 2,
-    title: "8 Jenis DAO Paling Penting yang Perlu Anda Ketahui",
-    cardImg:
-      "https://d33wubrfki0l68.cloudfront.net/4b98f4a3c3259ea04adb9027358692a5a955f267/05acd/static/28214bb68eb5445dcb063a72535bc90c/f51a3/hero.png",
-    date: "April 06, 2002",
-    author: {
-      name: "Stephen Tries",
-      imgUrl:
-        "https://www.chelseafcbrasil.com/wp-content/uploads/2021/08/1-Kepa-Arrizabalaga.png",
-    },
-  },
-  {
-    id: 3,
-    title: "8 Jenis DAO Paling Penting yang Perlu Anda Ketahui",
-    cardImg:
-      "https://d33wubrfki0l68.cloudfront.net/4b98f4a3c3259ea04adb9027358692a5a955f267/05acd/static/28214bb68eb5445dcb063a72535bc90c/f51a3/hero.png",
-    date: "April 06, 2002",
-    author: {
-      name: "Stephen Tries",
-      imgUrl:
-        "https://www.chelseafcbrasil.com/wp-content/uploads/2021/08/1-Kepa-Arrizabalaga.png",
-    },
-  },
-  {
-    id: 4,
-    title: "8 Jenis DAO Paling Penting yang Perlu Anda Ketahui",
-    cardImg:
-      "https://d33wubrfki0l68.cloudfront.net/4b98f4a3c3259ea04adb9027358692a5a955f267/05acd/static/28214bb68eb5445dcb063a72535bc90c/f51a3/hero.png",
-    date: "April 06, 2002",
-    author: {
-      name: "Stephen Tries",
-      imgUrl:
-        "https://www.chelseafcbrasil.com/wp-content/uploads/2021/08/1-Kepa-Arrizabalaga.png",
-    },
-  },
-  {
-    id: 5,
-    title: "8 Jenis DAO Paling Penting yang Perlu Anda Ketahui",
-    cardImg:
-      "https://d33wubrfki0l68.cloudfront.net/4b98f4a3c3259ea04adb9027358692a5a955f267/05acd/static/28214bb68eb5445dcb063a72535bc90c/f51a3/hero.png",
-    date: "April 06, 2002",
-    author: {
-      name: "Stephen Tries",
-      imgUrl:
-        "https://www.chelseafcbrasil.com/wp-content/uploads/2021/08/1-Kepa-Arrizabalaga.png",
-    },
-  },
-  {
-    id: 6,
-    title: "8 Jenis DAO Paling Penting yang Perlu Anda Ketahui",
-    cardImg:
-      "https://d33wubrfki0l68.cloudfront.net/4b98f4a3c3259ea04adb9027358692a5a955f267/05acd/static/28214bb68eb5445dcb063a72535bc90c/f51a3/hero.png",
-    date: "April 06, 2002",
-    author: {
-      name: "Stephen Tries",
-      imgUrl:
-        "https://www.chelseafcbrasil.com/wp-content/uploads/2021/08/1-Kepa-Arrizabalaga.png",
-    },
-  },
-];
 
 function Articles(props) {
   const articlesReference = collection(db, "articles");
@@ -118,10 +44,7 @@ function Articles(props) {
   //   // });
   // }, []);
 
-  // DUMMY:
   useEffect(() => {
-    // setArticles(ARTICLES_DUMMY);
-    console.log(props.documents);
     setArticles(props.documents);
     // setArticles([]);
   }, []);
@@ -160,24 +83,59 @@ function Articles(props) {
 export default Articles;
 
 export async function getStaticProps() {
+  // Fetch the articles alongside the User's Data (especially Name + Profile Pic)
+
   const articlesReference = await collection(db, "articles");
   const res = await getDocs(articlesReference);
-  const docs = await res.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }));
-  console.log(docs);
 
-  // Fetch the articles alongside the User's Data (especially Name + Profile Pic)
+  const docs = await res.docs.map((doc) => {
+    return {
+      id: doc.id,
+      ...doc.data(),
+    };
+  });
+
+  // Fetch username and passwords
+  const getAuthorDetail = async (docs) => {
+    const usersReference = await collection(db, "users");
+    const res = await getDocs(usersReference);
+    const usersDocs = await res.docs.map((doc) => {
+      return {
+        ...doc.data(),
+      };
+    });
+
+    for (let i = 0; i < docs.length; i++) {
+      for (let j = 0; j < usersDocs.length; j++) {
+        const authorId = docs[i].userId;
+        if (authorId === usersDocs[j].uid) {
+          console.log("EUREKA!");
+          docs[i].author = usersDocs[j];
+        }
+      }
+      if (!docs[i].author.name) {
+        docs[i].author = {
+          name: "Anonymous",
+          profileImageURL:
+            "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
+        };
+      }
+    }
+
+    return docs;
+  };
+
+  const completeArticles = await getAuthorDetail(docs);
+  console.log(completeArticles);
 
   return {
     props: {
-      documents: docs.map((doc) => ({
+      documents: completeArticles.map((doc) => ({
         id: doc.id,
         title: doc.title,
         date: doc.createdAt,
         cardImg: doc.imageURL,
-        author: { name: "John Doe", imgUrl: doc.imageURL },
+        author: { name: doc.author.name, imgUrl: doc.author.profileImageURL },
       })),
     },
   };

@@ -36,9 +36,13 @@ export const CardTitleWrapper = styled.div`
   margin: 1.2rem;
   max-width: 20rem;
 
+  @media (max-width: 1200px) {
+    margin: 0.6rem;
+    max-width: 18rem;
+  }
   @media (max-width: 768px) {
     margin: 0.6rem;
-    max-width: 13rem;
+    max-width: 14rem;
   }
 `;
 
