@@ -17,8 +17,4 @@ export const Wrapper = styled.button`
     :hover{
         color: ${props => props.hoverColor ? props.hoverColor : COLORS.borderBlue};
     }
-
-    @media (max-width: 768px) {
-        display: ${props => !props.isActive && 'none'};
-    }
 `

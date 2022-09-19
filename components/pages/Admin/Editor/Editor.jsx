@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { InputComponent, InputPicture, InputPictureButton, SubmitArticle, Top, Wrapper } from './Editor.styles'
 import { BiUpload } from 'react-icons/bi'
 import { IoClose } from 'react-icons/io5'
@@ -12,63 +12,82 @@ import { AuthContext } from '../../../../context/AuthContext';
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
-function Editor() {
+function Editor({ setDisplayModal }) {
     const [articleContent, setArticleContent] = useState("");
     const [articleTitle, setArticleTitle] = useState("");
     const [articleThumbnail, setArticleThumbnail] = useState(null);
+    const [titleFilled, setTitleFilled] = useState(true);
+    const [contentFilled, setContentFilled] = useState(true);
+    const [imageFilled, setImageFilled] = useState(true);
 
     const articleColumn = collection(db, 'articles')
     const user = useContext(AuthContext);
 
     const submitArticle = () => {
-        if (articleThumbnail === null) {
-            return alert("Please choose an image");
-        }
+        checkForm()
+        if (articleContent !== '' && articleTitle !== '' && articleThumbnail !== null) {
+            const imageRef = ref(storage, `articles/${articleThumbnail.name}${articleTitle}`);
 
-        if (articleContent === "" || articleTitle === "") {
-            return alert("Please fill in all the fields");
-        }
-
-        const imageRef = ref(storage, `articles/${articleThumbnail.name}${articleTitle}`);
-
-        uploadBytes(imageRef, articleThumbnail).then((snapshot) => {
-            getDownloadURL(snapshot.ref).then((url) => {
-                addDoc(articleColumn, {
-                    title: articleTitle,
-                    content: articleContent,
-                    imageURL: url,
-                    userId: user.uid,
-                    createdAt: new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }),
+            uploadBytes(imageRef, articleThumbnail).then((snapshot) => {
+                getDownloadURL(snapshot.ref).then((url) => {
+                    addDoc(articleColumn, {
+                        title: articleTitle,
+                        content: articleContent,
+                        imageURL: url,
+                        userId: user.uid,
+                        createdAt: new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }),
+                    })
                 })
+                setDisplayModal(true)
+                setArticleTitle("")
+                setArticleContent("")
+                setArticleThumbnail(null)
             })
-            alert("ARTICLE uploaded successfully")
-        })
-
-        setArticleTitle("")
-        setArticleContent("")
-        setArticleThumbnail(null)
+        } else return
     }
 
     const updateText = (value) => {
         setArticleContent(value)
+        setContentFilled(true)
+    }
+
+    const checkForm = () => {
+        if (articleTitle === "") {
+            setTitleFilled(false)
+        } else {
+            setTitleFilled(true)
+        }
+
+        if (articleContent !== "") {
+            setContentFilled(true)
+        } else {
+            setContentFilled(false)
+        }
+
+        if (articleThumbnail !== null) {
+            setImageFilled(true)
+        } else {
+            setImageFilled(false)
+        }
     }
 
     return (
         <Wrapper>
             <Top>
-                <InputComponent>
+                <InputComponent isFilled={titleFilled}>
                     <label htmlFor="title">Judul</label>
                     <input
                         type="text"
                         name='title'
                         id='title'
                         value={articleTitle}
-                        onChange={(e) => setArticleTitle(e.target.value)}
+                        onChange={(e) => {setArticleTitle(e.target.value); setTitleFilled(true)}}
                         placeholder='Masukkan judul artikel'
                         required
                     />
+                    {!titleFilled && <p className='error-message'>Judul tidak boleh kosong. Silakan diisi</p>}
                 </InputComponent>
-                <InputPictureButton>
+                <InputPictureButton isFilled={imageFilled}>
                     {
                         articleThumbnail ? (
                             <label onClick={() => setArticleThumbnail(null)}>
@@ -82,14 +101,15 @@ function Editor() {
                                         type="file"
                                         name='gambar'
                                         id='gambar'
-                                        onChange={(e) => setArticleThumbnail(e.target.files[0])}
+                                        onChange={(e) => {setArticleThumbnail(e.target.files[0]); setImageFilled(true)}}
                                     />
                                 </>
                             )
                     }
+                    {!imageFilled && <p className='error-message'>Belum upload gambar. Maksimal 10 MB</p>}
                 </InputPictureButton>
             </Top>
-            <InputComponent>
+            <InputComponent isFilled={contentFilled}>
                 <label htmlFor="content">Konten</label>
                 <ReactQuill
                     className='quill'
@@ -98,6 +118,7 @@ function Editor() {
                     formats={formats}
                     onChange={updateText}
                 />
+                {!contentFilled && <p className='error-message'>Konten tidak boleh kosong. Silakan diisi</p>}
             </InputComponent>
             <SubmitArticle onClick={submitArticle}>Simpan</SubmitArticle>
         </Wrapper>

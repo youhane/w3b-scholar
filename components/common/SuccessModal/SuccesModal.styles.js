@@ -44,6 +44,10 @@ export const Wrapper = styled.div`
     button{
         border: none;
     }
+
+    @media (max-width: 320px){
+        padding: 2rem 1rem;
+    }
 `
 
 export const CloseButton = styled.button`
@@ -66,5 +70,9 @@ export const ConfirmButton = styled.button`
 
     :hover{
         background: ${COLORS.pinkHover};
+    }
+
+    @media (max-width: 320px){
+        padding: .75rem 7rem;
     }
 `
