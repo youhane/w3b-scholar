@@ -7,4 +7,5 @@ export const COLORS = {
     darkblue: '#002E5B',
     darkGrey: '#394955',
     borderBlue: '#3C9FD7',
+    modalOverlay: '#3949557B',
 }

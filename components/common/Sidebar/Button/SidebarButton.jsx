@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Wrapper } from './SidebarButton.styles'
+import {BsChevronRight} from 'react-icons/bs'
 
-function SidebarButton({text, path, icon, onClick, hoverColor}) {
+function SidebarButton({ text, path, icon, onClick, hoverColor }) {
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
@@ -9,7 +10,13 @@ function SidebarButton({text, path, icon, onClick, hoverColor}) {
   }, [path]);
 
   return (
-    <Wrapper onClick={onClick} isActive={isActive} hoverColor={hoverColor}>{icon}{text}</Wrapper>
+    <Wrapper
+      onClick={onClick}
+      isActive={isActive}
+      hoverColor={hoverColor}
+    >
+      {icon}{text}
+    </Wrapper>
   )
 }
 

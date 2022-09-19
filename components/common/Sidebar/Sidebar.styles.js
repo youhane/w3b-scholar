@@ -11,6 +11,10 @@ export const Wrapper = styled.div`
     justify-content: space-between;
     gap: 5rem;
     width: max-content;
+
+    @media (max-width: 768px) {
+        /* display: none; */
+    }
 `
 
 export const Top = styled.div`
