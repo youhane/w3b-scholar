@@ -58,10 +58,10 @@ function Editor({ setDisplayModal }) {
             setTitleFilled(true)
         }
 
-        if (articleContent !== "") {
-            setContentFilled(true)
-        } else {
+        if (articleContent === "" || articleContent.length  === 11) {
             setContentFilled(false)
+        } else {
+            setContentFilled(true)
         }
 
         if (articleThumbnail !== null) {

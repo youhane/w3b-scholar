@@ -7,7 +7,7 @@ import { Wrapper } from './AddArticle.styles'
 import {FiUpload} from 'react-icons/fi'
 
 function AddArticle() {
-  const [displayModal, setDisplayModal] = useState(true);
+  const [displayModal, setDisplayModal] = useState(false);
 
   return (
     <Wrapper>
