@@ -26,7 +26,30 @@ export const Wrapper = styled.section`
         margin-bottom: 2rem;
     }
 
-    @media (max-width: 768px) {
+    @media (min-width: 768px) and (max-width: 1023px) {
+        flex-direction: column;
+        padding: 4rem 2rem;
+
+        div{
+            width: 80%;
+            text-align: center;
+        }
+
+        div p{
+            font-size: 1rem;
+        }
+
+        h1{
+            font-size: 2.5rem;
+            margin: 1.5rem 0;
+        }
+
+        img{
+            width: 20%;
+        }
+    }
+
+    @media (max-width: 767px) {
         flex-direction: column;
         padding: 2rem;
 

@@ -15,7 +15,7 @@ export const CardContainer = styled.div`
     gap: 2rem;
   }
 
-  @media (max-width: 320px) {
+  @media (min-width: 320px) and (max-width: 767px) {
     grid-template-columns: auto;
   }
 `;

@@ -19,7 +19,20 @@ export const Wrapper = styled.section`
         gap: 1rem;
     }
 
-    @media (max-width: 768px) {
+    @media (min-width: 768px) and (max-width: 1024px) {
+        padding-top: 1rem;
+        font-size: .85rem;
+
+        div{
+            gap: .75rem;
+        }
+
+        img{
+            width: 40%;
+        }
+    }
+
+    @media (max-width: 767px) {
         padding: 2rem;
         font-size: .85rem;
 
