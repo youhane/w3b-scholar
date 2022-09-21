@@ -45,7 +45,7 @@ export const Wrapper = styled.div`
         border: none;
     }
 
-    @media (max-width: 320px){
+    @media (max-width: 768px){
         padding: 2rem 1rem;
     }
 `

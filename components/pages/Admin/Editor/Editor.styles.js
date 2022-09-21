@@ -13,14 +13,14 @@ export const Wrapper = styled.div`
         font-size: .75rem;
     }
 
-    @media (max-width: 768px){
+    @media (min-width: 768px){
         width: auto;
         margin: 0 3rem;
     }
 
-    @media (max-width: 320px){
-        margin: 0 1rem;
+    @media (min-width: 320px) and (max-width: 767px){
         padding: 2rem 1rem;
+        margin: 0 1rem;
     }
 `
 
@@ -64,10 +64,6 @@ export const InputPictureButton = styled.div`
         :hover{
             background: ${COLORS.lightGrey};
         }
-    }
-
-    @media (max-width: 320px){
-        /* display: none; */
     }
 `
 
