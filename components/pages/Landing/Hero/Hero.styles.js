@@ -40,7 +40,7 @@ export const Left = styled.div`
         font-family: 'Syne', sans-serif;
     }
 
-    @media (min-width: 768px) and (max-width: 1024px) {
+    @media (min-width: 769px) and (max-width: 1024px) {
         align-items: center;
 
         h1{
@@ -56,7 +56,7 @@ export const Left = styled.div`
         }
     }
 
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
         align-items: center;
 
         h1{
@@ -83,7 +83,7 @@ export const Right = styled.div`
         transform: translateX(20%);
     }
 
-    @media (min-width: 768px) and (max-width: 1024px) {
+    @media (min-width: 769px) and (max-width: 1024px) {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -97,7 +97,7 @@ export const Right = styled.div`
         }
     }
     
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
         display: flex;
         justify-content: center;
         align-items: center;

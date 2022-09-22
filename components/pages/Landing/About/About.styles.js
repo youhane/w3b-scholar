@@ -26,7 +26,7 @@ export const Wrapper = styled.section`
         margin-bottom: 2rem;
     }
 
-    @media (min-width: 768px) and (max-width: 1023px) {
+    @media (min-width: 769px) and (max-width: 1023px) {
         flex-direction: column;
         padding: 4rem 2rem;
 
@@ -49,7 +49,7 @@ export const Wrapper = styled.section`
         }
     }
 
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
         flex-direction: column;
         padding: 2rem;
 
@@ -68,7 +68,7 @@ export const Wrapper = styled.section`
         }
 
         img{
-            width: 25%;
+            width: clamp(5rem, 7rem, 20rem); 
         }
     }
 `

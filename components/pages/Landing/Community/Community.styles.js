@@ -19,7 +19,7 @@ export const Wrapper = styled.section`
         gap: 1rem;
     }
 
-    @media (min-width: 768px) and (max-width: 1024px) {
+    @media (min-width: 769px) and (max-width: 1024px) {
         padding-top: 1rem;
         font-size: .85rem;
 
@@ -32,7 +32,7 @@ export const Wrapper = styled.section`
         }
     }
 
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
         padding: 2rem;
         font-size: .85rem;
 

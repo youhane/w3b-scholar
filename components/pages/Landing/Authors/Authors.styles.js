@@ -24,7 +24,7 @@ export const Wrapper = styled.section`
         display: none;
     }
 
-    @media (min-width: 768px) and (max-width: 1024px) {
+    @media (min-width: 769px) and (max-width: 1024px) {
         padding-top: 3rem;
 
         .center{
@@ -44,7 +44,7 @@ export const Wrapper = styled.section`
         }
     }
 
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
         padding: 0 1rem;
         padding-top: 3rem;
 
@@ -78,7 +78,7 @@ export const Grid = styled.div`
         transform: translateY(15%);
     }
 
-    @media (min-width: 768px) and (max-width: 1024px) {
+    @media (min-width: 769px) and (max-width: 1024px) {
         gap: 2rem;
         margin: 1rem;
 
@@ -87,7 +87,7 @@ export const Grid = styled.div`
         }
     }
 
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
         grid-template-columns: auto auto;
         margin: 1rem 0;
 
