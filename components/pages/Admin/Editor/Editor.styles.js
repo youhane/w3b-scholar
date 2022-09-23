@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
         font-size: .75rem;
     }
 
-    @media (min-width: 768px){
+    @media (max-width: 768px){
         width: auto;
         margin: 0 3rem;
     }
