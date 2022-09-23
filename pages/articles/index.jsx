@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query } from "firebase/firestore";
 import { doc, getDoc } from "firebase/firestore";
 import { getDownloadURL, listAll, ref } from "firebase/storage";
 import { useRouter } from "next/router";
@@ -11,49 +11,50 @@ import Searchbar from "../../components/common/Searchbar/Searchbar";
 import { COLORS } from "../../constants/styles";
 
 function Articles(props) {
-  const articlesReference = collection(db, "articles");
-  const imageListRef = ref(storage, "articles/");
+  {
+    /* TODO: Add User from Context to Layout */
+  }
+
+  const [allArticles, setAllArticles] = useState([]);
   const [articles, setArticles] = useState([]);
-  const [imageList, setImageList] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const router = useRouter();
   const pathName = router.pathname;
   const profileImage =
     "https://yt3.ggpht.com/a/AATXAJzMD-8Ca6a2Ux1qMZsI-z1jA146SbKc4wNQPQ=s900-c-k-c0xffffffff-no-rj-mo";
 
-  // TODO: Fetch data from Backend, dalam bentuk menyerupai ARRTICLES_DUMMY
-
-  // useEffect(() => {
-  //   listAll(imageListRef).then((res) => {
-  //     res.items.forEach((item) => {
-  //       getDownloadURL(item).then((url) => {
-  //         setImageList((prevState) => [...prevState, url]);
-  //       });
-  //     });
-  //   });
-  // }, [imageListRef]);
-
-  // useEffect(() => {
-  //   // getDocs(articlesReference).then((res) => {
-  //   //   const data = res.docs.map((doc) => ({
-  //   //     id: doc.id,
-  //   //     ...doc.data(),
-  //   //   }));
-  //   //   console.log(data);
-  //   //   // setArticles(data);
-  //   // });
-  // }, []);
-
   useEffect(() => {
-    setArticles(props.documents);
-    // setArticles([]);
+    setAllArticles(props.documents);
   }, []);
 
-  const handleSearch = (query) => {
-    // TODO: Query Search to BackEnd
-    // fetch new data from db
-    // setArticles() based on the query
-    //
+  useEffect(() => {
+    setArticles(allArticles);
+  }, [allArticles]);
+
+  const handleSearch = async (query) => {
+    console.log("QUERY " + query);
+    if (query !== "") {
+      const trimmedQuery = query.toLowerCase().trim();
+      // FIXME: searchQuery mesti enter 2x baru keganti, jadi sementara langsung pakai trimmedQuery aja, karena searchQuery masih ngebug.
+      await setSearchQuery(trimmedQuery);
+      // console.log("SEARCHQUERY " + searchQuery);
+      console.log("TRIMMEDQUERY " + trimmedQuery);
+
+      const searchedArticles = allArticles.filter((article) =>
+        article.title.toLowerCase().includes(trimmedQuery)
+      );
+
+      console.log(searchedArticles);
+
+      if (searchedArticles.length === 0 || !searchedArticles) {
+        setArticles([]);
+      } else {
+        setArticles(searchedArticles);
+      }
+    } else {
+      setArticles(allArticles);
+    }
   };
 
   return (
@@ -63,19 +64,12 @@ function Articles(props) {
 
         {articles.length === 0 ? (
           <h2 style={{ "text-align": "center", color: `${COLORS.darkGrey}` }}>
-            No matching article!
+            No matching article for {searchQuery}!
           </h2>
         ) : (
           <ArticleCardContainer articles={articles} />
         )}
       </Layout>
-
-      {/* {articles.map((article) => (
-        <a key={article.id} href={`/articles/${article.id}`}>
-          <h2>{article.title}</h2>
-          <div dangerouslySetInnerHTML={{ __html: article.content }}></div>
-        </a>
-      ))} */}
     </div>
   );
 }
@@ -83,8 +77,6 @@ function Articles(props) {
 export default Articles;
 
 export async function getStaticProps() {
-  // Fetch the articles alongside the User's Data (especially Name + Profile Pic)
-
   const articlesReference = await collection(db, "articles");
   const res = await getDocs(articlesReference);
 
@@ -109,11 +101,10 @@ export async function getStaticProps() {
       for (let j = 0; j < usersDocs.length; j++) {
         const authorId = docs[i].userId;
         if (authorId === usersDocs[j].uid) {
-          console.log("EUREKA!");
           docs[i].author = usersDocs[j];
         }
       }
-      if (!docs[i].author.name) {
+      if (!docs[i].author) {
         docs[i].author = {
           name: "Anonymous",
           profileImageURL:
@@ -126,7 +117,6 @@ export async function getStaticProps() {
   };
 
   const completeArticles = await getAuthorDetail(docs);
-  console.log(completeArticles);
 
   return {
     props: {

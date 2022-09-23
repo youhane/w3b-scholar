@@ -8,15 +8,24 @@ const MainNavigation = (props) => {
   const router = useRouter();
   const route = router.route;
 
-  const [isHovering, setIsHovering] = useState(false);
-  const handleMouseEnter = () => {
-    setIsHovering(true);
+  const [isHoveringArtikel, setIsHoveringArtikel] = useState(false);
+  const [isHoveringPenulis, setIsHoveringPenulis] = useState(false);
+
+  const handleMouseEnterArtikel = () => {
+    setIsHoveringArtikel(true);
   };
 
-  const handleMouseLeave = () => {
-    setIsHovering(false);
+  const handleMouseLeaveArtikel = () => {
+    setIsHoveringArtikel(false);
   };
 
+  const handleMouseEnterPenulis = () => {
+    setIsHoveringPenulis(true);
+  };
+
+  const handleMouseLeavePenulis = () => {
+    setIsHoveringPenulis(false);
+  };
   return (
     <Wrapper>
       <img
@@ -29,10 +38,10 @@ const MainNavigation = (props) => {
       <nav>
         <Link href="/articles">
           <a
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            onMouseEnter={handleMouseEnterArtikel}
+            onMouseLeave={handleMouseLeaveArtikel}
             style={{
-              color: isHovering
+              color: isHoveringArtikel
                 ? `${COLORS.pinkHover}`
                 : route === "/articles"
                 ? `${COLORS.pink}`
@@ -44,10 +53,10 @@ const MainNavigation = (props) => {
         </Link>
         <Link href="/authors">
           <a
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            onMouseEnter={handleMouseEnterPenulis}
+            onMouseLeave={handleMouseLeavePenulis}
             style={{
-              color: isHovering
+              color: isHoveringPenulis
                 ? `${COLORS.pinkHover}`
                 : route === "/authors"
                 ? `${COLORS.pink}`

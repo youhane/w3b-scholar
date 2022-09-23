@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ArticleCard from "./ArticleCard";
 import { CardContainer } from "./ArticleCardContainerStyles";
 

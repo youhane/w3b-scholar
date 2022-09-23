@@ -26,7 +26,7 @@ const Author = (props) => {
       />
       <TextWrapper>
         <AuthorName>{props.name}</AuthorName>
-        {props.date && <AuthorDate>{props.date}</AuthorDate>}
+        <AuthorDate>{props.date}</AuthorDate>
       </TextWrapper>
     </AuthorWrapper>
   );

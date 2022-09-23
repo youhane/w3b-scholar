@@ -1,6 +1,14 @@
 import styled from "styled-components";
 import { COLORS } from "../../../constants/styles";
 
+export const Wrapper = styled.div`
+  width: 95%;
+  margin: auto;
+  display: flex;
+  alignt-items: center;
+  justify-content: space-between;
+`;
+
 export const Container = styled.div`
   width: 60%;
   height: 3em;
@@ -16,14 +24,6 @@ export const Container = styled.div`
     width: 80%;
     height: 2.75em;
   }
-`;
-
-export const Wrapper = styled.div`
-  width: 95%;
-  margin: auto;
-  display: flex;
-  alignt-items: center;
-  justify-content: space-between;
 `;
 
 export const SearchInput = styled.div`
@@ -56,4 +56,10 @@ export const StyledButton = styled.button`
   :hover {
     background-color: ${COLORS.pinkHover};
   }
+`;
+
+export const StyledForm = styled.form`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 `;

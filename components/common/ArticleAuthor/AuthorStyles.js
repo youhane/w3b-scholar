@@ -18,16 +18,23 @@ export const AuthorImage = styled.div`
   background-image: url(${({ src }) => src});
   background-size: cover;
   border-radius: 120px;
+  transition: 0.3s ease-out;
 
   @media (max-width: 1280px) {
-    height: 32px;
-    width: 32px;
+    height: 40px;
+    width: 40px;
   }
 
-  @media (max-width: 768px) {
-    height: 28px;
-    width: 28px;
+  :hover {
+    scale: 1.2;
   }
+`;
+
+export const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 5rem;
+  max-height: 36px;
 `;
 
 export const AuthorName = styled.h3`
@@ -55,10 +62,4 @@ export const AuthorDate = styled.p`
   font-weight: 200;
   font-size: 8px;
   width: 8rem;
-`;
-
-export const TextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  max-width: 5rem;
 `;

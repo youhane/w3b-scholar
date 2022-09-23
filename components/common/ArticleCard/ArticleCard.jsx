@@ -17,7 +17,9 @@ import {
 const Card = (props) => {
   const router = useRouter();
   const [showAlert, setShowAlert] = React.useState(false);
-  const articleURL = `..../articles/${props.id}`;
+
+  const HOST_URL = "https://w3b-scholar.vercel.app/";
+  const articleURL = `${HOST_URL}/articles/${props.id}`;
 
   const handleLinkButtonClick = () => {
     navigator.clipboard.writeText(articleURL);
@@ -25,12 +27,6 @@ const Card = (props) => {
     setTimeout(() => {
       setShowAlert(false);
     }, 1000);
-
-    console.log("CLICKING BUTTON");
-  };
-
-  const handleCardClick = () => {
-    console.log("CLICKING CARD");
   };
 
   return (

@@ -29,10 +29,6 @@ export const Wrapper = styled.div`
       font-weight: 600;
       font-size: 16px;
       text-decoration: none;
-
-      :hover {
-        color: ${COLORS.pinkHover};
-      }
     }
   }
 
@@ -51,6 +47,10 @@ export const Wrapper = styled.div`
 export const Navs = styled.div`
   display: flex;
   gap: 2em;
+
+  :hover {
+    color: ${COLORS.pinkHover};
+  }
 `;
 
 export const Profile = styled.div`
