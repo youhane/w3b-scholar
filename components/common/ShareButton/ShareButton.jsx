@@ -1,10 +1,10 @@
 import React from 'react'
-import { GrShare } from 'react-icons/gr'
 import { LinkButton } from './ShareButton.styles'
+import {RiShareBoxLine} from 'react-icons/ri'
 
 function ShareButton({shareLink}) {
   return (
-    <LinkButton onClick={() => shareLink()}><GrShare/> Share</LinkButton>
+    <LinkButton onClick={() => shareLink()}><RiShareBoxLine/> Share</LinkButton>
   )
 }
 

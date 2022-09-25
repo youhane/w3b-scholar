@@ -14,6 +14,7 @@ import { GrShare } from 'react-icons/gr'
 import ScrollButon from "../../components/common/ScrollButton/ScrollButon";
 import BackButton from "../../components/common/BackButton/BackButton";
 import ShareButton from "../../components/common/ShareButton/ShareButton";
+import Head from "next/head";
 
 export const ArticleContent = styled.div`
   height: max-content;
@@ -47,7 +48,6 @@ export const ArticleWrapper = styled.div`
 
   @media (max-width: 1280px) {
     width: 80%;
-    height: 2.75em;
   }
 `;
 
@@ -89,6 +89,12 @@ function Article({ article, author }) {
 
   return (
     <>
+      <Head>
+        <title>W3B Scholar | {article.title}</title>
+        <meta name="description" content="W3B Scholar - Belajar Web3" />
+        <meta property='og:image' content='../public/logo.png' />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Layout>
         <ArticleWrapper>
           <BackButton />

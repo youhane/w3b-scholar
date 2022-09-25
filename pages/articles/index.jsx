@@ -8,6 +8,7 @@ import ArticleCardContainer from "../../components/common/ArticleCard/ArticleCar
 import Layout from "../../components/layout/Layout";
 import Searchbar from "../../components/common/Searchbar/Searchbar";
 import { COLORS } from "../../constants/styles";
+import Head from "next/head";
 
 function Articles(props) {
   {
@@ -45,19 +46,25 @@ function Articles(props) {
 
   return (
     <>
+      <Head>
+        <title>W3B Scholar | Articles</title>
+        <meta name="description" content="W3B Scholar - Belajar Web3" />
+        <meta property='og:image' content='../public/logo.png' />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Layout pathName={pathName} profileImg={profileImage}>
-      <Searchbar onSearch={handleSearch} setSearchQuery={setSearchQuery} searchQuery={searchQuery} />
+        <Searchbar onSearch={handleSearch} setSearchQuery={setSearchQuery} searchQuery={searchQuery} />
 
-      {filteredArticles.length === 0 ?
-        (
-          <h2 style={{ "text-align": "center", color: `${COLORS.darkGrey}` }}>
-            No matching article for {searchQuery}!
-          </h2>
-        ) :
-        (
-          <ArticleCardContainer articles={filteredArticles} />
-        )
-      }
+        {filteredArticles.length === 0 ?
+          (
+            <h2 style={{ "text-align": "center", color: `${COLORS.darkGrey}` }}>
+              No matching article for {searchQuery}!
+            </h2>
+          ) :
+          (
+            <ArticleCardContainer articles={filteredArticles} />
+          )
+        }
       </Layout>
     </>
   );
