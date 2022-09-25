@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ArticleCard from "./ArticleCard";
 import { CardContainer } from "./ArticleCardContainerStyles";
 
 const ArticleCardContainer = ({ articles }) => {
   return (
     <CardContainer>
-      {articles.length === 0 ?
+      {articles?.length === 0 ?
         (<h1>No Articles Found</h1>) :
         (
-          articles.map((article) => {
+          articles?.map((article) => {
             return (
               <ArticleCard
                 key={article.id}

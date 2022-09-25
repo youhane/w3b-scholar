@@ -10,13 +10,13 @@ import Searchbar from "../../components/common/Searchbar/Searchbar";
 import { COLORS } from "../../constants/styles";
 import Head from "next/head";
 
-function Articles(props) {
+function Articles({documents}) {
   {
     /* TODO: Add User from Context to Layout */
   }
 
-  const [allArticles, setAllArticles] = useState(props?.documents);
-  const [filteredArticles, setFilteredArticles] = useState(props?.documents);
+  const [allArticles, setAllArticles] = useState(documents);
+  const [filteredArticles, setFilteredArticles] = useState(documents);
   const [searchQuery, setSearchQuery] = useState("");
 
   const router = useRouter();
