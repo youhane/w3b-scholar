@@ -58,7 +58,7 @@ export const StyledButton = styled.button`
   }
 `;
 
-export const StyledForm = styled.form`
+export const StyledForm = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;

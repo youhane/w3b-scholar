@@ -7,125 +7,108 @@ import Layout from "../../components/layout/Layout";
 import ArticleAuthor from "../../components/common/ArticleAuthor/Author";
 import Footer from "../../components/common/Footer/Footer";
 import Alert from "../../components/common/Alert/Alert";
-import {
-  ArticleWrapper,
-  AuthorWrapper,
-  LinkButton,
-  ArticleContent,
-  ScrollButton,
-  ArticleAlert,
-  BackButton,
-} from "./article.style";
+import styled from "styled-components";
+import { COLORS } from "../../constants/styles";
+import { BsChevronLeft, BsArrowUp } from "react-icons/bs";
+import { GrShare } from 'react-icons/gr'
+import ScrollButon from "../../components/common/ScrollButton/ScrollButon";
+import BackButton from "../../components/common/BackButton/BackButton";
+import ShareButton from "../../components/common/ShareButton/ShareButton";
+
+export const ArticleContent = styled.div`
+  height: max-content;
+`;
+
+export const ArticleWrapper = styled.div`
+  margin: auto;
+  width: 95%;
+
+  h1 {
+    margin-bottom: 0.2em;
+    background: linear-gradient(91.62deg, #3c9fd7 0%, #009483 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+
+  strong {
+    margin-bottom: 0.2em;
+    font-weight: 700;
+    font-size: 20px;
+  }
+
+  p {
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    line-height: 28px;
+  }
+
+  @media (max-width: 1280px) {
+    width: 80%;
+    height: 2.75em;
+  }
+`;
+
+export const AuthorWrapper = styled.div`
+  margin: auto;
+  width: 100%;
+  display: flex;
+  padding: 1em 0;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const ArticleAlert = styled.div`
+  position: absolute;
+  z-index: 100;
+  right: 14%;
+  margin-top: -2.5em;
+  transition: 0.2s ease-in-out;
+`;
 
 const HOST_URL = "https://w3b-scholar.vercel.app";
 
 function Article({ article, author }) {
   const router = useRouter();
-
+  const { asPath } = useRouter();
   {
     /* TODO: Add User from Context to Layout */
   }
-  const { asPath } = useRouter();
 
-  const articleURL = `${HOST_URL}${asPath}`;
   const [showAlert, setShowAlert] = React.useState(false);
 
   const handleLinkButtonClick = () => {
-    navigator.clipboard.writeText(articleURL);
+    navigator.clipboard.writeText(window.location.href);
     setShowAlert(true);
     setTimeout(() => {
       setShowAlert(false);
     }, 1000);
   };
 
-  const handleScrollUp = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
   return (
     <>
       <Layout>
         <ArticleWrapper>
-          <BackButton
-            onClick={() => {
-              router.back();
-            }}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-chevron-left"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
-              />
-            </svg>
-            Back
-          </BackButton>
-          <ScrollButton onClick={handleScrollUp}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              fill="currentColor"
-              class="bi bi-arrow-up"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"
-              />
-            </svg>
-            Back to Top
-          </ScrollButton>
-
+          <BackButton />
+          <ScrollButon />
           <h1>{article.title}</h1>
           <AuthorWrapper>
             <ArticleAlert>
               {showAlert && <Alert message="URL Copied!" />}
             </ArticleAlert>
             <ArticleAuthor
-              imgUrl={author.profileImageURL}
-              name={author.name}
-              date={article.createdAt}
+              imgUrl={author?.profileImageURL || "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"}
+              name={author?.name || "Anonymous"}
+              date={article?.createdAt}
               linkTo={`${HOST_URL}/penulis/${author.uid}`}
             />
-            <LinkButton onClick={handleLinkButtonClick}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="10"
-                height="10"
-                fill="currentColor"
-                class="bi bi-box-arrow-up-right"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"
-                />
-              </svg>
-              Share
-            </LinkButton>
+            <ShareButton shareLink={handleLinkButtonClick} />
           </AuthorWrapper>
-          <ArticleContent dangerouslySetInnerHTML={{ __html: article.content }}>
-            {/* <div dangerouslySetInnerHTML={{ __html: article.content }}></div> */}
-          </ArticleContent>
+          <ArticleContent dangerouslySetInnerHTML={{ __html: article.content }} />
         </ArticleWrapper>
       </Layout>
-      {/* FIXME: Footer g mau ke bawah! yg bagian  
-      dangerlysetinnerhtml someehow heigtntya g ke register gitu...*/}
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
@@ -133,7 +116,6 @@ function Article({ article, author }) {
 export default Article;
 
 export async function getServerSideProps(context) {
-  console.log(context.params.id);
   const article = await getDoc(doc(db, "articles", context.params.id));
   const articleData = article.data();
   const author = await getDoc(doc(db, "users", articleData.userId));
@@ -141,7 +123,12 @@ export async function getServerSideProps(context) {
   return {
     props: {
       article: article.data(),
-      author: author.data(),
+      author: author == 'undefined' ? author.data() :
+        {
+          name: 'Anonymous',
+          profileImageURL: 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png',
+          uid: 'anonymous'
+        },
     },
   };
 }
