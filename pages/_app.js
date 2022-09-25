@@ -1,6 +1,7 @@
 import { GlobalStyles } from "../styles/GlobalStyles";
 import { AuthContextProvider } from "../context/AuthContext";
 import { useState } from "react";
+import Footer from '../components/common/Footer/Footer'
 
 function MyApp({ Component, pageProps }) {
   const user = useState(null);
@@ -8,6 +9,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <AuthContextProvider>
         <Component {...pageProps} />
+        <Footer/>
         <GlobalStyles />
       </AuthContextProvider>
     </>

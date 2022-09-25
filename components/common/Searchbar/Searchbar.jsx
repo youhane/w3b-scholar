@@ -2,15 +2,11 @@ import { useEffect, useState } from "react";
 import {
   Container,
   SearchInput,
-  Wrapper,
   StyledButton,
-  StyledForm,
 } from "./Searchbar.styles";
 import { BsSearch } from "react-icons/bs";
 
 const Searchbar = ({ onSearch, setSearchQuery, searchQuery }) => {
-  // TODO: Make SearchBar Responsive
-
   const [isFocus, setFocus] = useState(false);
 
   const handleMouseEnter = () => {
@@ -22,8 +18,6 @@ const Searchbar = ({ onSearch, setSearchQuery, searchQuery }) => {
 
   return (
     <Container>
-      <Wrapper>
-        <StyledForm>
           <SearchInput
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -33,6 +27,7 @@ const Searchbar = ({ onSearch, setSearchQuery, searchQuery }) => {
             <input
               type="text"
               name="search"
+              placeholder="Search..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -40,8 +35,6 @@ const Searchbar = ({ onSearch, setSearchQuery, searchQuery }) => {
           <StyledButton onClick={() => onSearch(searchQuery)}>
             Search
           </StyledButton>
-        </StyledForm>
-      </Wrapper>
     </Container>
   );
 };

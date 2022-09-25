@@ -17,6 +17,7 @@ import ShareButton from "../../components/common/ShareButton/ShareButton";
 
 export const ArticleContent = styled.div`
   height: max-content;
+  margin: 1rem 0;
 `;
 
 export const ArticleWrapper = styled.div`
@@ -108,7 +109,6 @@ function Article({ article, author }) {
           <ArticleContent dangerouslySetInnerHTML={{ __html: article.content }} />
         </ArticleWrapper>
       </Layout>
-      <Footer />
     </>
   );
 }
@@ -123,7 +123,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       article: article.data(),
-      author: author == 'undefined' ? author.data() :
+      author: author.data() !== undefined ? author.data() :
         {
           name: 'Anonymous',
           profileImageURL: 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png',

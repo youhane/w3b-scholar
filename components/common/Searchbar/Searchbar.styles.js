@@ -1,24 +1,16 @@
 import styled from "styled-components";
 import { COLORS } from "../../../constants/styles";
 
-export const Wrapper = styled.div`
-  width: 95%;
-  margin: auto;
-  display: flex;
-  alignt-items: center;
-  justify-content: space-between;
-`;
-
 export const Container = styled.div`
-  width: 60%;
-  height: 3em;
+  max-width: 50rem;
   background-color: ${COLORS.white};
   margin: auto;
   margin-bottom: 2em;
+  padding: .5rem 1rem;
   border-radius: 16px;
-
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   @media (max-width: 1280px) {
     width: 80%;
@@ -27,13 +19,14 @@ export const Container = styled.div`
 `;
 
 export const SearchInput = styled.div`
-  width: 80%;
+  width: 90%;
   display: flex;
   align-items: center;
   gap: 0.7em;
   color: #394955;
   opacity: 50%;
   opacity: ${(props) => (props.focusing ? "100%" : "50%")};
+  
   svg {
     width: 1em;
     height: 1em;
@@ -56,10 +49,4 @@ export const StyledButton = styled.button`
   :hover {
     background-color: ${COLORS.pinkHover};
   }
-`;
-
-export const StyledForm = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
 `;

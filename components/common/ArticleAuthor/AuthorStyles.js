@@ -60,6 +60,6 @@ export const AuthorDate = styled.p`
   font-family: "Rubik";
   font-style: normal;
   font-weight: 200;
-  font-size: 8px;
+  font-size: 10px;
   width: 8rem;
 `;
