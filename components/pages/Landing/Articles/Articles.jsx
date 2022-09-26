@@ -1,9 +1,11 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import Button from "../../../common/Button/Button";
 import Title from "../../../common/Title/Title";
 import ArticleCardContainer from "../../../common/ArticleCard/ArticleCardContainer";
 import { Bottom, Grid, Top, Wrapper } from "./Articles.styles";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../../../firebase/firebase";
 
 const articleListDummy = [
   {
@@ -91,9 +93,7 @@ function Articles() {
           Baca juga artikel-artikel pilihan berikut yang akan menambah wawasanmu tentang Web3!{" "}
         </p>
       </Top>
-    <img src="/static/assets/articleSectionImage.png" alt="Article Image" />
-      {/* TODO: img Authornya ngga mo muncul di ArticleCardnya tapi pas kutes disini bisa :_)
-      https://codesandbox.io/s/w3b-card-3wrst7?file=/src/components/UI/Author.jsx */}
+      <img src="/static/assets/articleSectionImage.png" alt="Article Image" />
       <ArticleCardContainer articles={articleListDummy} />
       <Bottom>
         <Button

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { COLORS } from "../../../constants/styles";
 
 export const CardWrapper = styled.div`
   width: 24rem;
@@ -116,7 +117,8 @@ export const LinkButton = styled.div`
   right: 12px;
   top: 12px;
   z-index: 1;
-  &: hover {
+
+  :hover {
     background-color: #c75a8f;
   }
 

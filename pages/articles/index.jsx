@@ -8,16 +8,20 @@ import ArticleCardContainer from "../../components/common/ArticleCard/ArticleCar
 import Layout from "../../components/layout/Layout";
 import Searchbar from "../../components/common/Searchbar/Searchbar";
 import { COLORS } from "../../constants/styles";
+<<<<<<< HEAD
 import Pagination from "../../components/common/Pagination/Pagination";
 import ArticleCard from "../../components/common/ArticleCard/ArticleCard";
+=======
+import Head from "next/head";
+>>>>>>> f3b06e6b2c7b8d0c1b24fe2643c7d0b40d533245
 
-function Articles(props) {
+function Articles({documents}) {
   {
     /* TODO: Add User from Context to Layout */
   }
 
-  const [allArticles, setAllArticles] = useState(props?.documents);
-  const [filteredArticles, setFilteredArticles] = useState(props?.documents);
+  const [allArticles, setAllArticles] = useState(documents);
+  const [filteredArticles, setFilteredArticles] = useState(documents);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
@@ -51,7 +55,14 @@ function Articles(props) {
 
   return (
     <>
+      <Head>
+        <title>W3B Scholar | Articles</title>
+        <meta name="description" content="W3B Scholar - Belajar Web3" />
+        <meta property='og:image' content='../public/logo.png' />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Layout pathName={pathName} profileImg={profileImage}>
+<<<<<<< HEAD
         <Searchbar
           onSearch={handleSearch}
           setSearchQuery={setSearchQuery}
@@ -69,6 +80,20 @@ function Articles(props) {
         ) : (
           <h2>No Articles to display</h2>
         )}
+=======
+        <Searchbar onSearch={handleSearch} setSearchQuery={setSearchQuery} searchQuery={searchQuery} />
+
+        {filteredArticles.length === 0 ?
+          (
+            <h2 style={{ "text-align": "center", color: `${COLORS.darkGrey}` }}>
+              No matching article for {searchQuery}!
+            </h2>
+          ) :
+          (
+            <ArticleCardContainer articles={filteredArticles} />
+          )
+        }
+>>>>>>> f3b06e6b2c7b8d0c1b24fe2643c7d0b40d533245
       </Layout>
     </>
   );

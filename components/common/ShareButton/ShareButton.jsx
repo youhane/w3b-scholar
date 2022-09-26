@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 import React from "react";
 import { LinkButton } from "./ShareButton.styles";
+=======
+import React from 'react'
+import { LinkButton } from './ShareButton.styles'
+import {RiShareBoxLine} from 'react-icons/ri'
+>>>>>>> f3b06e6b2c7b8d0c1b24fe2643c7d0b40d533245
 
 function ShareButton({ shareLink }) {
   return (
+<<<<<<< HEAD
     <LinkButton onClick={() => shareLink()}>
       <svg
         height="10"
@@ -24,6 +31,10 @@ function ShareButton({ shareLink }) {
       Share
     </LinkButton>
   );
+=======
+    <LinkButton onClick={() => shareLink()}><RiShareBoxLine/> Share</LinkButton>
+  )
+>>>>>>> f3b06e6b2c7b8d0c1b24fe2643c7d0b40d533245
 }
 
 export default ShareButton;
