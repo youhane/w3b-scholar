@@ -9,7 +9,7 @@ export const LinkButton = styled.div`
   padding: 0.8em 1.6em;
   font-weight: 400;
   font-size: 12px;
-  color: white;
+  color: ${COLORS.white};
   user-select: none;
   display: flex;
   gap: 0.4em;

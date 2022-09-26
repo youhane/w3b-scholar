@@ -10,7 +10,7 @@ import Alert from "../../components/common/Alert/Alert";
 import styled from "styled-components";
 import { COLORS } from "../../constants/styles";
 import { BsChevronLeft, BsArrowUp } from "react-icons/bs";
-import { GrShare } from 'react-icons/gr'
+import { GrShare } from "react-icons/gr";
 import ScrollButon from "../../components/common/ScrollButton/ScrollButon";
 import BackButton from "../../components/common/BackButton/BackButton";
 import ShareButton from "../../components/common/ShareButton/ShareButton";
@@ -63,16 +63,18 @@ export const AuthorWrapper = styled.div`
 export const ArticleAlert = styled.div`
   position: absolute;
   z-index: 100;
-  right: 14%;
-  margin-top: -2.5em;
+  right: 7%;
+  margin-top: -4.5em;
   transition: 0.2s ease-in-out;
+
+  @media (max-width: 1280px) {
+    right: 13.5%;
+  }
 `;
 
 const HOST_URL = "https://w3b-scholar.vercel.app";
 
 function Article({ article, author }) {
-  const router = useRouter();
-  const { asPath } = useRouter();
   {
     /* TODO: Add User from Context to Layout */
   }
@@ -99,14 +101,19 @@ function Article({ article, author }) {
               {showAlert && <Alert message="URL Copied!" />}
             </ArticleAlert>
             <ArticleAuthor
-              imgUrl={author?.profileImageURL || "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"}
+              imgUrl={
+                author?.profileImageURL ||
+                "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
+              }
               name={author?.name || "Anonymous"}
               date={article?.createdAt}
               linkTo={`${HOST_URL}/penulis/${author.uid}`}
             />
             <ShareButton shareLink={handleLinkButtonClick} />
           </AuthorWrapper>
-          <ArticleContent dangerouslySetInnerHTML={{ __html: article.content }} />
+          <ArticleContent
+            dangerouslySetInnerHTML={{ __html: article.content }}
+          />
         </ArticleWrapper>
       </Layout>
     </>
@@ -123,12 +130,15 @@ export async function getServerSideProps(context) {
   return {
     props: {
       article: article.data(),
-      author: author.data() !== undefined ? author.data() :
-        {
-          name: 'Anonymous',
-          profileImageURL: 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png',
-          uid: 'anonymous'
-        },
+      author:
+        author.data() !== undefined
+          ? author.data()
+          : {
+              name: "Anonymous",
+              profileImageURL:
+                "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
+              uid: "anonymous",
+            },
     },
   };
 }
