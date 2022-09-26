@@ -12,7 +12,7 @@ import Pagination from "../../components/common/Pagination/Pagination";
 import ArticleCard from "../../components/common/ArticleCard/ArticleCard";
 import Head from "next/head";
 
-function Articles({documents}) {
+function Articles({ documents }) {
   {
     /* TODO: Add User from Context to Layout */
   }
@@ -55,11 +55,11 @@ function Articles({documents}) {
       <Head>
         <title>W3B Scholar | Articles</title>
         <meta name="description" content="W3B Scholar - Belajar Web3" />
-        <meta property='og:image' content='../public/logo.png' />
+        <meta property="og:image" content="../public/logo.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout pathName={pathName} profileImg={profileImage}>
-        <Searchbar
+        {/* <Searchbar
           onSearch={handleSearch}
           setSearchQuery={setSearchQuery}
           searchQuery={searchQuery}
@@ -75,7 +75,8 @@ function Articles({documents}) {
           />
         ) : (
           <h2>No Articles to display</h2>
-        )}
+        )} */}
+
         <Searchbar onSearch={handleSearch} setSearchQuery={setSearchQuery} searchQuery={searchQuery} />
 
         {filteredArticles.length === 0 ?
