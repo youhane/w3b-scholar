@@ -20,7 +20,6 @@ export default function Home() {
       <Articles />
       <Authors />
       <Community/>
-      <Footer />
     </div>
   )
 }

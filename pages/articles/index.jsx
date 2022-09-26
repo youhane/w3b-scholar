@@ -59,7 +59,7 @@ function Articles({ documents }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout pathName={pathName} profileImg={profileImage}>
-        {/* <Searchbar
+        <Searchbar
           onSearch={handleSearch}
           setSearchQuery={setSearchQuery}
           searchQuery={searchQuery}
@@ -75,9 +75,9 @@ function Articles({ documents }) {
           />
         ) : (
           <h2>No Articles to display</h2>
-        )} */}
+        )}
 
-        <Searchbar onSearch={handleSearch} setSearchQuery={setSearchQuery} searchQuery={searchQuery} />
+        {/* <Searchbar onSearch={handleSearch} setSearchQuery={setSearchQuery} searchQuery={searchQuery} />
 
         {filteredArticles.length === 0 ?
           (
@@ -88,7 +88,7 @@ function Articles({ documents }) {
           (
             <ArticleCardContainer articles={filteredArticles} />
           )
-        }
+        } */}
       </Layout>
     </>
   );
