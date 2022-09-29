@@ -100,7 +100,7 @@ export const LeftFormWrapper = styled.div`
   }
 `;
 
-export const FormWrapper = styled.form`
+export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 28rem;
@@ -113,7 +113,6 @@ export const FormWrapper = styled.form`
     padding: 0 0.5rem;
     height: 1.5rem;
     opacity: 0.6;
-    border: 2px solid #3c9fd7;
     border-radius: 6px;
     margin-bottom: 0.5rem;
   }
@@ -262,4 +261,17 @@ export const SmallLabel = styled.label`
   color: ${COLORS.pink}!important;
   text-decoration: underline;
   text-decoration-color: ${COLORS.pink};
+`;
+
+export const ErrorWrapper = styled.div`
+  color: #c80303;
+  font-family: "Rubik";
+  font-size: 0.65rem;
+  display: ${props => props.show? 'flex': 'none'};
+  margin: 0 0 0.5rem;
+`;
+
+export const InputWrapper = styled.input`
+  border: ${props => props.wrong? '2px solid #c80303': '2px solid #3c9fd7'};
+
 `;

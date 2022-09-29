@@ -119,7 +119,6 @@ export const FormWrapper = styled.form`
     padding: 0 0.5rem;
     height: 2rem;
     opacity: 0.6;
-    border: 2px solid #3c9fd7;
     border-radius: 6px;
     margin-bottom: 0.5rem;
   }
@@ -270,4 +269,17 @@ export const ErrorMsg = styled.div`
   @media only screen and (max-width: 141px) {
     font-size: 0.25rem;
   }
+`;
+
+export const ErrorWrapper = styled.div`
+  color: #c80303;
+  font-family: "Rubik";
+  font-size: 0.65rem;
+  display: ${props => props.show? 'flex': 'none'};
+  margin: 0 0 0.5rem;
+`;
+
+export const InputWrapper = styled.input`
+  border: ${props => props.wrong? '2px solid #c80303': '2px solid #3c9fd7'};
+
 `;

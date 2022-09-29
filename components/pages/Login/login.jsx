@@ -19,15 +19,19 @@ import {
   SignUpWrapper,
   ImgWrapper,
   ErrorMsg,
+  ErrorWrapper,
+  InputWrapper,
 } from "./login.styles";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState(null);
+  const [initialLoad, setInitialLoad] = useState(false);
   const provider = new GoogleAuthProvider();
 
   const login = async () => {
+    setInitialLoad(true);
     setErrorMsg(null);
     try {
       await signInWithEmailAndPassword(auth, email, password)
@@ -91,25 +95,28 @@ const Login = () => {
           errorMsg={errorMsg}
         >
           <label htmlFor="email">Email</label>
-          <input
+          <InputWrapper
             id="email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            wrong={errorMsg != null && initialLoad ? true : false}
           />
 
           <label htmlFor="password">Password</label>
-          <input
+          <InputWrapper
             id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
             autoComplete="on"
+            wrong={errorMsg != null && initialLoad ? true : false}
           />
-
-          <ErrorMsg>{errorMsg}</ErrorMsg>
+          <ErrorWrapper show={errorMsg != null && initialLoad ? true : false}>
+            {errorMsg}
+          </ErrorWrapper>
 
           <StyledButton onClick={login}>Login</StyledButton>
           <SignUpWrapper>
