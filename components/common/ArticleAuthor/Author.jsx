@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-
-import { AuthorWrapper, AuthorImage, AuthorName } from "./AuthorStyles";
-
-const Author = (props) => {
-  return (
-    <AuthorWrapper>
-      <AuthorImage src={props.imgUrl} alt="Author's Picture" />
-      <AuthorName>{props.name}</AuthorName>
-    </AuthorWrapper>
-  );
-};
-
-export default Author;
-=======
 import React from "react";
 import { useRouter } from "next/router";
 import {
@@ -42,11 +26,10 @@ const Author = (props) => {
       />
       <TextWrapper>
         <AuthorName>{props.name}</AuthorName>
-        {props.date && <AuthorDate>{props.date}</AuthorDate>}
+        <AuthorDate>{props.date}</AuthorDate>
       </TextWrapper>
     </AuthorWrapper>
   );
 };
 
 export default Author;
->>>>>>> 0f2417bebe60f0fe0c267bbd4c04e7e0edfd5c5b
