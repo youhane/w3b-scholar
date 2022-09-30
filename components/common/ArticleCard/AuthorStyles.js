@@ -25,8 +25,8 @@ export const AuthorImage = styled.div`
   }
 
   @media (max-width: 768px) {
-    height: 24px;
-    width: 24px;
+    height: 28px;
+    width: 28px;
   }
 `;
 
@@ -35,19 +35,30 @@ export const AuthorName = styled.h3`
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
-  line-height: 24px;
   color: #394955;
   max-width: 10rem;
 
   @media (max-width: 1280px) {
     font-size: 14px;
-    line-height: 20px;
     max-width: 6rem;
   }
 
   @media (max-width: 768px) {
     font-size: 8px;
-    line-height: 16px;
     max-width: 4rem;
   }
+`;
+
+export const AuthorDate = styled.p`
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 200;
+  font-size: 8px;
+  width: 8rem;
+`;
+
+export const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 5rem;
 `;

@@ -6,7 +6,7 @@ export const Wrapper = styled.section`
     justify-content: space-between;
     margin: 3rem auto;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
         flex-direction: column;
     }
 `
@@ -40,7 +40,23 @@ export const Left = styled.div`
         font-family: 'Syne', sans-serif;
     }
 
-    @media (max-width: 768px) {
+    @media (min-width: 768px) and (max-width: 1024px) {
+        align-items: center;
+
+        h1{
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        div{
+            border-radius: 10rem;
+            padding: 1rem .5rem;
+            align-items: center;
+            gap: 1rem;
+        }
+    }
+
+    @media (max-width: 767px) {
         align-items: center;
 
         h1{
@@ -66,14 +82,29 @@ export const Right = styled.div`
         height: 100%;
         transform: translateX(20%);
     }
-    
-    @media (max-width: 768px) {
+
+    @media (min-width: 768px) and (max-width: 1024px) {
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
         width: fit-content;
         margin-top: 2rem;
+
+        img{
+            width: 60%;
+            transform: translateX(0);
+        }
+    }
+    
+    @media (max-width: 767px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: fit-content;
+        margin-top: 2rem;
+        width: 100vw;
 
         img{
             height: 15rem;

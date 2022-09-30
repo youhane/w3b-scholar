@@ -24,7 +24,7 @@ export const Wrapper = styled.button`
         display: flex;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
         font-size: .75rem;
         padding: .75rem 1.25rem;
         

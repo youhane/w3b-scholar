@@ -24,7 +24,27 @@ export const Wrapper = styled.section`
         display: none;
     }
 
-    @media (max-width: 768px) {
+    @media (min-width: 768px) and (max-width: 1024px) {
+        padding-top: 3rem;
+
+        .center{
+            position: static;
+            font-size: 1rem;
+        }
+
+        .more{
+            position: static;
+            font-size: 1rem;
+        }
+
+        .bottom{
+            display: block;
+            width: 50%;
+            margin: 0 auto;
+        }
+    }
+
+    @media (max-width: 767px) {
         padding: 0 1rem;
         padding-top: 3rem;
 
@@ -58,7 +78,16 @@ export const Grid = styled.div`
         transform: translateY(15%);
     }
 
-    @media (max-width: 768px) {
+    @media (min-width: 768px) and (max-width: 1024px) {
+        gap: 2rem;
+        margin: 1rem;
+
+        .filler{
+            display: none;
+        }
+    }
+
+    @media (max-width: 767px) {
         grid-template-columns: auto auto;
         margin: 1rem 0;
 

@@ -15,7 +15,16 @@ export const Wrapper = styled.div`
         width: 20%;
     }
 
-    @media (max-width: 768px) {
+    @media (min-width: 768px) and (max-width: 1024px) {
+        padding: .75rem 1.25rem;
+        gap: 1rem;
+
+        img{
+            width: 25%;
+        }
+    }
+
+    @media (max-width: 767px) {
         padding: .5rem 1rem;
         gap: .5rem;
 
@@ -35,7 +44,18 @@ export const Info = styled.div`
         font-weight: 400;
     }
 
-    @media (max-width: 768px) {
+    @media (min-width: 768px) and (max-width: 1024px) {
+        width: 9rem;
+        h2{
+            font-size: 1rem;
+        }
+
+        h3{
+            font-size: .75rem;
+        }
+    }
+
+    @media (max-width: 767px) {
         width: 6.5rem;
         h2{
             font-size: .75rem;

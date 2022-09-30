@@ -7,6 +7,21 @@ export const Wrapper = styled.div`
     border-radius: 1rem;
     padding: 2rem 5rem;
     width: 100%;
+
+    .error-message{
+        color: ${COLORS.errorRed};
+        font-size: .75rem;
+    }
+
+    @media (max-width: 768px){
+        width: auto;
+        margin: 0 3rem;
+    }
+
+    @media (min-width: 320px) and (max-width: 767px){
+        padding: 2rem 1rem;
+        margin: 0 1rem;
+    }
 `
 
 export const SubmitArticle = styled.button`
@@ -41,7 +56,7 @@ export const InputPictureButton = styled.div`
         gap: .5rem;
         background: ${COLORS.white};
         padding: .5rem;
-        border: 3px solid ${COLORS.borderBlue};
+        border: 3px solid ${props => props.isFilled ? COLORS.borderBlue : COLORS.errorRed};
         border-radius: .75rem;
         width: max-content;
         cursor: pointer;
@@ -58,7 +73,7 @@ export const InputComponent = styled.div`
     width: 100%;
 
     input{
-        border: 3px solid ${COLORS.borderBlue};
+        border: 3px solid ${props => props.isFilled ? COLORS.borderBlue : COLORS.errorRed};
         border-radius: .75rem;
         width: 90%;
         padding: .65rem;
@@ -74,8 +89,33 @@ export const InputComponent = styled.div`
 
     .quill{
         height: 50vh;
-        border: 3px solid ${COLORS.borderBlue};
+        max-width: 150vh;
+        border: 3px solid ${props => props.isFilled ? COLORS.borderBlue : COLORS.errorRed};
         border-radius: .75rem;
+
+        .ql-container {
+            height: 44vh;
+
+            @media (max-width: 768px){
+                height: 40vh;
+            }
+                
+            @media (max-width: 320px){
+                height: 32vh;
+            }
+
+            .ql-editor{
+                height: 44vh;
+                
+                @media (max-width: 768px){
+                    height: 40vh;
+                }
+                
+                @media (max-width: 320px){
+                    height: 32vh;
+                }
+            }
+        }
     }
 
     .quill *{
@@ -89,4 +129,8 @@ export const Top = styled.div`
     align-items: flex-end;
     justify-content: space-between;
     margin-bottom: 1rem;
+
+    @media (max-width: 768px){
+        gap: 1rem;
+    }
 `

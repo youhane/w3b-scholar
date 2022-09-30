@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { COLORS } from "../../../constants/styles";
 
 export const CardWrapper = styled.div`
   width: 24rem;
@@ -34,8 +35,15 @@ export const CardImage = styled.div`
 export const CardTitleWrapper = styled.div`
   grid-area: title;
   margin: 1.2rem;
+  max-width: 20rem;
+
+  @media (max-width: 1200px) {
+    margin: 0.6rem;
+    max-width: 18rem;
+  }
   @media (max-width: 768px) {
     margin: 0.6rem;
+    max-width: 14rem;
   }
 `;
 
@@ -45,6 +53,7 @@ export const CardTitle = styled.h1`
   line-height: 24px;
   font-style: normal;
   font-weight: 300;
+  overflow: hidden;
 
   @media (max-width: 1280px) {
     font-size: 14px;
@@ -108,7 +117,8 @@ export const LinkButton = styled.div`
   right: 12px;
   top: 12px;
   z-index: 1;
-  &: hover {
+
+  :hover {
     background-color: #c75a8f;
   }
 
