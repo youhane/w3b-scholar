@@ -12,7 +12,8 @@ export const Wrapper = styled.footer`
   font-weight: 500;
 
   img {
-    width: 2%;
+    width: 3%;
+    max-width: 3rem;
   }
 
   p {
@@ -23,7 +24,13 @@ export const Wrapper = styled.footer`
     gap: 1rem;
 
     img {
-      width: 10%;
+      width: 5%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    img {
+      width: 7%;
     }
   }
 `;
