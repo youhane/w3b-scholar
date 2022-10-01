@@ -44,8 +44,7 @@ export const AuthorName = styled.h3`
   }
 
   @media (max-width: 768px) {
-    font-size: 8px;
-    max-width: 4rem;
+    font-size: 10px;
   }
 `;
 
@@ -55,10 +54,13 @@ export const AuthorDate = styled.p`
   font-weight: 200;
   font-size: 8px;
   width: 8rem;
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+  }
 `;
 
 export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 5rem;
 `;

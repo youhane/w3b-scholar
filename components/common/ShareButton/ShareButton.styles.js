@@ -19,4 +19,8 @@ export const LinkButton = styled.div`
   :hover {
     background-color: ${COLORS.pinkHover};
   }
+
+  @media (max-width: 320px){
+    padding: .8em;
+  } 
 `;
