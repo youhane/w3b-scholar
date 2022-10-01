@@ -1,12 +1,13 @@
+import Router from "next/router";
 import React from "react";
 import {
   CloseButton,
   ConfirmButton,
   OuterWrapper,
   Wrapper,
-} from "./SuccesModal.styles";
+} from "./SuccesModalRedirect.styles";
 
-function SuccessModal({ setDisplayModal, text }) {
+function SuccessModalRedirect({ setDisplayModal, text }) {
   return (
     <OuterWrapper>
       <Wrapper>
@@ -15,10 +16,17 @@ function SuccessModal({ setDisplayModal, text }) {
           <img src="/static/assets/success.svg" alt="success" />
           <p>{text}</p>
         </div>
-        <ConfirmButton onClick={() => setDisplayModal(false)}>Ok</ConfirmButton>
+        <ConfirmButton
+          onClick={() => {
+            Router.push("/");
+            return setDisplayModal(false);
+          }}
+        >
+          Ok
+        </ConfirmButton>
       </Wrapper>
     </OuterWrapper>
   );
 }
 
-export default SuccessModal;
+export default SuccessModalRedirect;

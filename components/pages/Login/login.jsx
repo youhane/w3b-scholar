@@ -7,6 +7,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../../firebase/firebase";
 import Link from "next/link";
+import SuccessModalRedirect from "../../common/SuccessModalRedirect/SuccessModalRedirect";
 import {
   ContentWrapper,
   FormWrapper,
@@ -28,6 +29,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState(null);
   const [initialLoad, setInitialLoad] = useState(false);
+  const [displayModal, setDisplayModal] = useState(false);
   const provider = new GoogleAuthProvider();
 
   const login = async () => {
@@ -37,7 +39,7 @@ const Login = () => {
       await signInWithEmailAndPassword(auth, email, password)
         .then((res) => {
           if (res) {
-            Router.push("/");
+            setDisplayModal(true);
           }
         })
         .catch((err) => {
@@ -47,6 +49,7 @@ const Login = () => {
             setErrorMsg("Email salah, coba lagi");
           } else if (err.message == null) {
             alert(`SUCCESFULLY LOGGED IN - ${email}`);
+
             resetinput();
           }
 
@@ -62,11 +65,10 @@ const Login = () => {
     setPassword("");
   };
 
-  const registerWithGoogle = async () => {
+  const loginWithGoogle = async () => {
     try {
       await signInWithPopup(auth, provider).catch((err) => alert(err.message));
-      alert("SUCCESSFULLY REGISTERED");
-      Router.push("/");
+      setDisplayModal(true);
     } catch (err) {
       alert(err.message);
     }
@@ -74,6 +76,12 @@ const Login = () => {
 
   return (
     <Wrapper>
+      {displayModal && (
+        <SuccessModalRedirect
+          setDisplayModal={setDisplayModal}
+          text={"Berhasil melakukan Login, diarahkan ke Menu utama"}
+        />
+      )}
       <Link href="/">
         <LogoWrapper>
           <img src="/static/assets/w3bLogoLight.png" alt="W3B Logo" />
@@ -121,7 +129,7 @@ const Login = () => {
           <StyledButton onClick={login}>Login</StyledButton>
           <SignUpWrapper>
             <div>atau</div>
-            <FileLabelWrapper onClick={registerWithGoogle}>
+            <FileLabelWrapper onClick={loginWithGoogle}>
               <img src="/static/assets/googleIcon.png" alt="Google" />
               Masuk dengan Google
             </FileLabelWrapper>

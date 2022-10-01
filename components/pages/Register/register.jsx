@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Router from "next/router";
 import {
   createUserWithEmailAndPassword,
   updateProfile,
@@ -25,6 +24,7 @@ import {
   InputWrapper,
 } from "./register.styles";
 import { doc, setDoc } from "firebase/firestore";
+import SuccessModalRedirect from "../../common/SuccessModalRedirect/SuccessModalRedirect";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -36,6 +36,7 @@ const Register = () => {
   const [photoURL, setPhotoURL] = useState("");
   const [initialLoad, setInitialLoad] = useState(false);
   const [uploadLabelMsg, setUploadLabelMsg] = useState("Click to upload");
+  const [displayModal, setDisplayModal] = useState(false);
   const provider = new GoogleAuthProvider();
 
   useEffect(() => {
@@ -58,7 +59,7 @@ const Register = () => {
       await createUserWithEmailAndPassword(auth, email, password, displayName)
         .then((res) => {
           if (res) {
-            Router.push("/");
+            setDisplayModal(true);
           }
         })
         .catch((err) => {
@@ -69,8 +70,6 @@ const Register = () => {
           } else if (err.message == null) {
             resetinput();
           }
-
-          // alert(err.message);
         });
       await updateProfile(auth.currentUser, { displayName, photoURL }).catch(
         (err) => alert(err.message)
@@ -107,9 +106,9 @@ const Register = () => {
         name: auth.currentUser.displayName,
         profileImageURL: auth.currentUser.photoURL,
       });
-      // alert("SUCCESSFULLY REGISTERED");
+      setDisplayModal(true);
     } catch (err) {
-      // alert(err.message);
+      alert(err.message);
     }
   };
 
@@ -118,7 +117,6 @@ const Register = () => {
     const imageRef = ref(storage, `profile/${key}`);
     uploadBytes(imageRef, profilePic).then((snapshot) => {
       if (profilePic != null) {
-        // alert("Profile Picture Uploaded");
         setUploadLabelMsg("Uploaded");
       }
       getDownloadURL(snapshot.ref).then((url) => {
@@ -134,6 +132,12 @@ const Register = () => {
 
   return (
     <Wrapper>
+      {displayModal && (
+        <SuccessModalRedirect
+          setDisplayModal={setDisplayModal}
+          text={"Berhasil melakukan Sign-Up, diarahkan ke Menu utama"}
+        />
+      )}
       <Link href="/">
         <LogoWrapper>
           <img src="/static/assets/w3bLogoLight.png" alt="W3B Logo" />
