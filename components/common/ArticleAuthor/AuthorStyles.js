@@ -4,11 +4,9 @@ export const AuthorWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-  max-width: 16rem;
 
   @media (max-width: 1280px) {
     gap: 0.5rem;
-    max-width: 9rem;
   }
 `;
 
@@ -33,8 +31,6 @@ export const AuthorImage = styled.div`
 export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 5rem;
-  max-height: 36px;
 `;
 
 export const AuthorName = styled.h3`
@@ -43,16 +39,13 @@ export const AuthorName = styled.h3`
   font-weight: 700;
   font-size: 16px;
   color: #394955;
-  max-width: 10rem;
 
   @media (max-width: 1280px) {
     font-size: 14px;
-    max-width: 6rem;
   }
 
-  @media (max-width: 768px) {
-    font-size: 8px;
-    max-width: 4rem;
+  @media (max-width: 320px) {
+    font-size: 10px;
   }
 `;
 
@@ -60,6 +53,10 @@ export const AuthorDate = styled.p`
   font-family: "Rubik";
   font-style: normal;
   font-weight: 200;
-  font-size: 10px;
-  width: 8rem;
+  font-size: 14px;
+  margin: 0 !important;
+
+  @media (max-width: 320px) {
+    font-size: 10px;
+  }
 `;

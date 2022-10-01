@@ -1,15 +1,16 @@
-import { useRouter } from 'next/router';
+import Link from 'next/link'
 import React from 'react'
 import { BsChevronLeft } from 'react-icons/bs'
 import { Wrapper } from './BackButton.styles'
 
 function BackButton() {
-  const router = useRouter();
-  
+
   return (
-    <Wrapper onClick={() => router.back()}>
-        <BsChevronLeft/> Back
-    </Wrapper>
+    <Link href={'/articles'}>
+      <Wrapper>
+        <BsChevronLeft /> Back
+      </Wrapper>
+    </Link>
   )
 }
 

@@ -61,7 +61,7 @@ export const CardTitle = styled.h1`
   }
 
   @media (max-width: 768px) {
-    font-size: 8px;
+    font-size: 10px;
     line-height: 16px;
   }
 `;
