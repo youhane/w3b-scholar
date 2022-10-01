@@ -11,12 +11,13 @@ import { COLORS } from "../../constants/styles";
 import Pagination from "../../components/common/Pagination/Pagination";
 import ArticleCard from "../../components/common/ArticleCard/ArticleCard";
 import Head from "next/head";
+import styled from "styled-components";
+
+export const Wrapper = styled.div`
+  min-height: 100vh;
+`
 
 function Articles({ documents }) {
-  {
-    /* TODO: Add User from Context to Layout */
-  }
-
   const [allArticles, setAllArticles] = useState(documents);
   const [filteredArticles, setFilteredArticles] = useState(documents);
   const [searchQuery, setSearchQuery] = useState("");
@@ -51,7 +52,7 @@ function Articles({ documents }) {
   };
 
   return (
-    <>
+    <Wrapper>
       <Head>
         <title>W3B Scholar | Articles</title>
         <meta name="description" content="W3B Scholar - Belajar Web3" />
@@ -76,21 +77,8 @@ function Articles({ documents }) {
         ) : (
           <h2>No Articles to display</h2>
         )}
-
-        {/* <Searchbar onSearch={handleSearch} setSearchQuery={setSearchQuery} searchQuery={searchQuery} />
-
-        {filteredArticles.length === 0 ?
-          (
-            <h2 style={{ "text-align": "center", color: `${COLORS.darkGrey}` }}>
-              No matching article for {searchQuery}!
-            </h2>
-          ) :
-          (
-            <ArticleCardContainer articles={filteredArticles} />
-          )
-        } */}
       </Layout>
-    </>
+    </Wrapper>
   );
 }
 
