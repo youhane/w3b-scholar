@@ -96,7 +96,7 @@ function Articles({ documents }) {
 
 export default Articles;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const articlesReference = collection(db, "articles");
   const res = await getDocs(articlesReference);
 
