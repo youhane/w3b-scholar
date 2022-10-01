@@ -35,6 +35,7 @@ const Register = () => {
   const [displayName, setDisplayName] = useState("");
   const [photoURL, setPhotoURL] = useState("");
   const [initialLoad, setInitialLoad] = useState(false);
+  const [uploadLabelMsg, setUploadLabelMsg] = useState("Click to upload");
   const provider = new GoogleAuthProvider();
 
   useEffect(() => {
@@ -47,7 +48,6 @@ const Register = () => {
     setInitialLoad(true);
     try {
       if (password !== reenterpassword) {
-        alert("Passwords do not match");
         return;
       } else if (displayName.length < 10) {
         return;
@@ -67,11 +67,10 @@ const Register = () => {
           } else if (err.message == "Firebase: Error (auth/invalid-email).") {
             setErrorMsg("Email salah, coba lagi");
           } else if (err.message == null) {
-            alert("SUCCESSFULLY REGISTERED");
             resetinput();
           }
 
-          alert(err.message);
+          // alert(err.message);
         });
       await updateProfile(auth.currentUser, { displayName, photoURL }).catch(
         (err) => alert(err.message)
@@ -80,8 +79,8 @@ const Register = () => {
       const uidRef = doc(db, "users", auth.currentUser.uid);
       await setDoc(uidRef, {
         uid: auth.currentUser.uid,
-        displayName: auth.currentUser.displayName,
-        photoURL: auth.currentUser.photoURL,
+        name: auth.currentUser.displayName,
+        profileImageURL: auth.currentUser.photoURL,
       });
 
       resetinput();
@@ -105,12 +104,12 @@ const Register = () => {
       const uidRef = doc(db, "users", auth.currentUser.uid);
       await setDoc(uidRef, {
         uid: auth.currentUser.uid,
-        displayName: auth.currentUser.displayName,
-        photoURL: auth.currentUser.photoURL,
+        name: auth.currentUser.displayName,
+        profileImageURL: auth.currentUser.photoURL,
       });
-      alert("SUCCESSFULLY REGISTERED");
+      // alert("SUCCESSFULLY REGISTERED");
     } catch (err) {
-      alert(err.message);
+      // alert(err.message);
     }
   };
 
@@ -118,11 +117,14 @@ const Register = () => {
     const key = displayName + email;
     const imageRef = ref(storage, `profile/${key}`);
     uploadBytes(imageRef, profilePic).then((snapshot) => {
+      if (profilePic != null) {
+        // alert("Profile Picture Uploaded");
+        setUploadLabelMsg("Uploaded");
+      }
       getDownloadURL(snapshot.ref).then((url) => {
         setPhotoURL(url);
       });
     });
-    if (profilePic != null) alert("Profile Picture Uploaded");
   };
 
   const emailValidator = (email) => {
@@ -218,11 +220,11 @@ const Register = () => {
             </FileLabelWrapper>
           ) : (
             <FileLabelWrapper
-              htmlFor="profile-picture"
+              onClick={setProfilePicture}
               style={{ marginTop: "2rem" }}
             >
               <img src="/static/assets/uploadIcon.png" />
-              Upload {profilePic.name}
+              {uploadLabelMsg} {profilePic.name}
             </FileLabelWrapper>
           )}
 
