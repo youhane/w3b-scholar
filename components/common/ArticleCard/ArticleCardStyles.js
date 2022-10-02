@@ -12,6 +12,18 @@ export const CardWrapper = styled.div`
 
   color: #394955;
 
+  animation: fadeInAnimation ease 1.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  @keyframes fadeInAnimation {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
   @media (max-width: 1280px) {
     width: 20rem;
     grid-template-rows: 7.5rem 3.75rem 3.75rem;

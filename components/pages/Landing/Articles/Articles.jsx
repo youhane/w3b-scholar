@@ -4,8 +4,6 @@ import Button from "../../../common/Button/Button";
 import Title from "../../../common/Title/Title";
 import ArticleCardContainer from "../../../common/ArticleCard/ArticleCardContainer";
 import { Bottom, Grid, Top, Wrapper } from "./Articles.styles";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../../../firebase/firebase";
 
 const articleListDummy = [
   {
@@ -90,7 +88,8 @@ function Articles() {
       <Top>
         <Title text={"Artikel"} />
         <p>
-          Baca juga artikel-artikel pilihan berikut yang akan menambah wawasanmu tentang Web3!{" "}
+          Baca juga artikel-artikel pilihan berikut yang akan menambah wawasanmu
+          tentang Web3!{" "}
         </p>
       </Top>
       <img src="/static/assets/articleSectionImage.png" alt="Article Image" />

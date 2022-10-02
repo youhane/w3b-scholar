@@ -1,8 +1,6 @@
 import { collection, getDocs, query } from "firebase/firestore";
-import { doc, getDoc } from "firebase/firestore";
-import { getDownloadURL, listAll, ref } from "firebase/storage";
 import { useRouter } from "next/router";
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { auth, db, storage } from "../../firebase/firebase";
 import ArticleCardContainer from "../../components/common/ArticleCard/ArticleCardContainer";
 import Layout from "../../components/layout/Layout";
@@ -11,6 +9,14 @@ import { COLORS } from "../../constants/styles";
 import Pagination from "../../components/common/Pagination/Pagination";
 import ArticleCard from "../../components/common/ArticleCard/ArticleCard";
 import Head from "next/head";
+import styled from "styled-components";
+
+const StyledText = styled.div`
+  margin: auto;
+  text-align: center;
+  padding: 4em;
+  color: ${COLORS.darkGrey};
+`;
 
 function Articles({ documents }) {
   {
@@ -74,7 +80,9 @@ function Articles({ documents }) {
             siblingCount={1}
           />
         ) : (
-          <h2>No Articles to display</h2>
+          <StyledText>
+            <h2>No matching articles</h2>
+          </StyledText>
         )}
 
         {/* <Searchbar onSearch={handleSearch} setSearchQuery={setSearchQuery} searchQuery={searchQuery} />

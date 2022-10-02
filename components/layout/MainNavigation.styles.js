@@ -33,8 +33,8 @@ export const Wrapper = styled.div`
   }
 
   @media (max-width: 1280px) {
-    width: 77%;
-    padding: 0 2%;
+    width: 80%;
+    padding: 0 2.5%;
 
     nav {
       a {
