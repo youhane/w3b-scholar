@@ -5,7 +5,7 @@ import { Wrapper } from './Footer.styles'
 function Footer() {
   const router = useRouter()
 
-  if (router.pathname !== '/_error' && router.pathname !== '/login' && router.pathname !== '/register') {
+  if (router.pathname !== '/_error' && router.pathname !== '/login' && router.pathname !== '/register' && router.pathname !== '/404' && router.pathname !== '/500') {
     return (
       <Wrapper>
         <img src="/static/assets/w3bLogoDark.png" alt="W3B Logo" />
