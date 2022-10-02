@@ -36,6 +36,7 @@ const Register = () => {
   const [photoURL, setPhotoURL] = useState("");
   const [initialLoad, setInitialLoad] = useState(false);
   const [uploadLabelMsg, setUploadLabelMsg] = useState("Click to upload");
+  const [uploadingImg, setUploadingImg] = useState(false);
   const [displayModal, setDisplayModal] = useState(false);
   const provider = new GoogleAuthProvider();
 
@@ -123,6 +124,7 @@ const Register = () => {
     const imageRef = ref(storage, `profile/${key}`);
     uploadBytes(imageRef, profilePic).then((snapshot) => {
       if (profilePic != null) {
+        setUploadingImg(false);
         setUploadLabelMsg("Uploaded");
       }
       getDownloadURL(snapshot.ref).then((url) => {
@@ -231,11 +233,18 @@ const Register = () => {
             </FileLabelWrapper>
           ) : (
             <FileLabelWrapper
-              onClick={setProfilePicture}
+              onClick={() => {
+                setUploadingImg(true);
+                setProfilePicture();
+              }}
               style={{ marginTop: "2rem" }}
             >
               <img src="/static/assets/uploadIcon.png" />
               {uploadLabelMsg} {profilePic.name}
+              <img
+                src="/static/assets/loading.svg"
+                style={{ display: !uploadingImg ? "none" : "block" }}
+              />
             </FileLabelWrapper>
           )}
 
