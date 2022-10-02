@@ -17,6 +17,7 @@ import ShareButton from "../../components/common/ShareButton/ShareButton";
 import Head from "next/head";
 
 export const ArticleContent = styled.div`
+  min-height: 100vh;
   height: max-content;
   margin: 1rem 0;
 `;
@@ -25,13 +26,18 @@ export const ArticleWrapper = styled.div`
   margin: auto;
   width: 95%;
 
-  h1 {
+  .title {
     margin-bottom: 0.2em;
     background: linear-gradient(91.62deg, #3c9fd7 0%, #009483 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
+    font-size: 2.5rem;
+
+    @media (max-width: 768px) {
+      font-size: 1.75rem;
+    }
   }
 
   strong {
@@ -75,10 +81,6 @@ export const ArticleAlert = styled.div`
 const HOST_URL = "https://w3b-scholar.vercel.app";
 
 function Article({ article, author }) {
-  {
-    /* TODO: Add User from Context to Layout */
-  }
-
   const [showAlert, setShowAlert] = React.useState(false);
 
   const handleLinkButtonClick = () => {
@@ -101,7 +103,7 @@ function Article({ article, author }) {
         <ArticleWrapper>
           <BackButton />
           <ScrollButon />
-          <h1>{article.title}</h1>
+          <h1 className="title">{article.title}</h1>
           <AuthorWrapper>
             <ArticleAlert>
               {showAlert && <Alert message="URL Copied!" />}
@@ -117,9 +119,7 @@ function Article({ article, author }) {
             />
             <ShareButton shareLink={handleLinkButtonClick} />
           </AuthorWrapper>
-          <ArticleContent
-            dangerouslySetInnerHTML={{ __html: article.content }}
-          />
+          <ArticleContent dangerouslySetInnerHTML={{ __html: article.content }}/>
         </ArticleWrapper>
       </Layout>
     </>
@@ -140,11 +140,11 @@ export async function getServerSideProps(context) {
         author.data() !== undefined
           ? author.data()
           : {
-              name: "Anonymous",
-              profileImageURL:
-                "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
-              uid: "anonymous",
-            },
+            name: "Anonymous",
+            profileImageURL:
+              "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
+            uid: "anonymous",
+          },
     },
   };
 }

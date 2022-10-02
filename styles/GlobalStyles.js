@@ -8,6 +8,12 @@ export const GlobalStyles = createGlobalStyle`
         margin: 0;
         padding: 0;
         transition: all .3s ease-in-out;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+    }
+
+    body::-webkit-scrollbar {
+        display: none;
     }
 
     body{
