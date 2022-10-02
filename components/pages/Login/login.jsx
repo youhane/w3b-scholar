@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../../firebase/firebase";
 import Link from "next/link";
-import SuccessModalRedirect from "../../common/SuccessModalRedirect/SuccessModalRedirect";
+import SuccessModal from "../../common/SuccessModal/SuccessModal";
 import {
   ContentWrapper,
   FormWrapper,
@@ -77,9 +77,10 @@ const Login = () => {
   return (
     <Wrapper>
       {displayModal && (
-        <SuccessModalRedirect
+        <SuccessModal
           setDisplayModal={setDisplayModal}
           text={"Berhasil melakukan Login, diarahkan ke Menu utama"}
+          redirect={"/"}
         />
       )}
       <Link href="/">

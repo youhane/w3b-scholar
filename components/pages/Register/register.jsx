@@ -24,7 +24,7 @@ import {
   InputWrapper,
 } from "./register.styles";
 import { doc, setDoc } from "firebase/firestore";
-import SuccessModalRedirect from "../../common/SuccessModalRedirect/SuccessModalRedirect";
+import SuccessModal from "../../common/SuccessModal/SuccessModal";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -80,6 +80,9 @@ const Register = () => {
         uid: auth.currentUser.uid,
         name: auth.currentUser.displayName,
         profileImageURL: auth.currentUser.photoURL,
+        is_author: false,
+        company: null,
+        position: null,
       });
 
       resetinput();
@@ -105,6 +108,9 @@ const Register = () => {
         uid: auth.currentUser.uid,
         name: auth.currentUser.displayName,
         profileImageURL: auth.currentUser.photoURL,
+        is_author: false,
+        company: null,
+        position: null,
       });
       setDisplayModal(true);
     } catch (err) {
@@ -133,9 +139,10 @@ const Register = () => {
   return (
     <Wrapper>
       {displayModal && (
-        <SuccessModalRedirect
+        <SuccessModal
           setDisplayModal={setDisplayModal}
           text={"Berhasil melakukan Sign-Up, diarahkan ke Menu utama"}
+          redirect={"/"}
         />
       )}
       <Link href="/">

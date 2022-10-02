@@ -1,3 +1,4 @@
+import Router from "next/router";
 import React from "react";
 import {
   CloseButton,
@@ -6,7 +7,7 @@ import {
   Wrapper,
 } from "./SuccesModal.styles";
 
-function SuccessModal({ setDisplayModal, text }) {
+function SuccessModal({ setDisplayModal, text, redirect }) {
   return (
     <OuterWrapper>
       <Wrapper>
@@ -15,7 +16,12 @@ function SuccessModal({ setDisplayModal, text }) {
           <img src="/static/assets/success.svg" alt="success" />
           <p>{text}</p>
         </div>
-        <ConfirmButton onClick={() => setDisplayModal(false)}>Ok</ConfirmButton>
+        <ConfirmButton onClick={() => {
+          if (redirect) {
+            Router.push(redirect);
+          }
+          return setDisplayModal(false)
+        }}>Ok</ConfirmButton>
       </Wrapper>
     </OuterWrapper>
   );
