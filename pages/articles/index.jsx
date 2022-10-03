@@ -11,8 +11,14 @@ import ArticleCard from "../../components/common/ArticleCard/ArticleCard";
 import Head from "next/head";
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   min-height: 100vh;
+`;
+
+const StyledText = styled.h2`
+  color: ${COLORS.darkGrey};
+  text-align: center;
+  margin-top: 4em;
 `;
 
 function Articles({ documents }) {
