@@ -1,15 +1,22 @@
+import Link from 'next/link'
 import React from 'react'
 import { Info, Wrapper } from './Author.styles'
 
-function Author({image, name, title}) {
+const PROFILE_IMAGE_NOT_FOUND = "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
+
+function Author({ profileImageURL = PROFILE_IMAGE_NOT_FOUND, name = "Anonymous", position = "Beban", company = "Somwhere in the World", uid='404' }) {
   return (
-    <Wrapper>
-        <img src={image} alt="Author" />
+    <Link href={`/profile/${uid}`}>
+      <Wrapper>
+        <img src={profileImageURL} alt="Author" />
         <Info>
-            <h2>{name}</h2>
-            <h3>{title}</h3>
+          <h2>{name}</h2>
+          {position !== "" && company !== "" ?
+            <h3>{position} in {company}</h3> : ""
+          }
         </Info>
-    </Wrapper>
+      </Wrapper>
+    </Link>
   )
 }
 

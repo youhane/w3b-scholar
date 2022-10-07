@@ -82,7 +82,40 @@ const articleListDummy = [
   },
 ];
 
-export default function Home({documents={articleListDummy}}) {
+const DUMMY_AUTHORS = [
+  {
+      image: '/static/profile/dericCheng.png',
+      name: 'Deric Cheng',
+      title: 'Dev Education at Web3U'
+  },
+  {
+      image: '/static/profile/dericCheng.png',
+      name: 'Deric Cheng',
+      title: 'Dev Education at Web3U'
+  },
+  {
+      image: '/static/profile/dericCheng.png',
+      name: 'Deric Cheng',
+      title: 'Dev Education at Web3U'
+  },
+  {
+      image: '/static/profile/dericCheng.png',
+      name: 'Deric Cheng',
+      title: 'Dev Education at Web3U'
+  },
+  {
+      image: '/static/profile/dericCheng.png',
+      name: 'Deric Cheng',
+      title: 'Dev Education at Web3U'
+  },
+  {
+      image: '/static/profile/dericCheng.png',
+      name: 'Deric Cheng',
+      title: 'Dev Education at Web3U'
+  }
+]
+
+export default function Home({documents={articleListDummy}, authors={DUMMY_AUTHORS}}) {
   return (
     <div>
       <Head>
@@ -94,7 +127,7 @@ export default function Home({documents={articleListDummy}}) {
       <Hero />
       <About />
       <Articles documents={documents} />
-      <Authors />
+      <Authors authors={authors} />
       <Community/>
     </div>
   )
@@ -140,6 +173,21 @@ export async function getServerSideProps() {
     return docs.slice(0, 6);
   };
 
+  const authorsReference = collection(db, "users");
+  const resAuthors = await getDocs(authorsReference);
+  const authors = resAuthors?.docs.map((doc) => {
+    console.log(doc.data().company)
+    return {
+      company: doc.data().company,
+      name: doc.data().name,
+      position: doc.data().position,
+      profileImageURL: doc.data().profileImageURL,
+      uid: doc.data().uid,
+    };
+  });
+
+  console.log(authors)
+
   const completeArticles = await getAuthorDetail(docs);
 
   return {
@@ -151,6 +199,7 @@ export async function getServerSideProps() {
         cardImg: doc?.imageURL,
         author: { name: doc?.author.name, imgUrl: doc?.author.profileImageURL },
       })),
+      authors: authors,
     },
   };
 }

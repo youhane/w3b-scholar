@@ -31,7 +31,7 @@ const Card = ({id, cardImg, title, articleDate, author}) => {
   };
 
   return (
-    <Tilt>
+    <Tilt glareEnable={true} glareColor={'white'} glareMaxOpacity={0.4} tiltMaxAngleX={5} tiltMaxAngleY={5}>
       {showAlert && (
         <ArticleAlert>
           <Alert message={"URL Copied!"} out={!showAlert} />
