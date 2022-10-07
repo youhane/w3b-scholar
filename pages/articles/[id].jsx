@@ -96,7 +96,7 @@ function Article({ article, author }) {
       <Head>
         <title>W3B Scholar | {article.title}</title>
         <meta name="description" content="W3B Scholar - Belajar Web3" />
-        <meta property='og:image' content='../public/logo.png' />
+        <meta property="og:image" content="../public/logo.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
@@ -115,7 +115,7 @@ function Article({ article, author }) {
               }
               name={author?.name || "Anonymous"}
               date={article?.createdAt}
-              linkTo={`${HOST_URL}/penulis/${author.uid}`}
+              linkTo={`${HOST_URL}/authors/${author.uid}`}
             />
             <ShareButton shareLink={handleLinkButtonClick} />
           </AuthorWrapper>

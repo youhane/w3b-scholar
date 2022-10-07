@@ -50,8 +50,6 @@ const Pagination = ({
     return data.slice(startIndex, endIndex);
   };
 
-  console.log(getPaginatedData());
-
   return (
     <div>
       <RenderComponent articles={getPaginatedData()} />
