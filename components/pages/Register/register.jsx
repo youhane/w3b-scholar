@@ -34,6 +34,8 @@ const Register = () => {
   const [profilePicTemp, setProfilePicTemp] = useState(null);
   const [displayName, setDisplayName] = useState("");
   const [photoURL, setPhotoURL] = useState("");
+  const [company, setCompany] = useState("");
+  const [position, setPosition] = useState("");
   const [initialLoad, setInitialLoad] = useState(false);
   const [uploadLabelMsg, setUploadLabelMsg] = useState("Click to upload");
   const [uploadingImg, setUploadingImg] = useState(false);
@@ -82,8 +84,8 @@ const Register = () => {
         name: auth.currentUser.displayName,
         profileImageURL: auth.currentUser.photoURL,
         is_author: false,
-        company: null,
-        position: null,
+        company: company,
+        position: position,
       });
 
       resetinput();
@@ -110,8 +112,8 @@ const Register = () => {
         name: auth.currentUser.displayName,
         profileImageURL: auth.currentUser.photoURL,
         is_author: false,
-        company: null,
-        position: null,
+        company: company,
+        position: company,
       });
       setDisplayModal(true);
     } catch (err) {
@@ -222,6 +224,24 @@ const Register = () => {
           >
             Password must be same
           </ErrorWrapper>
+
+          <label htmlFor="company">Company</label>
+          <InputWrapper
+            id="company"
+            type="text"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            required
+          />
+
+          <label htmlFor="position">Position</label>
+          <InputWrapper
+            id="position"
+            type="text"
+            value={position}
+            onChange={(e) => setPosition(e.target.value)}
+            required
+          />
 
           {!profilePic ? (
             <FileLabelWrapper
