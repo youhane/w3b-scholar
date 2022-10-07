@@ -1,8 +1,19 @@
 import Head from 'next/head';
-import React from 'react'
+import { useRouter } from 'next/router';
+import React, { useContext, useEffect } from 'react'
 import AddArticle from '../../components/pages/Admin/AddArticle/AddArticle';
+import { AuthContext } from '../../context/AuthContext';
 
 function Editor() {
+    const user = useContext(AuthContext);
+    const router = useRouter();
+
+    useEffect(() => {
+        if(user === null){
+            router.push('/')
+        }
+    }, [router, user]);
+
     return (
         <>
             <Head>

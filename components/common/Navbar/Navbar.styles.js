@@ -46,6 +46,9 @@ export const SignInButton = styled.button`
     font-size: 1.2rem;
     display: flex;
   }
+  @media (max-width: 1024px) {
+        display: none
+    }
 
   @media (max-width: 768px) {
     font-size: 0.75rem;
@@ -59,11 +62,15 @@ export const SignInButton = styled.button`
 
 export const ProfileImage = styled(Image)`
   border-radius: 50px;
+  @media (max-width: 1024px) {
+        display: none !important
+    }
 `;
 
 export const LogoWrapper = styled.div`
   width: 54px;
   height: 60px;
+
 `;
 
 export const AnchorWrapper = styled.div`
@@ -74,6 +81,9 @@ export const AnchorWrapper = styled.div`
   padding: 0px;
   gap: 80px;
   cursor: pointer;
+  @media (max-width: 1024px) {
+        display: none
+    }
 `;
 export const AnchorTag = styled.a`
   font-family: "Syne";
@@ -82,4 +92,30 @@ export const AnchorTag = styled.a`
   font-size: 24px;
   line-height: 29px;
   color: ${COLORS.darkGrey};
+  @media (max-width: 1024px) {
+        display: none
+    }
 `;
+
+export const HamburgerIcon = styled.img`
+  border-radius: 50px;
+  width: 55px;
+  height: 55px;
+
+`;
+
+export const HamburgerWrapper = styled.div`
+    background: ${COLORS.modalOverlay};
+    display: flex;
+    width: 75vw;
+    justify-self: center;
+    align-content: center;
+    height: 100vh;
+    z-index: 150;
+    position: fixed; 
+    top: 0;
+`
+
+export const HamburgerHeaderMenu = styled.div`
+`
+
