@@ -30,7 +30,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [reenterpassword, setreenterpassword] = useState("");
-  const [profilePic, setProfilePic] = useState(null);
+  const [profilePic, setProfilePic] = useState("");
   const [profilePicTemp, setProfilePicTemp] = useState(null);
   const [displayName, setDisplayName] = useState("");
   const [photoURL, setPhotoURL] = useState("");
@@ -277,6 +277,10 @@ const Register = () => {
                 setProfilePic(e.target.files[0]);
               }
             }}
+            onInput={(e) => {
+              setUploadingImg(true);
+              setProfilePicture();
+            }}
           />
 
           {profilePic && (
@@ -295,6 +299,10 @@ const Register = () => {
               if (e.target.files.length !== 0) {
                 setProfilePic(e.target.files[0]);
               }
+            }}
+            onInput={(e) => {
+              setUploadingImg(true);
+              setProfilePicture();
             }}
           />
 
