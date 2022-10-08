@@ -176,7 +176,6 @@ export async function getServerSideProps() {
   const authorsReference = collection(db, "users");
   const resAuthors = await getDocs(authorsReference);
   const authors = resAuthors?.docs.map((doc) => {
-    console.log(doc.data().company)
     return {
       company: doc.data().company,
       name: doc.data().name,
@@ -185,8 +184,6 @@ export async function getServerSideProps() {
       uid: doc.data().uid,
     };
   });
-
-  console.log(authors)
 
   const completeArticles = await getAuthorDetail(docs);
 
