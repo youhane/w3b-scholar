@@ -4,7 +4,7 @@ import { Wrapper } from './About.styles'
 
 function About() {
     return (
-        <Wrapper>
+        <Wrapper id='about'>
             <img src="/static/assets/w3bLogoLight.png" alt="Logo Light" />
             <div>
                 <Title text={'W3B Scholar'} />

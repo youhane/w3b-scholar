@@ -1,16 +1,10 @@
 import { doc, getDoc } from "firebase/firestore";
 import React from "react";
-import { auth, db } from "../../firebase/firebase";
-import { isAbsoluteUrl } from "next/dist/shared/lib/utils";
-import { useRouter } from "next/router";
+import { db } from "../../firebase/firebase";
 import Layout from "../../components/layout/Layout";
 import ArticleAuthor from "../../components/common/ArticleAuthor/Author";
-import Footer from "../../components/common/Footer/Footer";
 import Alert from "../../components/common/Alert/Alert";
 import styled from "styled-components";
-import { COLORS } from "../../constants/styles";
-import { BsChevronLeft, BsArrowUp } from "react-icons/bs";
-import { GrShare } from "react-icons/gr";
 import ScrollButon from "../../components/common/ScrollButton/ScrollButon";
 import BackButton from "../../components/common/BackButton/BackButton";
 import ShareButton from "../../components/common/ShareButton/ShareButton";
@@ -96,7 +90,7 @@ function Article({ article, author }) {
       <Head>
         <title>W3B Scholar | {article.title}</title>
         <meta name="description" content="W3B Scholar - Belajar Web3" />
-        <meta property='og:image' content='../public/logo.png' />
+        <meta property="og:image" content="../public/logo.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
@@ -115,7 +109,7 @@ function Article({ article, author }) {
               }
               name={author?.name || "Anonymous"}
               date={article?.createdAt}
-              linkTo={`${HOST_URL}/penulis/${author.uid}`}
+              linkTo={`${HOST_URL}/authors/${author.uid}`}
             />
             <ShareButton shareLink={handleLinkButtonClick} />
           </AuthorWrapper>

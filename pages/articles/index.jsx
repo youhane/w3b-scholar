@@ -1,21 +1,24 @@
-import { collection, getDocs, query } from "firebase/firestore";
-import { doc, getDoc } from "firebase/firestore";
-import { getDownloadURL, listAll, ref } from "firebase/storage";
+import { collection, getDocs } from "firebase/firestore";
 import { useRouter } from "next/router";
-import React, { useEffect, useState, useMemo } from "react";
-import { auth, db, storage } from "../../firebase/firebase";
+import React, { useEffect, useState } from "react";
+import { db } from "../../firebase/firebase";
 import ArticleCardContainer from "../../components/common/ArticleCard/ArticleCardContainer";
 import Layout from "../../components/layout/Layout";
 import Searchbar from "../../components/common/Searchbar/Searchbar";
 import { COLORS } from "../../constants/styles";
 import Pagination from "../../components/common/Pagination/Pagination";
-import ArticleCard from "../../components/common/ArticleCard/ArticleCard";
 import Head from "next/head";
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   min-height: 100vh;
-`
+`;
+
+const StyledText = styled.h2`
+  color: ${COLORS.darkGrey};
+  text-align: center;
+  margin-top: 4em;
+`;
 
 function Articles({ documents }) {
   const [allArticles, setAllArticles] = useState(documents);
@@ -75,7 +78,9 @@ function Articles({ documents }) {
             siblingCount={1}
           />
         ) : (
-          <h2>No Articles to display</h2>
+          <StyledText>
+            <h2>No matching articles</h2>
+          </StyledText>
         )}
       </Layout>
     </Wrapper>
