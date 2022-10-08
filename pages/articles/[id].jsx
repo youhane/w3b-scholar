@@ -1,16 +1,10 @@
 import { doc, getDoc } from "firebase/firestore";
 import React from "react";
-import { auth, db } from "../../firebase/firebase";
-import { isAbsoluteUrl } from "next/dist/shared/lib/utils";
-import { useRouter } from "next/router";
+import { db } from "../../firebase/firebase";
 import Layout from "../../components/layout/Layout";
 import ArticleAuthor from "../../components/common/ArticleAuthor/Author";
-import Footer from "../../components/common/Footer/Footer";
 import Alert from "../../components/common/Alert/Alert";
 import styled from "styled-components";
-import { COLORS } from "../../constants/styles";
-import { BsChevronLeft, BsArrowUp } from "react-icons/bs";
-import { GrShare } from "react-icons/gr";
 import ScrollButon from "../../components/common/ScrollButton/ScrollButon";
 import BackButton from "../../components/common/BackButton/BackButton";
 import ShareButton from "../../components/common/ShareButton/ShareButton";
