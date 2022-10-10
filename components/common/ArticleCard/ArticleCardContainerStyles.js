@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { COLORS } from "../../../constants/styles";
 
 export const CardContainer = styled.div`
   display: grid;
@@ -9,6 +10,10 @@ export const CardContainer = styled.div`
   margin: auto;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
+
+  h1 {
+    color: ${COLORS.darkGrey};
+  }
 
   @media (max-width: 1280px) {
     grid-template-columns: auto auto;
