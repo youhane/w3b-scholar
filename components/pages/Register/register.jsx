@@ -70,6 +70,11 @@ const Register = () => {
             setErrorMsg("Akun tidak ditemukan, coba lagi");
           } else if (err.message == "Firebase: Error (auth/invalid-email).") {
             setErrorMsg("Email salah, coba lagi");
+          } else if (
+            err.message ==
+            "FirebaseError: Firebase: Error (auth/email-already-in-use)."
+          ) {
+            setErrorMsg("Email sudah digunakan, gunakan Email lain");
           } else if (err.message == null) {
             resetinput();
           }
@@ -87,8 +92,6 @@ const Register = () => {
         company: company,
         position: position,
       });
-
-      resetinput();
     } catch (err) {
       alert(err.message);
     }
