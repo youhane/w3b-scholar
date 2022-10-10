@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { COLORS } from "../../../constants/styles";
 
 export const Wrapper = styled.div`
-    background: ${COLORS.lightGrey};
+    background: ${props => props.color};
     width: fit-content;
     border-radius: 1rem;
     display: flex;
