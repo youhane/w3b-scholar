@@ -13,7 +13,6 @@ import styled from "styled-components";
 import Head from "next/head";
 import BackButton from "../../components/common/BackButton/BackButton";
 import { COLORS } from "../../constants/styles";
-import Router, { useRouter } from "next/router";
 import ArticleCardContainer from "../../components/common/ArticleCard/ArticleCardContainer";
 import Custom404 from "../404";
 
@@ -65,11 +64,19 @@ export const ArticleWrapper = styled.div`
   margin-top: 3em;
 `;
 
-const HOST_URL = "https://w3b-scholar.vercel.app";
-
 function Profile({ user, documents }) {
   if (!user) {
-    return <Custom404 />;
+    return (
+      <>
+        <Head>
+          <title>Page not found!</title>
+          <meta name="description" content="W3B Scholar - Belajar Web3" />
+          <meta property="og:image" content="../public/logo.png" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <Custom404 />
+      </>
+    );
   }
 
   return (
@@ -122,8 +129,6 @@ export async function getServerSideProps(context) {
       ...doc.data(),
     };
   });
-
-  console.log(articles);
 
   return {
     props: {
