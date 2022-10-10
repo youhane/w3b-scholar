@@ -1,0 +1,143 @@
+import React from "react";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
+import { db } from "../../firebase/firebase";
+import Layout from "../../components/layout/Layout";
+import styled from "styled-components";
+import Head from "next/head";
+import BackButton from "../../components/common/BackButton/BackButton";
+import { COLORS } from "../../constants/styles";
+import Router, { useRouter } from "next/router";
+import ArticleCardContainer from "../../components/common/ArticleCard/ArticleCardContainer";
+import Custom404 from "../404";
+
+export const Container = styled.div`
+  margin: auto;
+  width: 92%;
+  min-height: 80vh;
+  @media (max-width: 1200px) {
+    width: 85%;
+  }
+`;
+
+export const UserWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 1em 0;
+
+  img {
+    width: 5em;
+    height: 5em;
+    border-radius: 120px;
+  }
+`;
+
+export const UserImage = styled.div`
+  height: 5em;
+  width: 5em;
+  background-image: url(${({ src }) => src});
+  background-size: cover;
+  border-radius: 120px;
+`;
+
+export const UserText = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: ${COLORS.darkGrey};
+
+  h5 {
+    font-size: 1.2em;
+  }
+  p {
+    font-size: 0.6em;
+  }
+`;
+
+export const ArticleWrapper = styled.div`
+  margin-top: 3em;
+`;
+
+const HOST_URL = "https://w3b-scholar.vercel.app";
+
+function Profile({ user, documents }) {
+  if (!user) {
+    return <Custom404 />;
+  }
+
+  return (
+    <>
+      <Head>
+        <title>W3B Scholar | {user.name}</title>
+        <meta name="description" content="W3B Scholar - Belajar Web3" />
+        <meta property="og:image" content="../public/logo.png" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Layout>
+        <Container>
+          <BackButton />
+          <UserWrapper>
+            <UserImage src={user.profileImageURL} alt="Author's Picture" />
+            <UserText>
+              <h5>{user.name}</h5>
+              {user.position && (
+                <p>
+                  {user.position} {user.company ? ` at ${user.company}` : ""}
+                </p>
+              )}
+              <p>Total artikel: {documents ? documents.length : 0}</p>
+            </UserText>
+          </UserWrapper>
+          <ArticleWrapper>
+            <ArticleCardContainer articles={documents} />
+          </ArticleWrapper>
+        </Container>
+      </Layout>
+    </>
+  );
+}
+
+export default Profile;
+
+export async function getServerSideProps(context) {
+  const user = await getDoc(doc(db, "users", context.params.id));
+
+  const q = query(
+    collection(db, "articles"),
+    where("userId", "==", context.params.id)
+  );
+
+  const querySnapshot = await getDocs(q);
+
+  const articles = querySnapshot?.docs.map((doc) => {
+    return {
+      id: doc.id,
+      ...doc.data(),
+    };
+  });
+
+  console.log(articles);
+
+  return {
+    props: {
+      user: user.data() ? user.data() : null,
+      documents: articles.map((doc) => ({
+        id: doc?.id,
+        title: doc?.title,
+        date: doc?.createdAt,
+        cardImg: doc?.imageURL,
+        author: {
+          name: user.data()?.name,
+          imgUrl: user.data()?.profileImageURL,
+        },
+      })),
+    },
+  };
+}
