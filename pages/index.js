@@ -133,7 +133,6 @@ export default function Home({documents={articleListDummy}, authors={DUMMY_AUTHO
   )
 }
 
-
 export async function getServerSideProps() {
   const articlesReference = collection(db, "articles");
   const res = await getDocs(articlesReference);
