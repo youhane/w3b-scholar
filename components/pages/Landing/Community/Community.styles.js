@@ -5,6 +5,10 @@ export const Wrapper = styled.section`
     align-items: center;
     justify-content: center;
 
+    a{
+        text-decoration: none;
+    }
+
     img{
         width: 30%;
         transform: translateY(10%);

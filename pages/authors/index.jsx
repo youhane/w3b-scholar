@@ -6,6 +6,8 @@ import styled from "styled-components";
 import Searchbar from "../../components/common/Searchbar/Searchbar";
 import Author from "../../components/common/Author/Author";
 import { COLORS } from "../../constants/styles";
+import Pagination from "../../components/common/Pagination/Pagination";
+import AuthorCardContainer from "../../components/common/Author/AuthorCardContainer";
 
 const Wrapper = styled.div`
   .author-list {
@@ -49,11 +51,18 @@ const AuthorWrapper = styled.div`
   color: #394955;
 `;
 
-const Authors = (props) => {
+const StyledText = styled.h2`
+  color: ${COLORS.darkGrey};
+  text-align: center;
+  margin-top: 4em;
+`;
+
+const Authors = ({ authors }) => {
   const router = useRouter();
   const pathName = router.pathname;
-
-  const [authors, setAuthors] = useState([]);
+  const [allAuthors, setAllAuthors] = useState(authors);
+  const [filteredAuthors, setFilteredAuthors] = useState(authors);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const data = {
     data: [
@@ -92,15 +101,49 @@ const Authors = (props) => {
     property.data.push(...data.data);
   }
 
+  useEffect(() => {
+    setAllAuthors(authors);
+  }, []);
+
+  useEffect(() => {
+    handleSearch(searchQuery);
+  }, [searchQuery]);
+
+  const handleSearch = async (query) => {
+    if (query !== "") {
+      const searchedAuthors = allAuthors.filter((author) => {
+        return author.name.toLowerCase().includes(query.toLowerCase());
+      });
+
+      if (searchedAuthors.length === 0 || !searchedAuthors) {
+        setFilteredAuthors([]);
+      } else {
+        setFilteredAuthors(searchedAuthors);
+      }
+    } else {
+      setFilteredAuthors(allAuthors);
+    }
+  };
+
   return (
     <>
       <Searchbar />
       <Wrapper>
         <div className="author-list-container">
           <div className="author-list">
-            {props.authors.map((author) => (
-              <Author key={author.id} color={COLORS.white} {...author} />
-            ))}
+            {filteredAuthors.length > 0 ? (
+              <Pagination
+                data={filteredAuthors}
+                RenderComponent={AuthorCardContainer}
+                buttonConst={3}
+                contentPerPage={6}
+                siblingCount={1}
+              />
+            ) : (
+              <StyledText>
+                <h2>No matching authors</h2>
+              </StyledText>
+            )}
           </div>
         </div>
       </Wrapper>
