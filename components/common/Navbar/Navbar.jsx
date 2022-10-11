@@ -60,11 +60,15 @@ const NavItem = () => {
                 <HamburgerProfileImage
                   src={user.photoURL}
                   alt="image-alt-text"
+                  width={55}
+                  height={55}
                 />
               ) : (
                 <HamburgerProfileImage
                   src="/static/assets/anon.png"
                   alt="anonymus"
+                  width={55}
+                  height={55}
                 />
               )
             ) : (

@@ -109,11 +109,13 @@ function Article({ article, author }) {
               }
               name={author?.name || "Anonymous"}
               date={article?.createdAt}
-              linkTo={`${HOST_URL}/authors/${author.uid}`}
+              linkTo={`${HOST_URL}/profile/${author.uid}`}
             />
             <ShareButton shareLink={handleLinkButtonClick} />
           </AuthorWrapper>
-          <ArticleContent dangerouslySetInnerHTML={{ __html: article.content }}/>
+          <ArticleContent
+            dangerouslySetInnerHTML={{ __html: article.content }}
+          />
         </ArticleWrapper>
       </Layout>
     </>
@@ -134,11 +136,11 @@ export async function getServerSideProps(context) {
         author.data() !== undefined
           ? author.data()
           : {
-            name: "Anonymous",
-            profileImageURL:
-              "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
-            uid: "anonymous",
-          },
+              name: "Anonymous",
+              profileImageURL:
+                "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
+              uid: "anonymous",
+            },
     },
   };
 }

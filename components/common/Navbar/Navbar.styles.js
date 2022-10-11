@@ -232,13 +232,13 @@ export const HamburgerHeaderMenu = styled.div`
   }
 `;
 
-export const HamburgerProfileImage = styled.img`
+export const HamburgerProfileImage = styled(Image)`
   border-radius: 50px;
   width: 55px;
   height: 55px;
   @media (max-width: 440px) {
-    width: 35px;
-    height: 35px;
+    width: 35px !important;
+    height: 35px !important;
   }
 `;
 
