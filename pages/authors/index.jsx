@@ -8,6 +8,7 @@ import Author from "../../components/common/Author/Author";
 import { COLORS } from "../../constants/styles";
 import Pagination from "../../components/common/Pagination/Pagination";
 import AuthorCardContainer from "../../components/common/Author/AuthorCardContainer";
+import Head from "next/head";
 
 const Wrapper = styled.div`
   .author-list {
@@ -46,11 +47,6 @@ const Wrapper = styled.div`
   }
 `;
 
-const AuthorWrapper = styled.div`
-  background-color: white !important;
-  color: #394955;
-`;
-
 const StyledText = styled.h2`
   color: ${COLORS.darkGrey};
   text-align: center;
@@ -63,43 +59,6 @@ const Authors = ({ authors }) => {
   const [allAuthors, setAllAuthors] = useState(authors);
   const [filteredAuthors, setFilteredAuthors] = useState(authors);
   const [searchQuery, setSearchQuery] = useState("");
-
-  const data = {
-    data: [
-      {
-        id: 1,
-        name: "Bud Hennekes",
-        position: "Content Lead",
-        company: "parcl",
-        profileImageURL:
-          "https://www.kibrispdr.org/data/974/tom-and-jerry-funny-face-0.jpg",
-      },
-      {
-        id: 2,
-        name: "Georgios Gontikas",
-        position: "Writer",
-        company: "Chainsafe",
-        profileImageURL:
-          "https://www.kibrispdr.org/data/974/tom-and-jerry-funny-face-0.jpg",
-      },
-      {
-        id: 3,
-        name: "Nader Dabit",
-        position: "DevRel",
-        company: "The Graph",
-        profileImageURL:
-          "https://www.kibrispdr.org/data/974/tom-and-jerry-funny-face-0.jpg",
-      },
-    ],
-  };
-
-  const property = {
-    data: [],
-  };
-
-  for (let i = 0; i < 10; i++) {
-    property.data.push(...data.data);
-  }
 
   useEffect(() => {
     setAllAuthors(authors);
@@ -127,25 +86,27 @@ const Authors = ({ authors }) => {
 
   return (
     <>
+      <Head>
+        <title>W3B Scholar | Articles</title>
+        <meta name="description" content="W3B Scholar - Belajar Web3" />
+        <meta property="og:image" content="../public/logo.png" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Searchbar />
       <Wrapper>
-        <div className="author-list-container">
-          <div className="author-list">
-            {filteredAuthors.length > 0 ? (
-              <Pagination
-                data={filteredAuthors}
-                RenderComponent={AuthorCardContainer}
-                buttonConst={3}
-                contentPerPage={6}
-                siblingCount={1}
-              />
-            ) : (
-              <StyledText>
-                <h2>No matching authors</h2>
-              </StyledText>
-            )}
-          </div>
-        </div>
+        {filteredAuthors.length > 0 ? (
+          <Pagination
+            data={filteredAuthors}
+            RenderComponent={AuthorCardContainer}
+            buttonConst={3}
+            contentPerPage={9}
+            siblingCount={1}
+          />
+        ) : (
+          <StyledText>
+            <h2>No matching authors</h2>
+          </StyledText>
+        )}
       </Wrapper>
     </>
   );

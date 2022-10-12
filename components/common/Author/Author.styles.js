@@ -27,8 +27,7 @@ export const Wrapper = styled.div`
         padding: .75rem 1.25rem;
         gap: 1rem;
         min-height: 4rem;
-        min-width: 10rem;
-        max-width: 15rem;
+        width: 15rem;
 
         img{
             width: 25%;
@@ -40,8 +39,7 @@ export const Wrapper = styled.div`
         gap: .5rem;
         min-height: 3rem;
         max-height: 5rem;
-        min-width: 0rem;
-        max-width: 10rem;
+        width: 15rem;
 
         img{
             width: 25%;

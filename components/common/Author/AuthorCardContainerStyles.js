@@ -16,7 +16,7 @@ export const CardContainer = styled.div`
   }
 
   @media (max-width: 1280px) {
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto;
     grid-template-rows: auto auto auto;
     gap: 2rem;
   }
