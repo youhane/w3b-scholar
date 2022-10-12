@@ -52,7 +52,7 @@ const Pagination = ({
 
   return (
     <div>
-      <RenderComponent articles={getPaginatedData()} />
+      <RenderComponent data={getPaginatedData()} />
 
       <PaginationWrapper>
         {/* previous button */}

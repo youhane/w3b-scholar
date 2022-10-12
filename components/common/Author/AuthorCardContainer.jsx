@@ -2,13 +2,13 @@ import React from "react";
 import { CardContainer } from "../ArticleCard/ArticleCardContainerStyles";
 import Author from "./Author";
 
-const AuthorCardContainer = ({ authors }) => {
+const AuthorCardContainer = ({ data }) => {
   return (
     <CardContainer>
-      {authors?.length === 0 ? (
+      {data?.length === 0 ? (
         <h1>No Authors Found</h1>
       ) : (
-        authors?.map((author) => {
+        data?.map((author) => {
           return (
             <Author
               key={author.uid}
