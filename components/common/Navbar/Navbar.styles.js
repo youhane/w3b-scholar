@@ -140,11 +140,14 @@ export const AnchorTag = styled.a`
   font-size: 24px;
   line-height: 29px;
   color: ${COLORS.darkGrey};
+  display: block;
   @media (max-width: 1024px) {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    margin-bottom: 3rem;
   }
   @media (max-width: 440px) {
-    font-size: 1rem;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
   }
 `;
 
@@ -162,9 +165,9 @@ export const HamburgerWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  visibility: hidden;
-
+  
   &::before {
+    visibility: hidden;
     content: "";
     position: fixed;
     top: 0;
@@ -174,13 +177,9 @@ export const HamburgerWrapper = styled.div`
     background-color: ${COLORS.darkGrey};
     z-index: 1400;
     opacity: 0.5;
+    ${({ active }) => active && `visibility: visible;`}
   }
 
-  ${({ active }) =>
-    active &&
-    `
-    visibility: visible;
-    `}
 `;
 
 export const HamburgerItemWrapper = styled(motion.nav)`
