@@ -2,13 +2,13 @@ import React from "react";
 import ArticleCard from "./ArticleCard";
 import { CardContainer } from "./ArticleCardContainerStyles";
 
-const ArticleCardContainer = ({ articles }) => {
+const ArticleCardContainer = ({ data }) => {
   return (
     <CardContainer>
-      {articles?.length === 0 ? (
+      {data?.length === 0 ? (
         <h1>No Articles Found</h1>
       ) : (
-        articles?.map((article) => {
+        data?.map((article) => {
           return (
             <ArticleCard
               key={article.id}

@@ -164,6 +164,8 @@ export async function getServerSideProps() {
     };
   });
 
+  console.log(authors)
+
   return {
     props: {
       authors,
