@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { COLORS } from "../../../constants/styles";
 import Image from "next/image";
+import {motion} from "framer-motion";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -28,7 +29,7 @@ export const Wrapper = styled.div`
     }
   }
 
-  @media (max-width: 440px) {
+  @media (max-width: 768px) {
     margin: 0 2.5rem;
     padding: 0.25rem 1rem;
 
@@ -109,9 +110,9 @@ export const LogoImageWrapper = styled.img`
     width: 45px;
     height: 50px;
   }
-  @media (max-width: 440px) {
-    width: 25px;
-    height: 30px;
+  @media (max-width: 768px) {
+    width: 30px;
+    height: 35px;
   }
 `;
 
@@ -147,39 +148,29 @@ export const AnchorTag = styled.a`
   }
 `;
 
-const fadeIn = keyframes`
-from {
-margin-left: 100%;
-width: 300%;
-}
-to {
-margin-left: 0%;
-width: 100%;
-}
-`;
-
 export const HamburgerIcon = styled.img`
   border-radius: 50px;
   width: 50px;
   height: 50px;
-  @media (max-width: 440px) {
+  @media (max-width: 768px) {
     width: 30px;
     height: 30px;
   }
 `;
 
 export const HamburgerWrapper = styled.div`
-  display: none;
+  display: flex;
   flex-direction: column;
   align-items: flex-end;
+  visibility: hidden;
 
   &::before {
     content: "";
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-color: ${COLORS.darkGrey};
     z-index: 1400;
     opacity: 0.5;
@@ -188,19 +179,19 @@ export const HamburgerWrapper = styled.div`
   ${({ active }) =>
     active &&
     `
-    display: flex;
-  `}
-
-  animation: ${fadeIn} 1s linear;
+    visibility: visible;
+    `}
 `;
 
-export const HamburgerItemWrapper = styled.div`
+export const HamburgerItemWrapper = styled(motion.nav)`
   padding: 5rem 3.5rem;
   border-radius: 16px 0px 0px 16px;
   background: ${COLORS.white};
   display: flex;
   flex-direction: column;
   width: 33vw;
+  flex-basis: 400px;
+  transform: translateX(0%);
   .undefault {
     display: none;
   }

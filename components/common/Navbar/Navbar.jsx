@@ -27,6 +27,12 @@ const NavItem = () => {
   const { height, width } = useWindowSize();
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
   const [displayModal, setDisplayModal] = useState(false);
+  // const [isOpen, setIsOpen] = useState(true);
+
+  const variants = {
+    open: { opacity: 1, x: 0 },
+    closed: { opacity: 0, x: 100 },
+  };
 
   const handleHamburgerClick = () => {
     setHamburgerOpen(!hamburgerOpen);
@@ -46,7 +52,11 @@ const NavItem = () => {
         />
       )}
       <HamburgerWrapper active={hamburgerOpen}>
-        <HamburgerItemWrapper>
+        <HamburgerItemWrapper
+          // active={hamburgerOpen}
+          animate={hamburgerOpen ? "open" : "closed"}
+          variants={variants}
+        >
           <HamburgerHeaderMenu>
             <Link href="/">
               <LogoImageWrapper
