@@ -99,10 +99,10 @@ const NavItem = () => {
             </HamburgerHeaderMenu>
             <AnchorWrapper className="undefault">
               <Link href="/articles">
-                <AnchorTag>Artikel</AnchorTag>
+                <AnchorTag onClick={() => setHamburgerOpen(false)}>Artikel</AnchorTag>
               </Link>
               <Link href="/authors">
-                <AnchorTag>Penulis</AnchorTag>
+                <AnchorTag onClick={() => setHamburgerOpen(false)}>Penulis</AnchorTag>
               </Link>
             </AnchorWrapper>
 
