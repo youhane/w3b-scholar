@@ -3,10 +3,10 @@ import React from 'react'
 import { BsChevronLeft } from 'react-icons/bs'
 import { Wrapper } from './BackButton.styles'
 
-function BackButton() {
+function BackButton({href = '/'}) {
 
   return (
-    <Link href={'/articles'}>
+    <Link href={href}>
       <Wrapper>
         <BsChevronLeft /> Back
       </Wrapper>
