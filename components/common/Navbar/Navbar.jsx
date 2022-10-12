@@ -60,15 +60,15 @@ const NavItem = () => {
                 <HamburgerProfileImage
                   src={user.photoURL}
                   alt="image-alt-text"
-                  width={55}
-                  height={55}
+                  width={width < 440 ? 35 : 55}
+                  height={width < 440 ? 35 : 55}
                 />
               ) : (
                 <HamburgerProfileImage
                   src="/static/assets/anon.png"
                   alt="anonymus"
-                  width={55}
-                  height={55}
+                  width={width < 440 ? 35 : 55}
+                  height={width < 440 ? 35 : 55}
                 />
               )
             ) : (
@@ -89,10 +89,13 @@ const NavItem = () => {
             </Link>
             <AnchorTag>Penulis</AnchorTag>
           </AnchorWrapper>
-          <LogoutButton onClick={() => setDisplayModal(true)}>
-            <img src="/static/assets/logout.svg" alt="logout" />
-            Logout
-          </LogoutButton>
+
+          {auth.currentUser && (
+            <LogoutButton onClick={() => setDisplayModal(true)}>
+              <img src="/static/assets/logout.svg" alt="logout" />
+              Logout
+            </LogoutButton>
+          )}
         </HamburgerItemWrapper>
       </HamburgerWrapper>
       <Wrapper>
@@ -128,12 +131,12 @@ const NavItem = () => {
             />
           )
         ) : (
-          <Link href="/register">
+          <Link href="/sign-up">
             <SignInButton className="default">Sign Up</SignInButton>
           </Link>
         )}
 
-        {width >= 1024 ? (
+        {width > 1024 ? (
           <></>
         ) : (
           <HamburgerIcon
@@ -148,7 +151,7 @@ const NavItem = () => {
 
 function Navbar() {
   const location = useRouter();
-  const navbarDisabledPages = ["/login", "/register"];
+  const navbarDisabledPages = ["/login", "/sign-up"]; //add pages that don't need navbar here
 
   if (!navbarDisabledPages.includes(location.pathname)) {
     return NavItem();

@@ -30,6 +30,8 @@ export const Wrapper = styled.div`
 
   @media (max-width: 440px) {
     margin: 0 2.5rem;
+    padding: 0.25rem 1rem;
+
     top: 2rem;
   }
 `;
@@ -96,8 +98,8 @@ export const LogoWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 54px;
-  height: 60px;
+  width: 45px;
+  height: 50px;
 `;
 
 export const LogoImageWrapper = styled.img`
@@ -108,8 +110,8 @@ export const LogoImageWrapper = styled.img`
     height: 50px;
   }
   @media (max-width: 440px) {
-    width: 35px;
-    height: 40px;
+    width: 25px;
+    height: 30px;
   }
 `;
 
@@ -138,7 +140,7 @@ export const AnchorTag = styled.a`
   line-height: 29px;
   color: ${COLORS.darkGrey};
   @media (max-width: 1024px) {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   @media (max-width: 440px) {
     font-size: 1rem;
@@ -146,24 +148,24 @@ export const AnchorTag = styled.a`
 `;
 
 const fadeIn = keyframes`
-  0% {
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+from {
+margin-left: 100%;
+width: 300%;
+}
+to {
+margin-left: 0%;
+width: 100%;
+}
 `;
 
 export const HamburgerIcon = styled.img`
   border-radius: 50px;
   width: 50px;
   height: 50px;
+  @media (max-width: 440px) {
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 export const HamburgerWrapper = styled.div`
@@ -198,17 +200,20 @@ export const HamburgerItemWrapper = styled.div`
   background: ${COLORS.white};
   display: flex;
   flex-direction: column;
-  width: 66%;
+  width: 33vw;
+  .undefault {
+    display: none;
+  }
   align-items: flex-start;
   height: 100%;
   z-index: 1500;
   position: fixed;
   top: 0;
 
-  @media (min-width: 1024px) {
-    width: 30%;
+  @media (max-width: 1024px) {
+    width: 45vw;
     .undefault {
-      display: none;
+      display: block;
     }
   }
 
@@ -261,7 +266,7 @@ export const LogoutButton = styled.div`
 
   @media (max-width: 440px) {
     font-size: 1rem;
-    img{
+    img {
       width: 1rem;
       height: 1rem;
       padding-right: 0.5rem;
