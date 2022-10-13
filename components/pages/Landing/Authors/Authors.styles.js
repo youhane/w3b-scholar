@@ -81,6 +81,7 @@ export const Grid = styled.div`
     @media (min-width: 768px) and (max-width: 1024px) {
         gap: 2rem;
         margin: 1rem;
+        grid-template-columns: auto auto;
 
         .filler{
             display: none;
@@ -88,7 +89,7 @@ export const Grid = styled.div`
     }
 
     @media (max-width: 767px) {
-        grid-template-columns: auto auto;
+        grid-template-columns: auto;
         margin: 1rem 0;
 
         .filler{
