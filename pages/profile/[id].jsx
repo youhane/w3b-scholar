@@ -44,6 +44,11 @@ export const UserImage = styled.div`
   background-image: url(${({ src }) => src});
   background-size: cover;
   border-radius: 120px;
+
+  @media (max-width: 768px) {
+    height: 4em;
+    width: 4em;
+  }
 `;
 
 export const UserText = styled.div`
@@ -56,7 +61,10 @@ export const UserText = styled.div`
     font-size: 1.2em;
   }
   p {
-    font-size: 0.6em;
+    font-size: 0.9em;
+    @media (max-width: 768px) {
+      font-size: 0.75em;
+    }
   }
 `;
 
@@ -89,7 +97,7 @@ function Profile({ user, documents }) {
       </Head>
       <Layout>
         <Container>
-          <BackButton />
+          <BackButton href="/authors" />
           <UserWrapper>
             <UserImage src={user.profileImageURL} alt="Author's Picture" />
             <UserText>
@@ -103,7 +111,7 @@ function Profile({ user, documents }) {
             </UserText>
           </UserWrapper>
           <ArticleWrapper>
-            <ArticleCardContainer articles={documents} />
+            <ArticleCardContainer data={documents} />
           </ArticleWrapper>
         </Container>
       </Layout>
@@ -129,6 +137,8 @@ export async function getServerSideProps(context) {
       ...doc.data(),
     };
   });
+
+  console.log(articles)
 
   return {
     props: {
