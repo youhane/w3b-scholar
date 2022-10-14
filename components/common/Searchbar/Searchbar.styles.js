@@ -11,10 +11,15 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 9.5rem;
 
   @media (max-width: 1280px) {
     width: 80%;
     height: 2.75em;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 7.5rem;
   }
 `;
 

@@ -40,7 +40,8 @@ export const Wrapper = styled.div`
         width: 15rem;
 
         img{
-            width: 25%;
+            width: 20%;
+            max-height: 3rem;
         }
     }
 `

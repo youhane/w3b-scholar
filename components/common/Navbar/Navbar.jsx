@@ -26,7 +26,7 @@ const NavItem = () => {
   const user = useContext(AuthContext);
   const { height, width } = useWindowSize();
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
-  const [displayModal, setDisplayModal] = useState(true);
+  const [displayModal, setDisplayModal] = useState(false);
 
   const variants = {
     open: { x: 0 },

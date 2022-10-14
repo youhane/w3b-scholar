@@ -138,8 +138,6 @@ export async function getServerSideProps(context) {
     };
   });
 
-  console.log(articles)
-
   return {
     props: {
       user: user.data() ? user.data() : null,

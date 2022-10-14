@@ -16,7 +16,8 @@ export const Wrapper = styled.div`
 
   margin: 0 7.5rem;
 
-  position: sticky;
+  position: fixed;
+  width: calc(100vw - 21rem);
   top: 4rem;
 
   z-index: 1000;
@@ -32,6 +33,7 @@ export const Wrapper = styled.div`
   @media (max-width: 768px) {
     margin: 0 2.5rem;
     padding: 0.25rem 1rem;
+    width: calc(100vw - 7rem);
 
     top: 2rem;
   }
