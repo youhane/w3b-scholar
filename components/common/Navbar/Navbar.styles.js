@@ -76,7 +76,7 @@ export const SignInButton = styled.button`
   }
 
   @media (max-width: 768px) {
-    font-size: 0.75rem;
+    font-size: 1rem;
     padding: 0.75rem 1.25rem;
 
     span {

@@ -48,6 +48,11 @@ export const Wrapper = styled.div`
 
     @media (max-width: 768px){
         padding: 2rem 1rem;
+        width: 75%;
+
+        p{
+            text-align: center;
+        }
     }
 `
 
@@ -77,7 +82,8 @@ export const ConfirmButton = styled.button`
     }
 
     @media (max-width: 320px){
-        padding: .75rem 7rem;
+        padding: .5rem 2rem;
+        margin: 0 .5rem;
     }
 `
 
@@ -98,11 +104,16 @@ export const DeclineButton = styled.button`
     }
 
     @media (max-width: 320px){
-        padding: .75rem 7rem;
+        padding: .5rem 2rem;
+        margin: 0 .5rem;
     }
 `
 
 export const MultipleChoice = styled.div`
     display: flex;
     flex-direction: row !important;
+
+    @media (max-width: 768px){
+        flex-direction: row !important;
+    }
 `

@@ -11,7 +11,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 9.5rem;
+  margin-top: 11rem;
 
   @media (max-width: 1280px) {
     width: 80%;

@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
   user-select: none;
   text-decoration: none;
   cursor: pointer;
+  width: min-content;
 
   :hover {
     color: ${COLORS.darkblue};

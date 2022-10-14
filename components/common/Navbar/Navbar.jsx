@@ -39,6 +39,7 @@ const NavItem = () => {
 
   const handleLogout = () => {
     auth.signOut();
+    location.push("/");
   };
 
   useEffect(() => {

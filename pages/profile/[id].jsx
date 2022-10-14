@@ -20,8 +20,10 @@ export const Container = styled.div`
   margin: auto;
   width: 92%;
   min-height: 80vh;
-  @media (max-width: 1200px) {
+  margin-top: 11rem;
+  @media (max-width: 768px) {
     width: 85%;
+    margin-top: 7rem;
   }
 `;
 
