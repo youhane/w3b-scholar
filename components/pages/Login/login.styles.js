@@ -120,6 +120,10 @@ export const FormWrapper = styled.form`
     opacity: 0.6;
     border-radius: 6px;
     margin-bottom: 0.5rem;
+
+    :focus{
+      outline: none;
+    }
   }
   input[type="file"] {
     display: none;

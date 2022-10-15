@@ -27,9 +27,10 @@ import {
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMsg, setErrorMsg] = useState(null);
+  const [errorMsg, setErrorMsg] = useState("Login gagal, silahkan coba lagi");
   const [initialLoad, setInitialLoad] = useState(false);
   const [displayModal, setDisplayModal] = useState(false);
+  const [loginSuccess, setLoginSuccess] = useState(true);
   const provider = new GoogleAuthProvider();
 
   const login = async () => {
@@ -44,19 +45,28 @@ const Login = () => {
         })
         .catch((err) => {
           if (err.message == "Firebase: Error (auth/user-not-found).") {
+            setLoginSuccess(false);
             setErrorMsg("Akun tidak ditemukan, coba lagi");
+            setDisplayModal(true);
           } else if (err.message == "Firebase: Error (auth/invalid-email).") {
+            setLoginSuccess(false);
             setErrorMsg("Email salah, coba lagi");
+            setDisplayModal(true);
           } else if (err.message == null) {
-            alert(`SUCCESFULLY LOGGED IN - ${email}`);
+            // alert(`SUCCESFULLY LOGGED IN - ${email}`);
 
             resetinput();
           }
-
-          alert(err.message);
+          setLoginSuccess(false);
+          setErrorMsg(err.message);
+          setDisplayModal(true);
+          // alert(err.message);
         });
     } catch (error) {
-      alert(error.message);
+      setLoginSuccess(false);
+      setErrorMsg(err.message);
+      setDisplayModal(true);
+      // alert(error.message);
     }
   };
 
@@ -67,10 +77,17 @@ const Login = () => {
 
   const loginWithGoogle = async () => {
     try {
-      await signInWithPopup(auth, provider).catch((err) => alert(err.message));
+      await signInWithPopup(auth, provider).catch((err) => {
+        setLoginSuccess(false);
+        setErrorMsg(err.message);
+        // alert(err.message)
+      });
       setDisplayModal(true);
     } catch (err) {
-      alert(err.message);
+      setLoginSuccess(false);
+      setErrorMsg(err.message);
+      setDisplayModal(true);
+      // alert(err.message);
     }
   };
 
@@ -79,8 +96,13 @@ const Login = () => {
       {displayModal && (
         <SuccessModal
           setDisplayModal={setDisplayModal}
-          text={"Berhasil melakukan Login! Kamu akan diarahkan ke Menu utama"}
+          text={
+            loginSuccess ?
+              "Berhasil melakukan Login! Kamu akan diarahkan ke Menu utama" :
+              errorMsg
+          }
           redirect={"/"}
+          success={loginSuccess}
         />
       )}
       <Link href="/">

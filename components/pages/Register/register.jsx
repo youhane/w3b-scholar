@@ -40,6 +40,8 @@ const Register = () => {
   const [uploadLabelMsg, setUploadLabelMsg] = useState("Click to upload");
   const [uploadingImg, setUploadingImg] = useState(false);
   const [displayModal, setDisplayModal] = useState(false);
+  const [registerSuccess, setRegisterSuccess] = useState(true);
+  const [errorMsg, setErrorMsg] = useState("Registrasi gagal, silahkan coba lagi");
   const provider = new GoogleAuthProvider();
 
   useEffect(() => {
@@ -79,8 +81,12 @@ const Register = () => {
             resetinput();
           }
         });
-      await updateProfile(auth.currentUser, { displayName, photoURL }).catch(
-        (err) => alert(err.message)
+      await updateProfile(auth.currentUser, { displayName, photoURL })
+        .catch((err) => {
+          setRegisterSuccess(false)
+          setDisplayModal(true)
+          // alert(err.message)
+        }
       );
       setProfilePicture();
       const uidRef = doc(db, "users", auth.currentUser.uid);
@@ -93,7 +99,9 @@ const Register = () => {
         position: position,
       });
     } catch (err) {
-      alert(err.message);
+      setRegisterSuccess(false)
+      setDisplayModal(true)
+      // alert(err.message);
     }
   };
 
@@ -108,7 +116,12 @@ const Register = () => {
 
   const registerWithGoogle = async () => {
     try {
-      await signInWithPopup(auth, provider).catch((err) => alert(err.message));
+      await signInWithPopup(auth, provider)
+        .catch((err) => {
+          setRegisterSuccess(false)
+          setDisplayModal(true)
+          // alert(err.message)
+        });
       const uidRef = doc(db, "users", auth.currentUser.uid);
       await setDoc(uidRef, {
         uid: auth.currentUser.uid,
@@ -120,7 +133,9 @@ const Register = () => {
       });
       setDisplayModal(true);
     } catch (err) {
-      alert(err.message);
+      setRegisterSuccess(false)
+      setDisplayModal(true)
+      // alert(err.message);
     }
   };
 
@@ -148,8 +163,13 @@ const Register = () => {
       {displayModal && (
         <SuccessModal
           setDisplayModal={setDisplayModal}
-          text={"Berhasil melakukan Registrasi! Kamu akan diarahkan ke Menu utama"}
+          text={
+            registerSuccess ?
+              "Berhasil melakukan Registrasi! Kamu akan diarahkan ke Menu utama" :
+              errorMsg
+          }
           redirect={"/"}
+          success={registerSuccess}
         />
       )}
       <Link href="/">
