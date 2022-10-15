@@ -20,6 +20,7 @@ export const Wrapper = styled.div`
     img{
         max-width: 10rem;
         max-height: 5rem;
+        border-radius: 50%;
     }
 
     @media (min-width: 768px) and (max-width: 1024px) {

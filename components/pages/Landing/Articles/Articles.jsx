@@ -18,7 +18,7 @@ function Articles({documents}) {
         </p>
       </Top>
       <img src="/static/assets/articleSectionImage.png" alt="Article Image" />
-      <ArticleCardContainer articles={documents} />
+      <ArticleCardContainer data={documents} />
       <Bottom>
         <Button
           text={"Lihat Lainnya"}
