@@ -112,6 +112,11 @@ const NavItem = () => {
             <Link href="/authors">
               <AnchorTag onClick={() => setHamburgerOpen(false)}>Penulis</AnchorTag>
             </Link>
+            {user != null && (
+              <Link href="/articles/editor">
+                <AnchorTag onClick={() => setHamburgerOpen(false)}>Editor</AnchorTag>
+              </Link>
+            )}
           </AnchorWrapper>
 
           {auth.currentUser && (
@@ -138,6 +143,11 @@ const NavItem = () => {
           <Link href="/authors">
             <AnchorTag>Penulis</AnchorTag>
           </Link>
+          {user != null && (
+              <Link href="/articles/editor">
+                <AnchorTag>Editor</AnchorTag>
+              </Link>
+            )}
         </AnchorWrapper>
 
         {user != null ? (
