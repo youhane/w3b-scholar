@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styled from "styled-components";
 import { COLORS } from "../../../constants/styles";
 
@@ -7,8 +6,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-
-  margin: 7.5rem 0 12rem;
+  margin: 4.5rem 0 0;
+  
   @media only screen and (max-width: 1024px) {
     margin: 5rem 0 6rem;
   }

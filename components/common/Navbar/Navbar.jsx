@@ -24,6 +24,7 @@ import useWindowSize from "../../../customHook/useWindowSize";
 
 const NavItem = () => {
   const user = useContext(AuthContext);
+  const router = useRouter();
   const { height, width } = useWindowSize();
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
   const [displayModal, setDisplayModal] = useState(false);
@@ -38,8 +39,9 @@ const NavItem = () => {
   };
 
   const handleLogout = () => {
+    setHamburgerOpen(false)
     auth.signOut();
-    location.push("/");
+    router.push("/");
   };
 
   useEffect(() => {

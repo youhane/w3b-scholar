@@ -79,7 +79,7 @@ const Login = () => {
       {displayModal && (
         <SuccessModal
           setDisplayModal={setDisplayModal}
-          text={"Berhasil melakukan Login, diarahkan ke Menu utama"}
+          text={"Berhasil melakukan Login! Kamu akan diarahkan ke Menu utama"}
           redirect={"/"}
         />
       )}

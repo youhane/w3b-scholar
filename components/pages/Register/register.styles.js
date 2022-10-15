@@ -7,8 +7,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-
-  margin: 7.5rem 0;
+  margin: 5rem 0;
 `;
 
 export const Title = styled.h1`

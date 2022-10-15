@@ -8,7 +8,7 @@ function Footer() {
   if (
     router.pathname !== "/_error" &&
     router.pathname !== "/login" &&
-    router.pathname !== "/register" &&
+    router.pathname !== "/sign-up" &&
     router.pathname !== "/404" &&
     router.pathname !== "/500"
   ) {

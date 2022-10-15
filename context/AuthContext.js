@@ -6,7 +6,7 @@ const AuthContext = createContext([{}, () => {}]);
 
 function AuthContextProvider({ children }) {
   const [user, setUser] = useState(null);
-
+  
   onAuthStateChanged(auth, (user) => {
     if (user) {
       setUser(user);

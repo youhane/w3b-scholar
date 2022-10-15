@@ -5,7 +5,7 @@ export const OuterWrapper = styled.div`
     background: ${COLORS.modalOverlay};
     width: 100vw;
     height: 100vh;
-    z-index: 100;
+    z-index: 1000;
     position: fixed;
     top: 0;
 `

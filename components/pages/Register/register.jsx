@@ -148,7 +148,7 @@ const Register = () => {
       {displayModal && (
         <SuccessModal
           setDisplayModal={setDisplayModal}
-          text={"Berhasil melakukan Sign-Up, diarahkan ke Menu utama"}
+          text={"Berhasil melakukan Registrasi! Kamu akan diarahkan ke Menu utama"}
           redirect={"/"}
         />
       )}
