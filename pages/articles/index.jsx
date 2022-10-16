@@ -58,7 +58,7 @@ function Articles({ documents }) {
     <Wrapper>
       <Head>
         <title>W3B Scholar | Articles</title>
-        <meta name="description" content="W3B Scholar - Belajar Web3" />
+        <meta name="description" content="W3B Scholar - Articles" />
         <meta property="og:image" content="../public/logo.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

@@ -25,6 +25,7 @@ import {
 } from "./register.styles";
 import { doc, setDoc } from "firebase/firestore";
 import SuccessModal from "../../common/SuccessModal/SuccessModal";
+import Head from "next/head";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -87,7 +88,7 @@ const Register = () => {
           setDisplayModal(true)
           // alert(err.message)
         }
-      );
+        );
       setProfilePicture();
       const uidRef = doc(db, "users", auth.currentUser.uid);
       await setDoc(uidRef, {
@@ -160,6 +161,12 @@ const Register = () => {
 
   return (
     <Wrapper>
+      <Head>
+        <title>W3B Scholar - Sign Up</title>
+        <meta name="description" content="W3B Scholar - Sign Up" />
+        <meta property='og:image' content='../public/logo.png' />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       {displayModal && (
         <SuccessModal
           setDisplayModal={setDisplayModal}
@@ -196,6 +203,7 @@ const Register = () => {
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
             required
+            placeholder="Nama yang akan tampil"
           />
           <ErrorWrapper
             show={displayName.length < 10 && initialLoad ? true : false}
@@ -211,6 +219,7 @@ const Register = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            placeholder="Email yang ingin anda gunakan"
           />
           <ErrorWrapper
             show={!emailValidator(email) && initialLoad ? true : false}
@@ -226,6 +235,7 @@ const Register = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder="Password yang ingin anda gunakan"
           />
           <ErrorWrapper
             show={displayName.length < 6 && initialLoad ? true : false}
@@ -241,6 +251,7 @@ const Register = () => {
             value={reenterpassword}
             onChange={(e) => setreenterpassword(e.target.value)}
             required
+            placeholder="Konfirmasi Password Anda"
           />
           <ErrorWrapper
             show={password != reenterpassword && initialLoad ? true : false}
@@ -248,22 +259,24 @@ const Register = () => {
             Password must be same
           </ErrorWrapper>
 
-          <label htmlFor="company">Company</label>
+          <label htmlFor="company">Company (Optional)</label>
           <InputWrapper
             id="company"
             type="text"
             value={company}
             onChange={(e) => setCompany(e.target.value)}
             required
+            placeholder="Nama Perusahaan Anda"
           />
 
-          <label htmlFor="position">Position</label>
+          <label htmlFor="position">Position (Optional)</label>
           <InputWrapper
             id="position"
             type="text"
             value={position}
             onChange={(e) => setPosition(e.target.value)}
             required
+            placeholder="Posisi Anda"
           />
 
           {!profilePic ? (
@@ -337,6 +350,7 @@ const Register = () => {
               Daftar dengan Google
             </FileLabelWrapper>
           </SignUpWrapper>
+          <Link href="/login">Sudah punya akun? Login disini</Link>
         </FormWrapper>
       </ContentWrapper>
     </Wrapper>

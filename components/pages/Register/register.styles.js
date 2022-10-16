@@ -108,6 +108,13 @@ export const FormWrapper = styled.div`
   padding: 2.5rem 2.5rem 2rem;
   border-radius: 0px 24px 24px 0px;
 
+  a{
+    text-align: center;
+    text-decoration: none;
+    margin-top: .75rem;
+    color: ${COLORS.primary};
+  }
+
   input {
     padding: 0 0.5rem;
     height: 1.5rem;

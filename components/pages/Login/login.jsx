@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Router from "next/router";
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
@@ -23,6 +22,7 @@ import {
   ErrorWrapper,
   InputWrapper,
 } from "./login.styles";
+import Head from "next/head";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -93,6 +93,12 @@ const Login = () => {
 
   return (
     <Wrapper>
+      <Head>
+        <title>W3B Scholar - Login</title>
+        <meta name="description" content="W3B Scholar - Login" />
+        <meta property='og:image' content='../public/logo.png' />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       {displayModal && (
         <SuccessModal
           setDisplayModal={setDisplayModal}
@@ -133,6 +139,7 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
             wrong={errorMsg != null && initialLoad ? true : false}
+            placeholder="Masukkan email anda"
           />
 
           <label htmlFor="password">Password</label>
@@ -144,6 +151,7 @@ const Login = () => {
             required
             autoComplete="on"
             wrong={errorMsg != null && initialLoad ? true : false}
+            placeholder="Masukkan password anda"
           />
           <ErrorWrapper show={errorMsg != null && initialLoad ? true : false}>
             {errorMsg}
@@ -157,6 +165,9 @@ const Login = () => {
               Masuk dengan Google
             </FileLabelWrapper>
           </SignUpWrapper>
+          <Link href={'/sign-up'}>
+            Belum punya akun? Buat akun disini
+          </Link>
         </FormWrapper>
       </ContentWrapper>
     </Wrapper>

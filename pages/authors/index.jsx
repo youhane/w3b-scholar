@@ -46,8 +46,8 @@ const Authors = ({ authors }) => {
   return (
     <>
       <Head>
-        <title>W3B Scholar | Articles</title>
-        <meta name="description" content="W3B Scholar - Belajar Web3" />
+        <title>W3B Scholar | Authors</title>
+        <meta name="description" content="W3B Scholar - Authors" />
         <meta property="og:image" content="../public/logo.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
