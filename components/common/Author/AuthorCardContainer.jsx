@@ -1,5 +1,6 @@
 import React from "react";
-import { CardContainer } from "../ArticleCard/ArticleCardContainerStyles";
+import { COLORS } from "../../../constants/styles";
+import { CardContainer } from "./AuthorCardContainerStyles";
 import Author from "./Author";
 
 const AuthorCardContainer = ({ data }) => {
@@ -17,6 +18,7 @@ const AuthorCardContainer = ({ data }) => {
               profileImageURL={author.profileImageURL}
               position={author.position}
               company={author.company}
+              color={COLORS.white}
             />
           );
         })

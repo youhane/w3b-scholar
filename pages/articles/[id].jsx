@@ -95,7 +95,7 @@ function Article({ article, author }) {
       </Head>
       <Layout>
         <ArticleWrapper>
-          <BackButton />
+          <BackButton href="/articles"/>
           <ScrollButon />
           <h1 className="title">{article.title}</h1>
           <AuthorWrapper>

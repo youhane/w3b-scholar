@@ -1,6 +1,6 @@
 import { auth } from "../../../firebase/firebase";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import anon from "../../../public/static/assets/anon.png";
 import {
   SignInButton,
@@ -26,12 +26,11 @@ const NavItem = () => {
   const user = useContext(AuthContext);
   const { height, width } = useWindowSize();
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
-  const [displayModal, setDisplayModal] = useState(false);
-  // const [isOpen, setIsOpen] = useState(true);
+  const [displayModal, setDisplayModal] = useState(true);
 
   const variants = {
-    open: { opacity: 1, x: 0 },
-    closed: { opacity: 0, x: 100 },
+    open: { x: 0 },
+    closed: { x: 1000 },
   };
 
   const handleHamburgerClick = () => {
@@ -42,6 +41,10 @@ const NavItem = () => {
     auth.signOut();
   };
 
+  useEffect(() => {
+    width > 1024 && setHamburgerOpen(false);
+  }, [width]);
+
   return (
     <>
       {displayModal && (
@@ -49,30 +52,36 @@ const NavItem = () => {
           setDisplayModal={setDisplayModal}
           text={"Are you sure you want to logout?"}
           action={handleLogout}
+          multipleChoice={true}
         />
       )}
       <HamburgerWrapper active={hamburgerOpen}>
         <HamburgerItemWrapper
-          // active={hamburgerOpen}
+          initial={"closed"}
           animate={hamburgerOpen ? "open" : "closed"}
           variants={variants}
+          transition={{ duration: 0 }}
         >
           <HamburgerHeaderMenu>
             <Link href="/">
               <LogoImageWrapper
                 src="/static/assets/w3bLogoLight.png"
                 alt="W3B Logo"
+                onClick={() => setHamburgerOpen(false)}
               />
             </Link>
 
             {user != null ? (
               user.photoURL != null ? (
-                <HamburgerProfileImage
-                  src={user.photoURL}
-                  alt="image-alt-text"
-                  width={width < 440 ? 35 : 55}
-                  height={width < 440 ? 35 : 55}
-                />
+                <Link href={`/profile/${user.uid}`}>
+                  <HamburgerProfileImage
+                    src={user.photoURL}
+                    alt="image-alt-text"
+                    width={width < 440 ? 35 : 55}
+                    height={width < 440 ? 35 : 55}
+                    onClick={() => setHamburgerOpen(false)}
+                  />
+                </Link>
               ) : (
                 <HamburgerProfileImage
                   src="/static/assets/anon.png"
@@ -82,7 +91,7 @@ const NavItem = () => {
                 />
               )
             ) : (
-              <Link href="/register">
+              <Link href="/sign-up">
                 <SignInButton>Sign Up</SignInButton>
               </Link>
             )}
@@ -95,9 +104,11 @@ const NavItem = () => {
           </HamburgerHeaderMenu>
           <AnchorWrapper className="undefault">
             <Link href="/articles">
-              <AnchorTag>Artikel</AnchorTag>
+              <AnchorTag onClick={() => setHamburgerOpen(false)}>Artikel</AnchorTag>
             </Link>
-            <AnchorTag>Penulis</AnchorTag>
+            <Link href="/authors">
+              <AnchorTag onClick={() => setHamburgerOpen(false)}>Penulis</AnchorTag>
+            </Link>
           </AnchorWrapper>
 
           {auth.currentUser && (
@@ -121,18 +132,22 @@ const NavItem = () => {
           <Link href="/articles">
             <AnchorTag>Artikel</AnchorTag>
           </Link>
-          <AnchorTag>Penulis</AnchorTag>
+          <Link href="/authors">
+            <AnchorTag>Penulis</AnchorTag>
+          </Link>
         </AnchorWrapper>
 
         {user != null ? (
           user.photoURL != null ? (
-            <ProfileImage
-              src={user.photoURL}
-              alt="image-alt-text"
-              width={55}
-              height={55}
-              onClick={handleHamburgerClick}
-            />
+            <Link href={`/profile/${user.uid}`}>
+              <ProfileImage
+                src={user.photoURL}
+                alt="image-alt-text"
+                width={55}
+                height={55}
+                onClick={() => setHamburgerOpen(false)}
+              />
+            </Link>
           ) : (
             <ProfileImage
               src={anon}
