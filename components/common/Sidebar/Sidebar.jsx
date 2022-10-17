@@ -7,9 +7,12 @@ import { IoIosCloseCircleOutline } from 'react-icons/io'
 import SidebarButton from './Button/SidebarButton'
 import Link from 'next/link'
 import { AuthContext } from '../../../context/AuthContext'
+import { auth } from "../../../firebase/firebase";
+import { useRouter } from 'next/router'
 
 function Sidebar({ article, profile }) {
   const user = useContext(AuthContext);
+  const router = useRouter();
 
   const handleLogout = () => {
     auth.signOut();

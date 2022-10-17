@@ -41,6 +41,7 @@ export const ChangeProfilePicture = styled.div`
     label{
         img{
             border-radius: 50%;
+            max-width: 7rem;
         }
 
         span{
