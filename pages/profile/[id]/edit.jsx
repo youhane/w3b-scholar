@@ -2,11 +2,11 @@ import Head from 'next/head';
 import React from 'react'
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../firebase/firebase";
-import EditProfile from '../../../components/pages/Profile/edit';
 import PageIndicator from '../../../components/common/PageIndicator/PageIndicator';
 import { FiUpload } from 'react-icons/fi';
 import Sidebar from '../../../components/common/Sidebar/Sidebar';
 import styled from 'styled-components';
+import EditProfile from '../../../components/pages/Profile/Edit/edit';
 
 const Wrapper = styled.section`
     display: flex;
@@ -42,8 +42,6 @@ export default Edit
 
 export async function getServerSideProps(context) {
     const userDoc = await getDoc(doc(db, "users", context.params.id));
-
-    console.log(userDoc.data())
 
     return {
         props: {

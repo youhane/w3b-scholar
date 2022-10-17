@@ -12,5 +12,9 @@ export const Wrapper = styled.div`
         border: 3px solid ${COLORS.borderBlue};
         border-radius: .75rem;
         padding: .75rem;
+
+        :focus{
+            outline: none;
+        }
     }
 `
