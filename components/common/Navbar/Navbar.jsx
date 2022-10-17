@@ -76,7 +76,7 @@ const NavItem = () => {
 
             {user != null ? (
               user.photoURL != null ? (
-                <Link href={`/profile/${user.uid}`}>
+                <a href={`/profile/${user.uid}/edit`}>
                   <HamburgerProfileImage
                     src={user.photoURL}
                     alt="image-alt-text"
@@ -84,7 +84,7 @@ const NavItem = () => {
                     height={width < 440 ? 35 : 55}
                     onClick={() => setHamburgerOpen(false)}
                   />
-                </Link>
+                </a>
               ) : (
                 <HamburgerProfileImage
                   src="/static/assets/anon.png"
@@ -152,7 +152,7 @@ const NavItem = () => {
 
         {user != null ? (
           user.photoURL != null ? (
-            <Link href={`/profile/${user.uid}`}>
+            <a href={`/profile/${user.uid}/edit`}>
               <ProfileImage
                 src={user.photoURL}
                 alt="image-alt-text"
@@ -160,7 +160,7 @@ const NavItem = () => {
                 height={55}
                 onClick={() => setHamburgerOpen(false)}
               />
-            </Link>
+            </a>
           ) : (
             <ProfileImage
               src={anon}
