@@ -13,24 +13,12 @@ function EditProfile({ user, setChangePasswordModal }) {
     const [profileImageURL, setProfileImageURL] = useState(user.profileImageURL);
 
     const handleImageChange = (e) => {
-        const image = e.target.files[0];
-        const uploadTask = storage.ref(`images/${image.name}`).put(image);
-        uploadTask.on(
-            "state_changed",
-            snapshot => { },
-            error => {
-                console.log(error);
-            },
-            () => {
-                storage
-                    .ref("images")
-                    .child(image.name)
-                    .getDownloadURL()
-                    .then(url => {
-                        setProfileImageURL(url);
-                    });
-            }
-        );
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setProfileImageURL(reader.result);
+        }
+        reader.readAsDataURL(file);
     };
 
     const updateProfile = () => {
@@ -40,6 +28,7 @@ function EditProfile({ user, setChangePasswordModal }) {
             company: company,
             position: position,
             profileImageURL: profileImageURL,
+            uid: user.uid,
         }).then(() => {
             alert("Profile updated successfully!");
         }).catch((error) => {
@@ -50,13 +39,7 @@ function EditProfile({ user, setChangePasswordModal }) {
     return (
         <Wrapper>
             <ChangeProfilePicture>
-                <input type="file" id='profileImage' name='profileImage' defaultValue={profileImageURL}
-                    onChange={(e) => {
-                        handleImageChange(e);
-                        // setNewImage(e.target.files[0]);
-                        console.log(e.target.files[0]);
-                        // URL.createObjectURL(e.target.files[0])
-                    }} />
+                <input type="file" id='profileImage' name='profileImage' defaultValue={profileImageURL} onChange={handleImageChange} />
                 <label htmlFor="profileImage">
                     <img src={profileImageURL} alt="profile" />
                     <span><FiEdit2 /></span>
