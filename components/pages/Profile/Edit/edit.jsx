@@ -64,7 +64,7 @@ function EditProfile({ user }) {
                 <label htmlFor="changePass">Password</label>
                 <button name='changePass' id='changePass' onClick={() => setChangePasswordModal(true)}>Change Password</button>
             </ChangePassword>
-            {changePasswordModal && <ChangePasswordModal />}
+            {changePasswordModal && <ChangePasswordModal setChangePasswordModal={setChangePasswordModal} />}
             <Button text="Simpan" />
         </Wrapper>
     )

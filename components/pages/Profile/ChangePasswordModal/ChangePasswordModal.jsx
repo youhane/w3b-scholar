@@ -1,8 +1,14 @@
 import React from 'react'
+import { CloseButton, OuterWrapper, Wrapper } from './ChangePasswordModal.styles'
 
-function ChangePasswordModal() {
+function ChangePasswordModal({setChangePasswordModal}) {
   return (
-    <div>ChangePasswordModal</div>
+    <OuterWrapper>
+      <Wrapper>
+        <CloseButton onClick={() => setChangePasswordModal(false)}>X</CloseButton>
+        ChangePasswordModal
+      </Wrapper>
+    </OuterWrapper>
   )
 }
 
