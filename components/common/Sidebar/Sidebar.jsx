@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Bottom, Top, Wrapper } from './Sidebar.styles'
 import { FiLogOut, FiUpload } from 'react-icons/fi'
 import { CgFileDocument } from 'react-icons/cg'
@@ -6,8 +6,19 @@ import { BiUserCircle } from 'react-icons/bi'
 import { IoIosCloseCircleOutline } from 'react-icons/io'
 import SidebarButton from './Button/SidebarButton'
 import Link from 'next/link'
+import { AuthContext } from '../../../context/AuthContext'
+import { auth } from "../../../firebase/firebase";
+import { useRouter } from 'next/router'
 
 function Sidebar({ article, profile }) {
+  const user = useContext(AuthContext);
+  const router = useRouter();
+
+  const handleLogout = () => {
+    auth.signOut();
+    router.push("/");
+  };
+
   return (
     <Wrapper>
       <Top>
@@ -29,11 +40,11 @@ function Sidebar({ article, profile }) {
             </Link>
           </>
         )}
-        {profile && <Link href={'/profile'}>
+        {profile && <Link href={`/profile/${user?.uid}`}>
           <SidebarButton
             icon={<BiUserCircle />}
             text={'Profil'}
-            path={'/profile'}
+            path={`/profile/${user?.uid}`}
           />
         </Link>
         }
@@ -48,6 +59,7 @@ function Sidebar({ article, profile }) {
           icon={<FiLogOut />}
           text={'Logout'}
           hoverColor={'red'}
+          onClick={handleLogout}
         />
       </Bottom>
     </Wrapper>
