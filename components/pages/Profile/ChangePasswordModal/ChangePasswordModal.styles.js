@@ -45,8 +45,43 @@ export const Wrapper = styled.div`
         border: none;
     }
 
+    .reset-button{
+        background: ${COLORS.pink};
+        color: ${COLORS.white};
+        border: none;
+        padding: .5rem 1rem;
+        border-radius: .5rem;
+
+        :hover{
+            background: ${COLORS.pinkHover};
+        }
+    }
+
+    input{
+        border: 3px solid ${COLORS.borderBlue};
+        border-radius: 1rem;
+        padding: .5rem 1rem;
+        width: 75%;
+
+        :focus{
+            outline: none;
+        }
+    }
+
     @media (max-width: 768px){
-        padding: 2rem 1rem;
+        padding: 3rem 2rem;
+
+        h1{
+            width: max-content;
+        }
+
+        input{
+            width: 100%;
+        }
+
+        .reset-button{
+            width: 100%;
+        }
     }
 `
 

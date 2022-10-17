@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React from 'react'
+import React, { useState } from 'react'
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../firebase/firebase";
 import PageIndicator from '../../../components/common/PageIndicator/PageIndicator';
@@ -7,6 +7,7 @@ import { FiUpload } from 'react-icons/fi';
 import Sidebar from '../../../components/common/Sidebar/Sidebar';
 import styled from 'styled-components';
 import EditProfile from '../../../components/pages/Profile/Edit/edit';
+import ChangePasswordModal from '../../../components/pages/Profile/ChangePasswordModal/ChangePasswordModal';
 
 const Wrapper = styled.section`
     display: flex;
@@ -20,6 +21,8 @@ const Wrapper = styled.section`
 `
 
 function Edit({ user }) {
+    const [changePasswordModal, setChangePasswordModal] = useState(false);
+
     return (
         <Wrapper>
             <Head>
@@ -33,7 +36,8 @@ function Edit({ user }) {
                 currentPage={'Edit Profile'}
             />
             <Sidebar profile={true} />
-            <EditProfile user={user} />
+            <EditProfile user={user} setChangePasswordModal={setChangePasswordModal} />
+            {changePasswordModal && <ChangePasswordModal setChangePasswordModal={setChangePasswordModal} />}
         </Wrapper>
     )
 }

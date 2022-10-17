@@ -2,17 +2,13 @@ import React, { useState } from 'react'
 import { FiEdit2 } from 'react-icons/fi';
 import Button from '../../../common/Button/Button';
 import Input from '../../../common/Input/Input'
-import ChangePasswordModal from '../ChangePasswordModal/ChangePasswordModal';
 import { ChangePassword, ChangeProfilePicture, Wrapper } from './edit.styles';
 
-function EditProfile({ user }) {
+function EditProfile({ user, setChangePasswordModal }) {
     const [name, setName] = useState(user.name);
-    const [email, setEmail] = useState(user.email);
     const [company, setCompany] = useState(user.company);
     const [position, setPosition] = useState(user.position);
     const [profileImageURL, setProfileImageURL] = useState(user.profileImageURL);
-    const [newImage, setNewImage] = useState(profileImageURL);
-    const [changePasswordModal, setChangePasswordModal] = useState(false);
 
     return (
         <Wrapper>
@@ -37,14 +33,6 @@ function EditProfile({ user }) {
                 onChange={(e) => setName(e.target.value)}
             />
             <Input
-                name="email"
-                label="Email"
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <Input
                 name="company"
                 label="Company"
                 type="text"
@@ -64,7 +52,6 @@ function EditProfile({ user }) {
                 <label htmlFor="changePass">Password</label>
                 <button name='changePass' id='changePass' onClick={() => setChangePasswordModal(true)}>Change Password</button>
             </ChangePassword>
-            {changePasswordModal && <ChangePasswordModal setChangePasswordModal={setChangePasswordModal} />}
             <Button text="Simpan" />
         </Wrapper>
     )
