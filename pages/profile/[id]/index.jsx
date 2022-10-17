@@ -7,14 +7,14 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { db } from "../../firebase/firebase";
-import Layout from "../../components/layout/Layout";
+import { db } from "../../../firebase/firebase";
+import Layout from "../../../components/layout/Layout";
 import styled from "styled-components";
 import Head from "next/head";
-import BackButton from "../../components/common/BackButton/BackButton";
-import { COLORS } from "../../constants/styles";
-import ArticleCardContainer from "../../components/common/ArticleCard/ArticleCardContainer";
-import Custom404 from "../404";
+import BackButton from "../../../components/common/BackButton/BackButton";
+import { COLORS } from "../../../constants/styles";
+import ArticleCardContainer from "../../../components/common/ArticleCard/ArticleCardContainer";
+import Custom404 from "../../404";
 
 export const Container = styled.div`
   margin: auto;
