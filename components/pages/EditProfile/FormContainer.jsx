@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import { FiLogOut } from "react-icons/fi";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
@@ -11,9 +12,9 @@ import {
   SaveButton,
   Wrapper,
 } from "./FormContainer.styles";
+import { auth, db } from "../../../firebase/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { COLORS } from "../../../constants/styles";
-import { db } from "../../../firebase/firebase";
 
 const FormContainer = ({
   user,
@@ -21,20 +22,15 @@ const FormContainer = ({
   setDisplaySuccessModal,
 }) => {
   const [name, setName] = useState(user.name);
-  console.log(user.name);
   const [position, setPosition] = useState(user.position);
   const [company, setCompany] = useState(user.company);
-  const [email, setEmail] = useState("");
-  const [phoneNo, setPhoneNo] = useState("");
   const [profileImageURL, setProfileImageURL] = useState(user.profileImageURL);
   const [displayDeleteAccountModal, setDisplayDeleteAccountModal] =
     useState(false);
 
-  const handleSubmit = () => {
-    const emailRegex =
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    const phoneNoRegex = /^08\d+$/;
+  const router = useRouter();
 
+  const handleSubmit = () => {
     const validateInputs = () => {
       const err = {};
 
@@ -42,17 +38,12 @@ const FormContainer = ({
         err.name = true;
       }
 
-      if (email === "" || !email.match(emailRegex)) {
-        err.email = true;
+      if (position === "") {
+        err.position = true;
       }
 
-      if (
-        phoneNo === "" ||
-        phoneNo.length < 10 ||
-        phoneNo.length > 13 ||
-        !phoneNo.match(phoneNoRegex)
-      ) {
-        err.phoneNo = true;
+      if (company === "") {
+        err.company = true;
       }
 
       return err;
@@ -84,24 +75,6 @@ const FormContainer = ({
         border.style.borderColor = `${COLORS.errorRed}`;
         errorMessage.style.display = "inline";
       }
-
-      if (err.email) {
-        border = document.getElementById("email");
-        errorMessage = document.querySelector("#email + .error-message");
-
-        border.style.borderColor = `${COLORS.errorRed}`;
-        errorMessage.style.display = "inline";
-      }
-
-      if (err.phoneNo) {
-        border = document.getElementById("no._telepon");
-        errorMessage = document.querySelector(
-          "#no\\._telepon + .error-message"
-        );
-
-        border.style.borderColor = `${COLORS.errorRed}`;
-        errorMessage.style.display = "inline";
-      }
     };
 
     const err = validateInputs();
@@ -121,6 +94,11 @@ const FormContainer = ({
         .then(setDisplaySuccessModal(true))
         .catch((error) => alert(error.message));
     }
+  };
+
+  const handleLogout = () => {
+    auth.signOut();
+    router.push("/");
   };
 
   return (
@@ -158,21 +136,6 @@ const FormContainer = ({
           />
         </div>
 
-        <InputBox
-          type={"email"}
-          label={"Email"}
-          errorMessage={"Masukkan alamat email yang valid"}
-          state={email}
-          setState={setEmail}
-        />
-        <InputBox
-          type={"text"}
-          label={"No. Telepon"}
-          errorMessage={"Masukkan nomor telepon yang valid"}
-          state={phoneNo}
-          setState={setPhoneNo}
-        />
-
         <div className="change-password">
           <label htmlFor="">Password</label>
           <div className="change-password-btn">
@@ -200,6 +163,7 @@ const FormContainer = ({
             icon={<FiLogOut />}
             text={"Logout"}
             hoverColor={"red"}
+            onClick={handleLogout}
           />
         </div>
       </form>

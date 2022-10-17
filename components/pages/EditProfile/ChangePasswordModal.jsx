@@ -1,3 +1,4 @@
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import React, { useState } from "react";
 
 import { COLORS } from "../../../constants/styles";
@@ -9,33 +10,21 @@ import {
   Wrapper,
 } from "./ChangePasswordModal.styles";
 
-const ChangePasswordModal = ({
-  user,
-  setState,
-  setDisplayChangePasswordModal,
-  setDisplaySuccessModal,
-}) => {
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+const ChangePasswordModal = ({ user, setDisplayChangePasswordModal }) => {
+  const [email, setEmail] = useState("");
 
-  const displayErrorMessage = () => {
-    const border = document.getElementById("confirm_password");
-    const errorMessage = document.querySelector(
-      "#confirm_password + .error-message"
-    );
+  const resetPassword = () => {
+    const auth = getAuth;
 
-    border.style.borderColor = `${COLORS.errorRed}`;
-    errorMessage.style.display = "inline";
-  };
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        alert("Password reset email sent! Please check your email inbox.");
+      })
+      .catch((error) => {
+        alert(error.code + " " + error.message);
+      });
 
-  const handleClick = () => {
-    if (newPassword === confirmPassword && newPassword !== "") {
-      user.password = newPassword;
-      setDisplayChangePasswordModal(false);
-      setDisplaySuccessModal(true);
-    } else {
-      displayErrorMessage();
-    }
+    setDisplayChangePasswordModal(false);
   };
 
   return (
@@ -46,21 +35,21 @@ const ChangePasswordModal = ({
             X
           </CloseButton>
           <div>
-            <InputBox
-              type={"password"}
-              label={"New Password"}
-              state={newPassword}
-              setState={setNewPassword}
-            />
-            <InputBox
-              type={"password"}
-              label={"Confirm Password"}
-              state={confirmPassword}
-              setState={setConfirmPassword}
-              errorMessage={"Password tidak sama. Coba lagi"}
+            <h1>Change Password</h1>
+            <p>
+              Enter your email address and we will send you a link to reset your
+              password.
+            </p>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <ConfirmButton onClick={handleClick}>Simpan</ConfirmButton>
+          <button className="reset-button" onClick={resetPassword}>
+            Send Reset Link
+          </button>
         </Wrapper>
       </OuterWrapper>
     </>

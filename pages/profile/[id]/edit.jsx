@@ -74,12 +74,6 @@ const EditProfile = ({ user }) => {
           setDisplaySuccessModal={setDisplaySuccessChangePasswordModal}
         />
       )}
-      {displaySuccessChangePasswordModal && (
-        <SuccessModal
-          text={"Password berhasil dirubah"}
-          setDisplayModal={setDisplaySuccessChangePasswordModal}
-        />
-      )}
       {displaySuccessModal && (
         <SuccessModal
           text={"Data berhasil disimpan"}

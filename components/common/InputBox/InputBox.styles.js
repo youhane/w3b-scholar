@@ -9,6 +9,10 @@ export const Wrapper = styled.div`
     border-radius: 0.5rem;
     height: 1.5rem;
     padding-left: 0.35rem;
+
+    :focus {
+      outline: none;
+    }
   }
 
   .input-box {
