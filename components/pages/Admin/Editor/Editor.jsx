@@ -96,7 +96,7 @@ function Editor({ setDisplayModal }) {
                         ) :
                             (
                                 <>
-                                    <label htmlFor="gambar">Upload Gambar <BiUpload /></label>
+                                    <label htmlFor="gambar">Upload Gambar <BiUpload className='uploadIcon' /></label>
                                     <input
                                         type="file"
                                         name='gambar'

@@ -43,6 +43,8 @@ export const AlertWrapper = styled.div`
   line-height: 16px;
   text-align: center;
   color: #002e5b;
+  margin-top: 1.25rem;
+  margin-right: .5rem;
 
   visibility: visible;
   animation: ${(props) => (props.out ? fadeOut : fadeIn)} 1s linear;

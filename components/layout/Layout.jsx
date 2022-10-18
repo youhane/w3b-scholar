@@ -6,7 +6,7 @@ const Layout = (props) => {
 
     <div>
       <Wrapper>
-        <MainNavigation profileImg={props.profileImg} />
+        {/* <MainNavigation profileImg={props.profileImg} /> */}
         <main>{props.children}</main>
       </Wrapper>
     </div>

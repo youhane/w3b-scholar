@@ -10,7 +10,7 @@ function Hero() {
         <Wrapper>
             <Left>
                 <div>
-                    <h1>Platform <br /> <span>Belajar Web 3.0</span> <br /> untuk <span>Indonesia</span> 🇮🇩</h1>
+                    <h1>Platform <br /> <span>Belajar Web 3.0</span> <br /> untuk <span>Indonesia</span> <img src="https://flagcdn.com/48x36/id.png" srcSet='https://flagcdn.com/28x21/id.png' alt="" /> </h1>
                     <Button text={'Pelajari Lebih Lanjut'} onClick={() => router.push('#about')} />
                 </div>
             </Left>

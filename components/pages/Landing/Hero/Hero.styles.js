@@ -5,9 +5,11 @@ export const Wrapper = styled.section`
     display: flex;
     justify-content: space-between;
     margin: 3rem auto;
+    overflow-x: hidden;
 
     @media (max-width: 1024px) {
         flex-direction: column;
+        margin-top: 8rem;
     }
 `
 

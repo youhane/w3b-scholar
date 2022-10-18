@@ -9,9 +9,8 @@ export const Wrapper = styled.div`
     justify-content: center;
     gap: 1rem;
     padding: 1rem 3rem;
-    max-width: 15rem;
-    min-width: 15rem;
-    max-height: 15rem;
+    width: 15rem;
+    height: 4rem;
     cursor: pointer;
 
     :hover{
@@ -21,14 +20,14 @@ export const Wrapper = styled.div`
     img{
         max-width: 10rem;
         max-height: 5rem;
+        border-radius: 50%;
     }
 
     @media (min-width: 768px) and (max-width: 1024px) {
         padding: .75rem 1.25rem;
         gap: 1rem;
-        min-height: 4rem;
-        min-width: 10rem;
-        max-width: 15rem;
+        height: 4rem;
+        width: 15rem;
 
         img{
             width: 25%;
@@ -38,13 +37,12 @@ export const Wrapper = styled.div`
     @media (max-width: 767px) {
         padding: .5rem 1rem;
         gap: .5rem;
-        min-height: 3rem;
-        max-height: 5rem;
-        min-width: 0rem;
-        max-width: 10rem;
+        height: 3rem;
+        width: 15rem;
 
         img{
-            width: 25%;
+            width: 20%;
+            max-height: 3rem;
         }
     }
 `

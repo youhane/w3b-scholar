@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLORS } from "../../../constants/styles";
+import { COLORS } from "../../../../constants/styles";
 
 export const OuterWrapper = styled.div`
     background: ${COLORS.modalOverlay};
@@ -45,8 +45,43 @@ export const Wrapper = styled.div`
         border: none;
     }
 
+    .reset-button{
+        background: ${COLORS.pink};
+        color: ${COLORS.white};
+        border: none;
+        padding: .5rem 1rem;
+        border-radius: .5rem;
+
+        :hover{
+            background: ${COLORS.pinkHover};
+        }
+    }
+
+    input{
+        border: 3px solid ${COLORS.borderBlue};
+        border-radius: 1rem;
+        padding: .5rem 1rem;
+        width: 75%;
+
+        :focus{
+            outline: none;
+        }
+    }
+
     @media (max-width: 768px){
-        padding: 2rem 1rem;
+        padding: 3rem 2rem;
+
+        h1{
+            width: max-content;
+        }
+
+        input{
+            width: 100%;
+        }
+
+        .reset-button{
+            width: 100%;
+        }
     }
 `
 
@@ -56,23 +91,4 @@ export const CloseButton = styled.button`
     top: 1rem;
     right: 1rem;
     font-size: 1rem;
-`
-
-export const ConfirmButton = styled.button`
-    width: 100%;
-    background: ${COLORS.pink};
-    color: ${COLORS.white};
-    border-radius: .5rem;
-    padding: .75rem 10rem;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 1rem;
-
-    :hover{
-        background: ${COLORS.pinkHover};
-    }
-
-    @media (max-width: 320px){
-        padding: .75rem 7rem;
-    }
 `

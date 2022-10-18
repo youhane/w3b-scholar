@@ -6,15 +6,26 @@ export const Container = styled.div`
   background-color: ${COLORS.white};
   margin: auto;
   margin-bottom: 2em;
-  padding: .5rem 1rem;
+  padding: .75rem 1rem;
   border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 11rem;
 
   @media (max-width: 1280px) {
     width: 80%;
     height: 2.75em;
+    max-width: 45rem;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 7.5rem;
+    max-width: 34rem;
+  }
+
+  @media (max-width: 320px) {
+    max-width: 14rem;
   }
 `;
 

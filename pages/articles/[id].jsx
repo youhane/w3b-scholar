@@ -19,6 +19,7 @@ export const ArticleContent = styled.div`
 export const ArticleWrapper = styled.div`
   margin: auto;
   width: 95%;
+  margin-top: 12.5rem;
 
   .title {
     margin-bottom: 0.2em;
@@ -48,6 +49,10 @@ export const ArticleWrapper = styled.div`
 
   @media (max-width: 1280px) {
     width: 80%;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 7rem;
   }
 `;
 
@@ -95,7 +100,7 @@ function Article({ article, author }) {
       </Head>
       <Layout>
         <ArticleWrapper>
-          <BackButton />
+          <BackButton href="/articles"/>
           <ScrollButon />
           <h1 className="title">{article.title}</h1>
           <AuthorWrapper>

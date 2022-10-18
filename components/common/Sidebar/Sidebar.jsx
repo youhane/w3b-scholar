@@ -6,20 +6,16 @@ import { CgFileDocument } from "react-icons/cg";
 import { BiUserCircle } from "react-icons/bi";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import Link from "next/link";
-
 import { Bottom, Top, Wrapper } from "./Sidebar.styles";
 import SidebarButton from "./Button/SidebarButton";
 import { auth, db } from "../../../firebase/firebase";
 import { AuthContext } from "../../../context/AuthContext";
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 function Sidebar({ article, profile }) {
   const user = useContext(AuthContext);
   const router = useRouter();
-
-  // masih ga yakin
-  const handleDelete = async () => {
-    await deleteDoc(doc(db, "users", user?.uid));
-  };
 
   const handleLogout = () => {
     auth.signOut();
@@ -47,15 +43,14 @@ function Sidebar({ article, profile }) {
             </Link>
           </>
         )}
-        {profile && (
-          <Link href={"/profile"}>
-            <SidebarButton
-              icon={<BiUserCircle />}
-              text={"Profil"}
-              path={`/profile/${user?.uid}`}
-            />
-          </Link>
-        )}
+        {profile && <Link href={`/profile/${user?.uid}`}>
+          <SidebarButton
+            icon={<BiUserCircle />}
+            text={'Profil'}
+            path={`/profile/${user?.uid}`}
+          />
+        </Link>
+        }
       </Top>
       <Bottom>
         {profile && (
@@ -66,8 +61,8 @@ function Sidebar({ article, profile }) {
         )}
         <SidebarButton
           icon={<FiLogOut />}
-          text={"Logout"}
-          hoverColor={"red"}
+          text={'Logout'}
+          hoverColor={'red'}
           onClick={handleLogout}
         />
       </Bottom>

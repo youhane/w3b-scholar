@@ -7,8 +7,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-
-  margin: 7.5rem 0;
+  margin: 5rem 0;
 `;
 
 export const Title = styled.h1`
@@ -109,12 +108,23 @@ export const FormWrapper = styled.div`
   padding: 2.5rem 2.5rem 2rem;
   border-radius: 0px 24px 24px 0px;
 
+  a{
+    text-align: center;
+    text-decoration: none;
+    margin-top: .75rem;
+    color: ${COLORS.primary};
+  }
+
   input {
     padding: 0 0.5rem;
     height: 1.5rem;
     opacity: 0.6;
     border-radius: 6px;
     margin-bottom: 0.5rem;
+
+    :focus{
+      outline: none;
+    }
   }
   input[type="file"] {
     display: none;

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Router from "next/router";
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
@@ -23,13 +22,15 @@ import {
   ErrorWrapper,
   InputWrapper,
 } from "./login.styles";
+import Head from "next/head";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMsg, setErrorMsg] = useState(null);
+  const [errorMsg, setErrorMsg] = useState("Login gagal, silahkan coba lagi");
   const [initialLoad, setInitialLoad] = useState(false);
   const [displayModal, setDisplayModal] = useState(false);
+  const [loginSuccess, setLoginSuccess] = useState(true);
   const provider = new GoogleAuthProvider();
 
   const login = async () => {
@@ -44,19 +45,28 @@ const Login = () => {
         })
         .catch((err) => {
           if (err.message == "Firebase: Error (auth/user-not-found).") {
+            setLoginSuccess(false);
             setErrorMsg("Akun tidak ditemukan, coba lagi");
+            setDisplayModal(true);
           } else if (err.message == "Firebase: Error (auth/invalid-email).") {
+            setLoginSuccess(false);
             setErrorMsg("Email salah, coba lagi");
+            setDisplayModal(true);
           } else if (err.message == null) {
-            alert(`SUCCESFULLY LOGGED IN - ${email}`);
+            // alert(`SUCCESFULLY LOGGED IN - ${email}`);
 
             resetinput();
           }
-
-          alert(err.message);
+          setLoginSuccess(false);
+          setErrorMsg(err.message);
+          setDisplayModal(true);
+          // alert(err.message);
         });
     } catch (error) {
-      alert(error.message);
+      setLoginSuccess(false);
+      setErrorMsg(err.message);
+      setDisplayModal(true);
+      // alert(error.message);
     }
   };
 
@@ -67,20 +77,38 @@ const Login = () => {
 
   const loginWithGoogle = async () => {
     try {
-      await signInWithPopup(auth, provider).catch((err) => alert(err.message));
+      await signInWithPopup(auth, provider).catch((err) => {
+        setLoginSuccess(false);
+        setErrorMsg(err.message);
+        // alert(err.message)
+      });
       setDisplayModal(true);
     } catch (err) {
-      alert(err.message);
+      setLoginSuccess(false);
+      setErrorMsg(err.message);
+      setDisplayModal(true);
+      // alert(err.message);
     }
   };
 
   return (
     <Wrapper>
+      <Head>
+        <title>W3B Scholar - Login</title>
+        <meta name="description" content="W3B Scholar - Login" />
+        <meta property='og:image' content='../public/logo.png' />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       {displayModal && (
         <SuccessModal
           setDisplayModal={setDisplayModal}
-          text={"Berhasil melakukan Login, diarahkan ke Menu utama"}
+          text={
+            loginSuccess ?
+              "Berhasil melakukan Login! Kamu akan diarahkan ke Menu utama" :
+              errorMsg
+          }
           redirect={"/"}
+          success={loginSuccess}
         />
       )}
       <Link href="/">
@@ -111,6 +139,7 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
             wrong={errorMsg != null && initialLoad ? true : false}
+            placeholder="Masukkan email anda"
           />
 
           <label htmlFor="password">Password</label>
@@ -122,6 +151,7 @@ const Login = () => {
             required
             autoComplete="on"
             wrong={errorMsg != null && initialLoad ? true : false}
+            placeholder="Masukkan password anda"
           />
           <ErrorWrapper show={errorMsg != null && initialLoad ? true : false}>
             {errorMsg}
@@ -135,6 +165,9 @@ const Login = () => {
               Masuk dengan Google
             </FileLabelWrapper>
           </SignUpWrapper>
+          <Link href={'/sign-up'}>
+            Belum punya akun? Buat akun disini
+          </Link>
         </FormWrapper>
       </ContentWrapper>
     </Wrapper>

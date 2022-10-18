@@ -12,6 +12,8 @@ export const Wrapper = styled.div`
   margin-bottom: 1em;
   user-select: none;
   text-decoration: none;
+  cursor: pointer;
+  width: min-content;
 
   :hover {
     color: ${COLORS.darkblue};

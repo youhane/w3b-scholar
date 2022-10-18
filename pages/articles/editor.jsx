@@ -1,18 +1,12 @@
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import SuccessModal from '../../components/common/SuccessModal/SuccessModal';
 import AddArticle from '../../components/pages/Admin/AddArticle/AddArticle';
 import { AuthContext } from '../../context/AuthContext';
 
 function Editor() {
     const user = useContext(AuthContext);
-    const router = useRouter();
-
-    useEffect(() => {
-        if(user === null){
-            router.push('/')
-        }
-    }, [router, user]);
+    const [displayModal, setDisplayModal] = useState(false);
 
     return (
         <>
@@ -22,6 +16,7 @@ function Editor() {
                 <meta property='og:image' content='../public/logo.png' />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+            {user === null && <SuccessModal text={'Kamu perlu login untuk akses halaman ini!'} redirect='/login' setDisplayModal={setDisplayModal} />}
             <AddArticle />
         </>
     )

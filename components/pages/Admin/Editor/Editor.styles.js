@@ -65,6 +65,21 @@ export const InputPictureButton = styled.div`
             background: ${COLORS.lightGrey};
         }
     }
+
+    @media (max-width: 768px){
+        width: 30%;
+        margin-left: 1rem;
+
+        label{
+            width: 100%;
+            flex-wrap: wrap;
+            text-align: right;
+
+            .uploadIcon{
+                display: none;
+            }
+        }
+    }
 `
 
 export const InputComponent = styled.div`
