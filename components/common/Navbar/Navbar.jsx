@@ -16,6 +16,8 @@ import {
   HamburgerProfileImage,
   LogoImageWrapper,
   LogoutButton,
+  HamburgerProfileImageTrue,
+  ProfileImageTrue,
 } from "./Navbar.styles";
 import { AuthContext } from "../../../context/AuthContext";
 import Link from "next/link";
@@ -39,7 +41,7 @@ const NavItem = () => {
   };
 
   const handleLogout = () => {
-    setHamburgerOpen(false)
+    setHamburgerOpen(false);
     auth.signOut();
     router.push("/");
   };
@@ -77,21 +79,22 @@ const NavItem = () => {
             {user != null ? (
               user.photoURL != null ? (
                 <a href={`/profile/${user.uid}/edit`}>
-                  <HamburgerProfileImage
+                  <HamburgerProfileImageTrue
                     src={user.photoURL}
                     alt="image-alt-text"
+                    onClick={() => setHamburgerOpen(false)}
+                  />
+                </a>
+              ) : (
+                <a href={`/profile/${user.uid}/edit`}>
+                  <HamburgerProfileImage
+                    src="/static/assets/anon.png"
+                    alt="anonymus"
                     width={width < 440 ? 35 : 55}
                     height={width < 440 ? 35 : 55}
                     onClick={() => setHamburgerOpen(false)}
                   />
                 </a>
-              ) : (
-                <HamburgerProfileImage
-                  src="/static/assets/anon.png"
-                  alt="anonymus"
-                  width={width < 440 ? 35 : 55}
-                  height={width < 440 ? 35 : 55}
-                />
               )
             ) : (
               <Link href="/sign-up">
@@ -107,14 +110,20 @@ const NavItem = () => {
           </HamburgerHeaderMenu>
           <AnchorWrapper className="undefault">
             <Link href="/articles">
-              <AnchorTag onClick={() => setHamburgerOpen(false)}>Artikel</AnchorTag>
+              <AnchorTag onClick={() => setHamburgerOpen(false)}>
+                Artikel
+              </AnchorTag>
             </Link>
             <Link href="/authors">
-              <AnchorTag onClick={() => setHamburgerOpen(false)}>Penulis</AnchorTag>
+              <AnchorTag onClick={() => setHamburgerOpen(false)}>
+                Penulis
+              </AnchorTag>
             </Link>
             {user != null && (
               <Link href="/articles/editor">
-                <AnchorTag onClick={() => setHamburgerOpen(false)}>Editor</AnchorTag>
+                <AnchorTag onClick={() => setHamburgerOpen(false)}>
+                  Editor
+                </AnchorTag>
               </Link>
             )}
           </AnchorWrapper>
@@ -144,29 +153,32 @@ const NavItem = () => {
             <AnchorTag>Penulis</AnchorTag>
           </Link>
           {user != null && (
-              <Link href="/articles/editor">
-                <AnchorTag>Editor</AnchorTag>
-              </Link>
-            )}
+            <Link href="/articles/editor">
+              <AnchorTag>Editor</AnchorTag>
+            </Link>
+          )}
         </AnchorWrapper>
 
         {user != null ? (
           user.photoURL != null ? (
+            (console.log(user.photoURL),
+            (
+              <a href={`/profile/${user.uid}/edit`}>
+                <ProfileImageTrue
+                  src={user.photoURL}
+                  alt="image-alt-text"
+                  onClick={() => setHamburgerOpen(false)}
+                />
+              </a>
+            ))
+          ) : (
             <a href={`/profile/${user.uid}/edit`}>
               <ProfileImage
-                src={user.photoURL}
-                alt="image-alt-text"
-                width={55}
-                height={55}
+                src={anon}
+                alt="anonymus"
                 onClick={() => setHamburgerOpen(false)}
               />
             </a>
-          ) : (
-            <ProfileImage
-              src={anon}
-              alt="anonymus"
-              onClick={handleHamburgerClick}
-            />
           )
         ) : (
           <Link href="/sign-up">

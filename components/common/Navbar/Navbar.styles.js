@@ -98,6 +98,17 @@ export const ProfileImage = styled(Image)`
   }
 `;
 
+export const ProfileImageTrue = styled.div`
+  border-radius: 50px;
+  width: 55px;
+  height: 55px;
+  background-image: url(${({ src }) => src});
+  background-size: cover;
+  @media (max-width: 1024px) {
+    display: none !important;
+  }
+`;
+
 export const LogoWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -234,6 +245,19 @@ export const HamburgerProfileImage = styled(Image)`
   border-radius: 50px;
   width: 55px;
   height: 55px;
+  @media (max-width: 440px) {
+    width: 35px !important;
+    height: 35px !important;
+  }
+`;
+
+
+export const HamburgerProfileImageTrue = styled.div`
+  border-radius: 50px;
+  width: 55px;
+  height: 55px;
+  background-image: url(${({ src }) => src});
+  background-size: cover;
   @media (max-width: 440px) {
     width: 35px !important;
     height: 35px !important;
