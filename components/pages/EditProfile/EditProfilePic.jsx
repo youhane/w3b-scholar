@@ -26,9 +26,9 @@ const EditProfilePic = ({ profileImageURL, setProfileImageURL }) => {
       />
       <label htmlFor="profileImage">
         <img src={profileImageURL} alt="profile" />
-        <IconWrapper>
+        <span>
           <FiEdit2 />
-        </IconWrapper>
+        </span>
       </label>
     </Wrapper>
   );

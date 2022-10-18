@@ -1,38 +1,32 @@
 import styled from "styled-components";
-
 import { COLORS } from "../../../constants/styles";
 
 export const Wrapper = styled.div`
-  color: ${COLORS.darkGrey};
-  background-color: ${COLORS.white};
-  border-radius: 1rem;
-  padding: 3rem 5rem;
-  box-shadow: 0px 8px 15px rgba(57, 73, 85, 0.05);
+    background: ${COLORS.white};
+    box-shadow: 0px 8px 15px rgba(57, 73, 85, 0.05);
+    border-radius: 1rem;
+    padding: 5rem;
+    width: 50%;
+    margin: 0 auto;
 
-  .career {
-    display: flex;
-    column-gap: 2rem;
-  }
-
-  .change-password {
-    margin: 2rem 0;
-  }
-
-  .change-password-btn {
-    margin-top: 0.5rem;
-  }
-
-  .account-btn {
-    display: none;
-  }
-
-  @media (max-width: 1024px) {
-    .account-btn {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 4rem;
+    button{
+        width: 100%;
     }
-  }
+
+    .error-message{
+        color: ${COLORS.errorRed};
+        font-size: .75rem;
+    }
+
+    @media (max-width: 768px){
+        width: auto;
+        margin: 2rem 3rem;
+    }
+
+    @media (min-width: 320px) and (max-width: 767px){
+        padding: 2rem 1rem;
+        margin: 1rem;
+    }
 `;
 
 export const ChangePasswordButton = styled.button`
@@ -75,11 +69,4 @@ export const SaveButton = styled.button`
 `;
 
 export const InputBoxWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  p {
-    color: ${COLORS.errorRed};
-    font-size: 0.6rem;
-  }
 `;

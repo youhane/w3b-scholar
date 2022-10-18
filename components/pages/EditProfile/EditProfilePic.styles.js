@@ -3,31 +3,37 @@ import styled from "styled-components";
 import { COLORS } from "../../../constants/styles";
 
 export const Wrapper = styled.div`
-  position: relative;
+    display: flex;
+    justify-content: center;
+    position: relative;
 
-  img {
-    display: block;
-    border-radius: 100%;
-    width: 5rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
+    input{
+        display: none;
+    }
 
-  input {
-    display: none;
-  }
-`;
+    label{
+        img{
+            border-radius: 50%;
+            max-width: 7rem;
+        }
 
-export const IconWrapper = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: ${COLORS.pink};
-  border-radius: 100%;
-  color: ${COLORS.white};
-  height: 1.5rem;
-  width: 1.5rem;
-  left: 12rem;
-  bottom: 0;
+        span{
+            background: ${COLORS.pink};
+            color: ${COLORS.white};
+            border-radius: 50%;
+            padding: .45rem;
+            padding-bottom: 0.25rem;
+            position: absolute;
+            right: 43%;
+            bottom: 0;
+
+            @media (max-width: 768px){
+                right: 40%;
+            }
+
+            @media (max-width: 320px){
+                right: 30%;
+            }
+        }
+    }
 `

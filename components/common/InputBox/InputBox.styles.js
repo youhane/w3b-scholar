@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
     border: 0.1rem solid ${COLORS.borderBlue};
     border-radius: 0.5rem;
     height: 1.5rem;
-    padding-left: 0.35rem;
+    padding: ${({ isProfilePage }) => (isProfilePage ? "0.75rem" : "0.35rem 0 0 0")};
 
     :focus {
       outline: none;
@@ -19,6 +19,7 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 2rem;
+    margin-bottom: ${({ isProfilePage }) => (isProfilePage ? "2rem" : "0")};
   }
 
   .error-message {

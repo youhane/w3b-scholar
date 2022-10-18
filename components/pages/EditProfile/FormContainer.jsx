@@ -1,20 +1,14 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
-import { FiLogOut } from "react-icons/fi";
-import { IoIosCloseCircleOutline } from "react-icons/io";
-
 import EditProfilePic from "./EditProfilePic";
 import InputBox from "../../common/InputBox/InputBox";
-import SidebarButton from "../../common/Sidebar/Button/SidebarButton";
 import {
-  ChangePasswordButton,
-  InputBoxWrapper,
   SaveButton,
   Wrapper,
 } from "./FormContainer.styles";
-import { auth, db } from "../../../firebase/firebase";
+import { db } from "../../../firebase/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { COLORS } from "../../../constants/styles";
+import { ChangePassword } from "../Profile/Edit/edit.styles";
 
 const FormContainer = ({
   user,
@@ -25,10 +19,6 @@ const FormContainer = ({
   const [position, setPosition] = useState(user.position);
   const [company, setCompany] = useState(user.company);
   const [profileImageURL, setProfileImageURL] = useState(user.profileImageURL);
-  const [displayDeleteAccountModal, setDisplayDeleteAccountModal] =
-    useState(false);
-
-  const router = useRouter();
 
   const handleSubmit = () => {
     const validateInputs = () => {
@@ -96,77 +86,45 @@ const FormContainer = ({
     }
   };
 
-  const handleLogout = () => {
-    auth.signOut();
-    router.push("/");
-  };
-
   return (
     <Wrapper>
-      <form action="">
         <EditProfilePic
           profileImageURL={profileImageURL}
           setProfileImageURL={setProfileImageURL}
         />
-
         <InputBox
           type={"text"}
           label={"Nama Lengkap"}
           errorMessage={"Minimal 2 karakter"}
           state={name}
           setState={setName}
+          isProfilePage={true}
+        />
+        <InputBox
+          type={"text"}
+          label={"Pekerjaan"}
+          errorMessage={"Wajib diisi"}
+          state={position}
+          setState={setPosition}
+          isProfilePage={true}
+        />
+        <InputBox
+          type={"text"}
+          label={"Perusahaan"}
+          errorMessage={"Wajib diisi"}
+          state={company}
+          setState={setCompany}
+          isProfilePage={true}
         />
 
-        <div className="career">
-          <InputBoxWrapper>
-            <InputBox
-              type={"text"}
-              label={"Pekerjaan"}
-              errorMessage={"Wajib diisi"}
-              state={position}
-              setState={setPosition}
-            />
-          </InputBoxWrapper>
-          <InputBox
-            type={"text"}
-            label={"Perusahaan"}
-            errorMessage={"Wajib diisi"}
-            state={company}
-            setState={setCompany}
-          />
-        </div>
-
-        <div className="change-password">
-          <label htmlFor="">Password</label>
-          <div className="change-password-btn">
-            <ChangePasswordButton
-              type="button"
-              onClick={() => {
-                setDisplayChangePasswordModal(true);
-              }}
-            >
-              Change Password
-            </ChangePasswordButton>
-          </div>
-        </div>
+        <ChangePassword>
+          <label htmlFor="changePass">Password</label>
+          <button name='changePass' id='changePass' onClick={() => setDisplayChangePasswordModal(true)}>Change Password</button>
+        </ChangePassword>
 
         <SaveButton type="button" onClick={handleSubmit}>
           Simpan
         </SaveButton>
-
-        <div className="account-btn">
-          <SidebarButton
-            icon={<IoIosCloseCircleOutline />}
-            text={"Delete Account"}
-          />
-          <SidebarButton
-            icon={<FiLogOut />}
-            text={"Logout"}
-            hoverColor={"red"}
-            onClick={handleLogout}
-          />
-        </div>
-      </form>
     </Wrapper>
   );
 };

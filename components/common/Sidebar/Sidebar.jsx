@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { deleteDoc, doc } from "firebase/firestore";
 import { useRouter } from "next/router";
 import { FiLogOut, FiUpload } from "react-icons/fi";
 import { CgFileDocument } from "react-icons/cg";
@@ -8,10 +7,8 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import Link from "next/link";
 import { Bottom, Top, Wrapper } from "./Sidebar.styles";
 import SidebarButton from "./Button/SidebarButton";
-import { auth, db } from "../../../firebase/firebase";
+import { auth } from "../../../firebase/firebase";
 import { AuthContext } from "../../../context/AuthContext";
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 
 function Sidebar({ article, profile }) {
   const user = useContext(AuthContext);
