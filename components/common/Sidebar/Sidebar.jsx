@@ -1,14 +1,14 @@
-import React, { useContext } from 'react'
-import { Bottom, Top, Wrapper } from './Sidebar.styles'
-import { FiLogOut, FiUpload } from 'react-icons/fi'
-import { CgFileDocument } from 'react-icons/cg'
-import { BiUserCircle } from 'react-icons/bi'
-import { IoIosCloseCircleOutline } from 'react-icons/io'
-import SidebarButton from './Button/SidebarButton'
-import Link from 'next/link'
-import { AuthContext } from '../../../context/AuthContext'
+import React, { useContext } from "react";
+import { useRouter } from "next/router";
+import { FiLogOut, FiUpload } from "react-icons/fi";
+import { CgFileDocument } from "react-icons/cg";
+import { BiUserCircle } from "react-icons/bi";
+import { IoIosCloseCircleOutline } from "react-icons/io";
+import Link from "next/link";
+import { Bottom, Top, Wrapper } from "./Sidebar.styles";
+import SidebarButton from "./Button/SidebarButton";
 import { auth } from "../../../firebase/firebase";
-import { useRouter } from 'next/router'
+import { AuthContext } from "../../../context/AuthContext";
 
 function Sidebar({ article, profile }) {
   const user = useContext(AuthContext);
@@ -20,22 +20,22 @@ function Sidebar({ article, profile }) {
   };
 
   return (
-    <Wrapper>
+    <Wrapper className="sidebar-container">
       <Top>
         {article && (
           <>
-            <Link href={'/articles'}>
+            <Link href={"/articles"}>
               <SidebarButton
                 icon={<CgFileDocument />}
-                text={'Artikel'}
-                path={'/articles'}
+                text={"Artikel"}
+                path={"/articles"}
               />
             </Link>
-            <Link href={'/articles/editor'}>
+            <Link href={"/articles/editor"}>
               <SidebarButton
                 icon={<FiUpload />}
                 text={"Upload Artikel"}
-                path={'/articles/editor'}
+                path={"/articles/editor"}
               />
             </Link>
           </>
@@ -50,11 +50,12 @@ function Sidebar({ article, profile }) {
         }
       </Top>
       <Bottom>
-        {profile && <SidebarButton
-          icon={<IoIosCloseCircleOutline />}
-          text={'Delete Account'}
-        />
-        }
+        {profile && (
+          <SidebarButton
+            icon={<IoIosCloseCircleOutline />}
+            text={"Delete Account"}
+          />
+        )}
         <SidebarButton
           icon={<FiLogOut />}
           text={'Logout'}
@@ -63,7 +64,7 @@ function Sidebar({ article, profile }) {
         />
       </Bottom>
     </Wrapper>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;

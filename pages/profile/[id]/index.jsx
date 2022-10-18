@@ -20,6 +20,8 @@ export const Container = styled.div`
   margin: auto;
   width: 92%;
   min-height: 80vh;
+  @media (max-width: 1200px) {
+    width: 85%;
   margin-top: 11rem;
   @media (max-width: 768px) {
     width: 85%;
@@ -46,7 +48,6 @@ export const UserImage = styled.div`
   background-image: url(${({ src }) => src});
   background-size: cover;
   border-radius: 120px;
-
   @media (max-width: 768px) {
     height: 4em;
     width: 4em;
